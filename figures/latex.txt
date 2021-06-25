@@ -1,0 +1,71 @@
+\begin{align*}
+  p(x)=\frac{1}{\pi} \int_{0}^{\infty} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt
+\end{align*}
+
+\begin{align*}
+  p(x; \mu, c)=\frac{1}{\pi c} \int_{0}^{\infty} \exp(-t) \cos \left( t \left( \frac{x-\mu}{c}\right) + \frac{2t}{\pi} \log \left( \frac{t}{c} \right)  \right) dt
+\end{align*}
+
+\begin{align*}
+  p(x) = p(x; \mu=0, c=\pi/2)
+\end{align*}
+
+\begin{eqnarray*}
+  p(x) &=& \sum_{n=0}^{\infty} I_{n} \\
+  I_{n} &:=& \int_{n}^{n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  p(x) &=& \sum_{n=0}^{\infty} I'_{n} \\
+  I'_{n} &:=& I_{2n}+I_{2n+1} \\
+  &=& \int_{2n}^{2n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt + \int_{2n+1}^{2n+2} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt \\
+  &=& \int_{2n}^{2n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} + \frac{\exp(-x (t+1)) \sin(\pi (t+1))}{(t+1)^{(t+1)}} dt \\
+  &=& \int_{2n}^{2n+1} \sin(\pi t) \frac{\exp(-x t)}{t^t} - \frac{\exp(-x (t+1)) }{(t+1)^{(t+1)}} dt ~~~~ \cdots  \sin(\pi (t+1))=-\sin(\pi t)  \\
+  &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  f(t,x) &:=& \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \\
+  x \geq 0 &\Rightarrow& \forall t [ f(t,x)>0] ~~ \therefore x \geq 0 \Rightarrow I'_{n} > 0 \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \lim _{x \to \infty} f'(t, x)&=&0 ~~|~~ t : t_{peak}(x \to \infty) = e^{-1} \approx 0.367879441171442321595523770... \\
+  f'(t, 0)&=&0 ~~|~~ t : t_{peak}(x=0) \approx 0.610803447420242102727900877... \\
+  &&~~~~~~~ f(t_{peak}(0), 0) \approx 0.88738767730603854001167195...\\
+  0 \leq a < b &\Rightarrow& t_{peak}(x=0) \geq t_{peak}(a) > t_{peak}(b) > e^{-1}, \\
+  && f(t_{peak}(0), 0) \leq f(t_{peak}(a), a) < f(t_{peak}(b), b) < e^{1/e}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  I'_{0} &=& \int_{0}^{1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
+  & < & \int_{0}^{1} \sin(\pi t) \exp(-x t) e^{1/e} dt \\
+  &=& \pi  \frac{(1+\exp(-x)) e^{1/e}}{x^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  I'_{n \leq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
+  & < & \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) dt \\
+  &=& \pi \frac{\exp (-2 n x ) ( 1 + \exp(-x) ) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) }{x^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  p(x; \mu=0, c=\pi/2) &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t x}{\pi} + \frac{2t}{\pi} \log \left( \frac{2t}{\pi} \right)  \right) dt \\
+   &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right)  \right) dt
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  J &:=& \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + a \right)  \right) dt \\
+    &=& \frac{\pi^2}{4(x+a)^2+\pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  J &:=& \int_{u}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right)  \right) dt \\
+    &<& \int_{u}^{\infty} \exp(-t) dt = e^{-u}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  && \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right) = n \pi ~~|~~t:t_n, x:x_n , n \in \mathbb{N} \\
+  && x_n = \frac{n \pi^2}{2 t} - \log(t) - \log(2 / \pi) \\
+  && t_n = \frac{n \pi^2 }{2 W \left( n \frac{\exp(x)}{2 \pi} \right)} ~~(W : \text{Lambert W})
+\end{eqnarray*}
