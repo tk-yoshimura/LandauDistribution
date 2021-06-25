@@ -18,6 +18,8 @@ The relevance of the original definition is as follows:
 
 ![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)
 
+![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
+
 ## WolframAlpha reference
 
 [WolframAlpha](https://www.wolframalpha.com/)
