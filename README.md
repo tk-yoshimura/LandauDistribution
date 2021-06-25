@@ -18,7 +18,9 @@ The relevance of the original definition is as follows:
 
 ![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)
 
-## Wolfram calculation results
+## Wolfram calculation results 
+
+[WolframAlpha](https://www.wolframalpha.com/)
 
 input:  
 N&#91;PDF&#91;LandauDistribution&#91;0, pi/2&#93;, *x*&#93;, 20&#93;  
