@@ -18,7 +18,7 @@ The relevance of the original definition is as follows:
 
 ![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)
 
-## Wolfram calculation results 
+## WolframAlpha reference
 
 [WolframAlpha](https://www.wolframalpha.com/)
 
