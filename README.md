@@ -20,7 +20,14 @@ The relevance of the original definition is as follows:
 
 ![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
 
-## WolframAlpha reference
+## Property of Tail
+
+The behavior at the tail is as follows:
+
+![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
+![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)
+
+## WolframAlpha Reference
 
 [WolframAlpha](https://www.wolframalpha.com/)
 

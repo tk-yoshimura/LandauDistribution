@@ -69,3 +69,11 @@
   && x_n = \frac{n \pi^2}{2 t} - \log(t) - \log(2 / \pi) \\
   && t_n = \frac{n \pi^2 }{2 W \left( n \frac{\exp(x)}{2 \pi} \right)} ~~(W : \text{Lambert W})
 \end{eqnarray*}
+
+\begin{align*}
+  p(x)=1/{x^2}+ \mathcal{O}(x^{-3}) ~~(x \gg 1)
+\end{align*}
+
+\begin{align*}
+  p(x) \approx \exp(-\exp(-x-1)) ~~(x \le -1)
+\end{align*}
