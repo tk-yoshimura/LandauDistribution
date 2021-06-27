@@ -26,11 +26,13 @@ The relevance of the original definition is as follows:
 
 ## Property of Tail
 
-The behavior at the tail is as follows:
+The right side is a fat-tail.
 
 ![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
 ![tail largex cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_cdf.svg)  
 ![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_approx.svg)  
+
+The left side decays rapidly.
 
 ![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
 ![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
