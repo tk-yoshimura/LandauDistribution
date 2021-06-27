@@ -39,6 +39,6 @@ The left side decays rapidly.
 
 ## Columns
 
-[WolframAlpha Reference](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
+[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
 [Quantile Approximation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/QuantileApproximation)  
