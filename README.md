@@ -20,12 +20,19 @@ The relevance of the original definition is as follows:
 
 ![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
 
+![pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf.svg)  
+![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
+![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
+
 ## Property of Tail
 
 The behavior at the tail is as follows:
 
 ![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
-![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)
+![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)  
+
+![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
+![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
 
 ## Numeric Integration
 
@@ -34,6 +41,8 @@ Since the convergence is different, it is necessary to use different equations f
 ### x &geq; 0
 
 Since p(x) has periodicity due to sin, this is used.
+
+![integrad px](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_px.svg)  
 
 ![integrate px 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_1.svg)  
 ![integrate px 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_2.svg)  
@@ -57,6 +66,8 @@ Use an equation with small oscillations whose absolute value is not greater than
 However, the period is not fixed.  
 Furthermore, for negative x, the value of the probability density function decreases rapidly,   
 allowing the calculation to be terminated before the oscillations become too severe.
+
+![integrad nx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_nx.svg)  
 
 ![integrate nx 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_1.svg)  
 
