@@ -29,7 +29,7 @@ The relevance of the original definition is as follows:
 The behavior at the tail is as follows:
 
 ![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
-![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)  
+![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_approx.svg)  
 
 ![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
 ![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
