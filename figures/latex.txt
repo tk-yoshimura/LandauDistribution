@@ -44,7 +44,7 @@
 \end{eqnarray*}
 
 \begin{eqnarray*}
-  I'_{n \leq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
+  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
   & < & \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) dt \\
   &=& \pi \frac{\exp (-2 n x ) ( 1 + \exp(-x) ) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) }{x^2 + \pi^2}
 \end{eqnarray*}
