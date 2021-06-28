@@ -50,6 +50,12 @@
 \end{eqnarray*}
 
 \begin{eqnarray*}
+  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
+  & > & \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-x) }{(2n+2)^{(2n+2)}} \right) dt \\
+  &=& \pi \frac{\exp (-2 n x ) ( 1 + \exp(-x) ) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-x) }{(2n+2)^{(2n+2)}} \right) }{x^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
   p(x; \mu=0, c=\pi/2) &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t x}{\pi} + \frac{2t}{\pi} \log \left( \frac{2t}{\pi} \right)  \right) dt \\
    &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right)  \right) dt
 \end{eqnarray*}
