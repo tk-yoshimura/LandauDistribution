@@ -15,7 +15,7 @@ If x is positive, the integral value is always positive.
 
 ![integrate px 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_3.svg)  
 
-Evaluate the peak point of the integrated function. It can be seen that t &lt; 1 or less always.
+Evaluate the peak point of the integrated function. It can be seen that t &lt; 1 always.
 
 ![integrate px 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_4.svg)  
 
