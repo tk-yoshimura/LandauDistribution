@@ -81,3 +81,8 @@
 \begin{align*}
    \int _{x}^{\infty} p(t) dt \approx \int _{x}^{\infty} 1/t^2 dt = 1/x
 \end{align*}
+
+\begin{eqnarray*}
+  &&\int_{2 n}^{2 n + 1} c \sin(\pi t) \exp(-x t) dt ~~ ( c: \text{constant}, n \in \mathbb{Z} )\\
+  &&~~= \pi c \frac{\exp(-2 n x) (1+\exp(-x))}{x^2 + \pi^2}
+\end{eqnarray*}

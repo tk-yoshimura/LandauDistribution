@@ -21,8 +21,13 @@ Evaluate the peak point of the integrated function. It can be seen that t &lt; 1
 
 Evaluate the upper bound.
 
+![integrate px 7](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_7.svg)  
 ![integrate px 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_5.svg)  
 ![integrate px 6](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_6.svg)  
+
+Similarly, a lower bound is required.
+
+![integrate px 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_8.svg)  
 
 ## x &lt; 0
 
