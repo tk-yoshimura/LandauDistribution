@@ -20,4 +20,6 @@ Define binary logit with the following formula.
 Next, convert the 128bit unsigned integer to a binary logit value.  
 
 ![convert binary logit](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/convert_binary_logit.svg)  
+
+
 ![convert bits binary logit](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/convert_bits_binary_logit.svg)  
