@@ -2,7 +2,7 @@
 
 [WolframAlpha](https://www.wolframalpha.com/)
 
-## PDF, CDF
+## PDF, CDF, Complementary-CDF
 
 input:  
 N&#91;PDF&#91;LandauDistribution&#91;0, pi/2&#93;, *x*&#93;, 20&#93;  
