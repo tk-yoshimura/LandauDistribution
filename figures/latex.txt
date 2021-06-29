@@ -92,3 +92,10 @@
   &&\int_{2 n}^{2 n + 1} c \sin(\pi t) \exp(-x t) dt ~~ ( c: \text{constant}, n \in \mathbb{Z} )\\
   &&~~= \pi c \frac{\exp(-2 n x) (1+\exp(-x))}{x^2 + \pi^2}
 \end{eqnarray*}
+
+\begin{align*}
+  BinaryLogit(p):= \left \{ 
+  \begin{matrix}
+    \log_{2}(p) + 1 & (p < 1/2) \\ -\log_{2}(1-p) - 1 & (p \geq 1/2) \\
+  \end{matrix}
+\end{align*}
