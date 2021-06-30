@@ -22,5 +22,6 @@ For p &gt; 0.5, do the same for two's complement and make the sign positive.
 
 ![convert binary logit](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/convert_binary_logit.svg)  
 
-
 ![convert bits binary logit](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/convert_bits_binary_logit.svg)  
+
+[source](https://github.com/tk-yoshimura/ExRandom/blob/main/ExRandom/Transform/BinaryLogit.cs)
