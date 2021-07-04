@@ -143,6 +143,7 @@ First, scale the quantile function for hermite spline interpolation.
 ![quantile 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_2.svg)  
 
 |u = cdf|v = x|g = 1 / pdf|
+|----|----|----|
 |2.0249554241427937851e-1|-0.46875|5.6159254927864241142e0|
 |2.0807025257745147567e-1|-0.4375|5.5959521798436065624e0|
 |2.1366335293593367292e-1|-0.40625|5.5790376832168295567e0|
@@ -234,6 +235,7 @@ First, scale the quantile function for hermite spline interpolation.
 ![quantile 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_3.svg)  
 
 |u = -log2(ccdf)|v = log2(x)|g = ccdf / x / pdf|
+|----|----|----|
 |7.4565811088512086189e-1|-5.4056838136270274380e-1|5.4866919716826032375e0|
 |7.5761249300213196795e-1|-4.7643804394298712771e-1|5.2461935581444282424e0|
 |7.6957044480581381911e-1|-4.1503749927884381855e-1|5.0264615368305114268e0|
