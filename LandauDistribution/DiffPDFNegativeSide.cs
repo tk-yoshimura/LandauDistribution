@@ -2,9 +2,9 @@
 using System;
 
 namespace LandauDistribution {
-    static class PDFNegativeSide<N> where N : struct, IConstant {
+    static class DiffPDFNegativeSide<N> where N : struct, IConstant {
         static readonly MultiPrecision<N> c = MultiPrecision<N>.Log(2 * MultiPrecision<N>.RcpPI);
-        static readonly MultiPrecision<N> r = 2 * MultiPrecision<N>.RcpPI * MultiPrecision<N>.RcpPI;
+        static readonly MultiPrecision<N> r = 4 * MultiPrecision<N>.RcpPI * MultiPrecision<N>.RcpPI * MultiPrecision<N>.RcpPI;
 
         public static (MultiPrecision<N> value, MultiPrecision<N> error, long accurate_bits) Value(MultiPrecision<N> x, int intergrate_iterations = 20) {
             if (!(x <= 0)) {
@@ -18,7 +18,7 @@ namespace LandauDistribution {
             MultiPrecision<N> f(MultiPrecision<N> t) {
                 MultiPrecision<N> phase = t.IsZero ? 0 : (2 * t * MultiPrecision<N>.RcpPI * (b + LogCache<N>.Value(t)));
 
-                return ExpCache<N>.Value(-t) * SinCosCache<N>.CosValue(phase);
+                return t * ExpCache<N>.Value(-t) * SinCosCache<N>.SinValue(phase);
             }
 
             MultiPrecision<N> sum = 0, error = 0, eps = null;
@@ -42,7 +42,7 @@ namespace LandauDistribution {
 
             long accurate_bits = sum.Exponent - error.Exponent;
 
-            return (sum * r, error * r, accurate_bits);
+            return (-sum * r, error * r, accurate_bits);
         }
     }
 }

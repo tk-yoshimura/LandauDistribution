@@ -2,7 +2,7 @@
 using System;
 
 namespace LandauDistribution {
-    static class PDFPositiveSide<N> where N : struct, IConstant {
+    static class DiffPDFPositiveSide<N> where N : struct, IConstant {
         public static (MultiPrecision<N> value, MultiPrecision<N> error, long accurate_bits) Value(MultiPrecision<N> x, int intergrate_iterations = 20) {
             if (!(x >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(x), "Must be non-negative.");
@@ -13,7 +13,7 @@ namespace LandauDistribution {
             MultiPrecision<N> exp_mx = MultiPrecision<N>.Exp(-x);
 
             MultiPrecision<N> f(MultiPrecision<N> t) {
-                return SinCosCache<N>.SinPIValue(t) * ExpCache<N>.Value(-x * t) * (PowCache<N>.Value(t) - exp_mx * PowCache<N>.Value(t + 1));
+                return SinCosCache<N>.SinPIValue(t) * ExpCache<N>.Value(-x * t) * (t * PowCache<N>.Value(t) - exp_mx * (t + 1) * PowCache<N>.Value(t + 1));
             }
 
             MultiPrecision<N> sum, error, eps;
@@ -50,7 +50,7 @@ namespace LandauDistribution {
 
             long accurate_bits = sum.Exponent - error.Exponent;
 
-            return (sum / MultiPrecision<N>.PI, error / MultiPrecision<N>.PI, accurate_bits);
+            return (-sum / MultiPrecision<N>.PI, error / MultiPrecision<N>.PI, accurate_bits);
         }
 
         public static double PeakT(double x) {
