@@ -2,7 +2,7 @@
 
 namespace LandauDistribution {
     static class SinCosCache<N> where N : struct, IConstant {
-        const int d = 16, n = 1 << d;
+        const int d = 18, n = 1 << d;
         static readonly MultiPrecision<N>[] sin_table, cos_table;
 
         static SinCosCache() {
@@ -40,6 +40,10 @@ namespace LandauDistribution {
 
             MultiPrecision<N> u = MultiPrecision<N>.Ldexp(x - i, -d - 1);
 
+            if (u.IsZero) {
+                return sin_table[i];
+            }
+
             MultiPrecision<N> ns1 = sin_table[i], ns2 = MultiPrecision<N>.SinPI(u);
             MultiPrecision<N> nc1 = cos_table[i], nc2 = MultiPrecision<N>.CosPI(u);
 
@@ -65,11 +69,15 @@ namespace LandauDistribution {
                 return -CosPIValue(1 - t);
             }
 
-           MultiPrecision<N> x = MultiPrecision<N>.Ldexp(t, d + 1);
+            MultiPrecision<N> x = MultiPrecision<N>.Ldexp(t, d + 1);
 
             long i = (long)MultiPrecision<N>.Floor(x);
 
             MultiPrecision<N> u = MultiPrecision<N>.Ldexp(x - i, -d - 1);
+
+            if (u.IsZero) {
+                return cos_table[i];
+            }
 
             MultiPrecision<N> ns1 = sin_table[i], ns2 = MultiPrecision<N>.SinPI(u);
             MultiPrecision<N> nc1 = cos_table[i], nc2 = MultiPrecision<N>.CosPI(u);

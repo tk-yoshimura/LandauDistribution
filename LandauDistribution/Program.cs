@@ -1,7 +1,4 @@
-﻿using MultiPrecision;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 
 namespace LandauDistribution {
     class Program {
@@ -44,19 +41,6 @@ namespace LandauDistribution {
             //        sw.Flush();
             //    }
             //}
-
-            for (decimal x = 0.1m; x <= 8m; x += 0.1m) {
-                MultiPrecision<Pow2.N4> y1 = MultiPrecision<Pow2.N4>.Log(x);
-                MultiPrecision<Pow2.N4> y2 = LogCache<Pow2.N4>.Value(x);
-                MultiPrecision<Pow2.N4> err = y1 - y2;
-
-                Console.WriteLine(y1.ToHexcode());
-                Console.WriteLine(y2.ToHexcode());
-
-                Console.WriteLine(err);
-
-                Console.WriteLine("");
-            }
 
             Console.WriteLine("END");
             Console.ReadLine();
