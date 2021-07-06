@@ -99,3 +99,8 @@
     \log_{2}(p) + 1 & (p < 1/2) \\ -\log_{2}(1-p) - 1 & (p \geq 1/2) \\
   \end{matrix}
 \end{align*}
+
+\begin{eqnarray*}
+  p'(x) &=& -\frac{1}{\pi} \int_{0}^{\infty} t \cdot \frac{\exp(-x t) \sin(\pi t)}{t^t} dt \\
+  &=& - \frac{4}{\pi^3} \int_{0}^{\infty} t \cdot \exp(-t) \sin \left(\frac{2 t}{\pi} (x+\log(t)+\log(2 / \pi)) \right)  dt
+\end{eqnarray*}

@@ -28,7 +28,7 @@ The relevance of the original definition is as follows:
 
 |stat|x|note|
 |----|----|----|
-|average|N/A|undefined|
+|mean|N/A|undefined|
 |variance|N/A|undefined|
 |mode|-0.22278298125640850406...|p(x)=1.806556338205509427830338852686311455672580...e-1|
 |0.01-quantile|-2.10489790934939769338...||
@@ -54,6 +54,12 @@ The left side decays rapidly.
 
 ![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
 ![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
+
+## PDF derivative
+
+If the differential value is calculated, the accuracy will be improved when interpolating.
+
+![formula diff png](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/formula_diff_pdf.svg)
 
 ## Columns
 
