@@ -24,6 +24,24 @@ The relevance of the original definition is as follows:
 ![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
 ![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
 
+## Statistics
+
+|stat|x|note|
+|----|----|----|
+|average|N/A|undefined|
+|variance|N/A|undefined|
+|mode|-0.22278298125640850406...|p(x)=1.806556338205509427830338852686311455672580...e-1|
+|0.01-quantile|-2.10489790934939769338||
+|0.05-quantile|-1.49825415177780273396||
+|0.1-quantile|-1.09225452805484635423||
+|0.25-quantile|-0.20464065154575316905||
+|0.5-quantile|1.35578042099080132503||
+|0.75-quantile|4.45839461019464834851||
+|0.9-quantile|11.649284684474405569996||
+|0.95-quantile|22.450278078872781782888|
+|0.99-quantile|104.156361812207433543595||
+|moment-generating func.|--|undefined|
+
 ## Property of Tail
 
 The right side is a fat-tail.
