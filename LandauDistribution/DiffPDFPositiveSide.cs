@@ -59,13 +59,13 @@ namespace LandauDistribution {
             }
 
             double f(double t) {
-                return Math.PI / Math.Tan(Math.PI * t) - Math.Log(t) - 1 - x;
+                return Math.PI / Math.Tan(Math.PI * t) - Math.Log(t) + 1 / t - 1 - x;
             };
 
             static double df(double t) {
                 double s = Math.PI / Math.Sin(Math.PI * t);
 
-                return -s * s - 1 / t;
+                return -s * s - 1 / t - 1 / (t * t);
             };
 
             double t = Math.Min(1 / x, 0.5);
@@ -90,7 +90,7 @@ namespace LandauDistribution {
 
             double ft = 1;
 
-            for (int i = 0; i < 16; i++, ft /= 2) {
+            for (int i = 0; i < 256; i++, ft /= 2) {
                 if (t * 2 >= ft) {
                     break;
                 }

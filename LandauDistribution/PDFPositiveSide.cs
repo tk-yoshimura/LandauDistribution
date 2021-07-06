@@ -90,7 +90,7 @@ namespace LandauDistribution {
 
             double ft = 1;
 
-            for (int i = 0; i < 16; i++, ft /= 2) {
+            for (int i = 0; i < 256; i++, ft /= 2) {
                 if (t * 2 >= ft) {
                     break;
                 }
