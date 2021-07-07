@@ -12,19 +12,64 @@ namespace LandauDistribution {
 
             MultiPrecision<N> exp_mx = MultiPrecision<N>.Exp(-x);
 
-            MultiPrecision<N> f(MultiPrecision<N> t) {
-                return SinCosCache<N>.SinPIValue(t) * ExpCache<N>.Value(-x * t) * (t * PowCache<N>.Value(t) - exp_mx * (t + 1) * PowCache<N>.Value(t + 1));
+            Func<MultiPrecision<N>, MultiPrecision<N>> f;
+
+            if (exp_mx.Exponent > -MultiPrecision<N>.Bits) {
+                f = (t) => {
+                    MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
+
+                    if (exp_xt.IsZero) {
+                        return MultiPrecision<N>.Zero;
+                    }
+
+                    return SinCosCache<N>.SinPIValue(t) * exp_xt * (t * PowCache<N>.Value(t) - exp_mx * (t + 1) * PowCache<N>.Value(t + 1));
+                };
+            }
+            else {
+                f = (t) => {
+                    MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
+
+                    if (exp_xt.IsZero) {
+                        return MultiPrecision<N>.Zero;
+                    }
+
+                    return SinCosCache<N>.SinPIValue(t) * exp_xt * t * PowCache<N>.Value(t);
+                };
             }
 
             MultiPrecision<N> sum, error, eps;
             double t_peak = FloorPeakT((double)x);
 
-            if (t_peak < 0.03125) {
-                (MultiPrecision<N> s1, MultiPrecision<N> e1) = MultiPrecisionUtil.RombergIntegrate<N>(f, 0, t_peak * 16, max_iterations: intergrate_iterations);
+            if (t_peak < 1d / 256) {
+                double h = t_peak * 4;
+
+                (MultiPrecision<N> s1, MultiPrecision<N> e1) = MultiPrecisionUtil.RombergIntegrate<N>(f, 0, h, max_iterations: intergrate_iterations);
+
+                sum = s1;
+                error = e1;
+                eps = MultiPrecision<N>.Ldexp(s1, -needs_bits - 8);
+
+                double t = h;
+                for (; t + h <= 1 && !ExpCache<N>.Value(-x * t).IsZero && t < h * 1024; t += h) { 
+                    (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate<N>(f, t, t + h, max_iterations: intergrate_iterations, epsilon: eps);
+
+                    sum += s2;
+                    error += e2;
+                }
+
+                if (t < 1 && !ExpCache<N>.Value(-x * t).IsZero) { 
+                    (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate<N>(f, t, 1, max_iterations: intergrate_iterations, epsilon: eps);
+
+                    sum += s2;
+                    error += e2;
+                }
+            }
+            else if (t_peak < 0.125) {
+                (MultiPrecision<N> s1, MultiPrecision<N> e1) = MultiPrecisionUtil.RombergIntegrate<N>(f, 0, t_peak * 4, max_iterations: intergrate_iterations);
 
                 eps = MultiPrecision<N>.Ldexp(s1, -needs_bits - 8);
 
-                (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate(f, t_peak * 16, 1, max_iterations: intergrate_iterations, epsilon: eps);
+                (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate(f, t_peak * 4, 1, max_iterations: intergrate_iterations, epsilon: eps);
 
                 sum = s1 + s2;
                 error = e1 + e2;
@@ -35,7 +80,7 @@ namespace LandauDistribution {
 
             eps = MultiPrecision<N>.Ldexp(sum, -needs_bits - 2);
 
-            for (long t = 2; t < long.MaxValue - 1; t += 2) {
+            for (long t = 2; t < long.MaxValue - 1 && !ExpCache<N>.Value(-x * t).IsZero; t += 2) {
                 (MultiPrecision<N> s, MultiPrecision<N> e) = MultiPrecisionUtil.RombergIntegrate(f, t, t + 1, max_iterations: intergrate_iterations, epsilon: eps);
 
                 sum += s;

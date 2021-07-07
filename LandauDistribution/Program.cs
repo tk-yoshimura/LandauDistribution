@@ -10,11 +10,11 @@ namespace LandauDistribution {
         static void Main(string[] args) {
             List<MultiPrecision<Pow2.N4>> xs = new();
 
-            for (int i = 14; i <= 50; i++) {
+            for (int i = 34; i <= 50; i++) {
                 xs.Add(MultiPrecision<Pow2.N4>.Ldexp(1, i));
             }
 
-            using (StreamWriter sw = new StreamWriter(results_dir + "diff_pdf_n4_neg24_pos20_r3.csv")) {
+            using (StreamWriter sw = new StreamWriter(results_dir + "diff_pdf_n4_neg24_pos20_r5.csv")) {
                 sw.WriteLine("x,pdf'(x),error,accurate_bits");
 
                 foreach (MultiPrecision<Pow2.N4> x in xs) {
