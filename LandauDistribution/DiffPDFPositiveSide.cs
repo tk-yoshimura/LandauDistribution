@@ -19,12 +19,12 @@ namespace LandauDistribution {
             MultiPrecision<N> sum, error, eps;
             double t_peak = FloorPeakT((double)x);
 
-            if (t_peak < 0.125) {
-                (MultiPrecision<N> s1, MultiPrecision<N> e1) = MultiPrecisionUtil.RombergIntegrate<N>(f, 0, t_peak * 4, max_iterations: intergrate_iterations);
+            if (t_peak < 0.03125) {
+                (MultiPrecision<N> s1, MultiPrecision<N> e1) = MultiPrecisionUtil.RombergIntegrate<N>(f, 0, t_peak * 16, max_iterations: intergrate_iterations);
 
                 eps = MultiPrecision<N>.Ldexp(s1, -needs_bits - 8);
 
-                (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate(f, t_peak * 4, 1, max_iterations: intergrate_iterations, epsilon: eps);
+                (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate(f, t_peak * 16, 1, max_iterations: intergrate_iterations, epsilon: eps);
 
                 sum = s1 + s2;
                 error = e1 + e2;

@@ -21,10 +21,10 @@ namespace LandauDistribution {
                 return ExpCache<N>.Value(-t) * SinCosCache<N>.CosValue(phase);
             }
 
-            MultiPrecision<N> sum = 0, error = 0;
+            MultiPrecision<N> sum = 0, error = 0, eps = MultiPrecision<N>.Ldexp(1, -MultiPrecision<N>.Bits);
 
             for (long t = 0; t < long.MaxValue; t += 1) {
-                (MultiPrecision<N> s, MultiPrecision<N> e) = MultiPrecisionUtil.RombergIntegrate<N>(f, t, t + 1, max_iterations: intergrate_iterations);
+                (MultiPrecision<N> s, MultiPrecision<N> e) = MultiPrecisionUtil.RombergIntegrate(f, t, t + 1, max_iterations: intergrate_iterations, epsilon: eps);
 
                 sum += s;
                 error += e;
