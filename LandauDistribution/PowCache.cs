@@ -15,7 +15,7 @@ namespace LandauDistribution {
 
                 MultiPrecision<Plus1<N>> y = MultiPrecision<Plus1<N>>.Pow(t_ex, -t_ex);
 
-                if (table.Count < 268435456) {
+                if (table.Count < 67108864) {
                     table.Add(t, y.Convert<N>());
                 }
 

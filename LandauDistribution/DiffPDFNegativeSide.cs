@@ -29,12 +29,16 @@ namespace LandauDistribution {
                 sum += s;
                 error += e;
 
+                Console.Write('.');
+
                 if (sum.Exponent - s.Exponent < needs_bits + 16) {
                     continue;
                 }
 
                 break;
             }
+
+            Console.WriteLine('\n');
 
             long accurate_bits = sum.Exponent - error.Exponent;
 

@@ -14,7 +14,7 @@ namespace LandauDistribution {
             if (!f_table.ContainsKey(f)) {
                 yf = MultiPrecision<N>.Log(f);
 
-                if (f_table.Count < 268435456) {
+                if (f_table.Count < 16777216) {
                     f_table.Add(f, yf);
                 }
             }
@@ -29,7 +29,7 @@ namespace LandauDistribution {
             if (!n_table.ContainsKey(n)) {
                 yn = MultiPrecision<N>.Ln2 * n;
 
-                if (n_table.Count < 268435456) {
+                if (n_table.Count < 16777216) {
                     n_table.Add(n, yn);
                 }
             }
