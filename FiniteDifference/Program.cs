@@ -21,7 +21,7 @@ namespace FiniteDifference {
 
                     MultiPrecision<Pow2.N8> g = ((ps[3] - ps[1]) * 2 / 3 - (ps[4] - ps[0]) / 12) / h;
 
-                    sw.WriteLine($"{x},{g:e19}");
+                    sw.WriteLine($"{x},{g:e30}");
                 }
             }
         }
