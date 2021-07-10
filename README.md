@@ -59,10 +59,10 @@ The left side decays rapidly.
 
 If the differential value is calculated, the accuracy will be improved when interpolating.
 
+[numeric table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/diff_pdf.csv)  
+
 ![formula diff png](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/formula_diff_pdf.svg)  
 ![pdf derivative](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf_derivative.svg)  
-
-[pdf derivative table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/diff_pdf.csv)  
 
 ## Columns
 
