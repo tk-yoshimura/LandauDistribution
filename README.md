@@ -66,6 +66,6 @@ If the differential value is calculated, the accuracy will be improved when inte
 
 ## Columns
 
-[WolframAlphaReference](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
+[Wolfram Alpha Reference](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
 [Quantile Approximation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/QuantileApproximation)  
