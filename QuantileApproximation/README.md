@@ -5,7 +5,8 @@ Approximating the quantile function with double precision accuracy for the purpo
 ## Coordinate Transformation
 
 First, scale the quantile function for hermite spline interpolation.  
-[TransformCoord](https://github.com/tk-yoshimura/TransformCoord)
+[TransformCoord](https://github.com/tk-yoshimura/TransformCoord)  
+[HermiteSpline](https://github.com/tk-yoshimura/HermiteSpline)  
 
 [under cdf table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/under_cdf.csv)  
 ![quantile 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_1.svg)  
