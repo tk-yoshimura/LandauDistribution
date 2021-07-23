@@ -4,19 +4,17 @@ Approximating the quantile function with double precision accuracy for the purpo
 
 ## Coordinate Transformation
 
-First, scale the quantile function for hermite spline interpolation.
+First, scale the quantile function for hermite spline interpolation.  
+[TransformCoord](https://github.com/tk-yoshimura/TransformCoord)
 
+[under cdf table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/under_cdf.csv)  
 ![quantile 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_1.svg)  
 
-[table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/under_cdf.csv)  
-
+[center cdf table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/center_cdf.csv)  
 ![quantile 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_2.svg)  
 
-[table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/center_cdf.csv)  
-
+[upper cdf table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/upper_cdf.csv)  
 ![quantile 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/quantile_3.svg)  
-
-[table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/upper_cdf.csv)  
 
 ## Binary Logit
 
