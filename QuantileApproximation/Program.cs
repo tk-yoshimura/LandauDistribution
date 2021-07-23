@@ -6,133 +6,88 @@ using System.IO;
 using System.Linq;
 
 namespace QuantileApproximation {
-    class QuinticSpline<N> : QuinticHermiteSpline<N> where N : struct, IConstant {
-        public QuinticSpline(CubicHermiteSpline<N> cublic_spline) :
-            base(cublic_spline.Xs.ToArray(), cublic_spline.Ys.ToArray(), cublic_spline.Grads.ToArray()) { }
-
-        protected override MultiPrecision<N>[] ComputeSecondGrads() {
-            return SplineUtil<N>.FiniteDifference(Xs, Grads);
-        }
-    }
 
     class Program {
-        static readonly string results_dir = "../../../../results_disused/";
+        static readonly string results_dir = "../../../../results/";
+        static readonly string resultsout_dir = "../../../../results_disused/";
 
         static void Main(string[] args) {
-            (MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)[] table = ReadCsv();
+            (MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)[] table = ReadCsv();
 
-            foreach ((var x, var pdf, var cdf, var ccdf) in table) {
-                Console.WriteLine($"{x},{pdf},{cdf},{ccdf}");
-            }
+            QuinticHermiteSpline<Pow2.N8> under_cdf_spline = UnderCDF(table);
+            QuinticHermiteSpline<Pow2.N8> center_cdf_spline = CenterCDF(table);
+            QuinticHermiteSpline<Pow2.N8> upper_cdf_spline = UpperCDF(table);
 
-            CubicHermiteSpline<Pow2.N4> under_cdf_spline = UnderCDF(table);
-            CubicHermiteSpline<Pow2.N4> center_cdf_spline = CenterCDF(table);
-            CubicHermiteSpline<Pow2.N4> upper_cdf_spline = UpperCDF(table);
-
-            QuinticSpline<Pow2.N4> under_cdf_spline_q = new(under_cdf_spline);
-            QuinticSpline<Pow2.N4> center_cdf_spline_q = new(center_cdf_spline);
-            QuinticSpline<Pow2.N4> upper_cdf_spline_q = new(upper_cdf_spline);
-
-            using (StreamWriter sw = new(results_dir + "under_cdf.csv")) {
-                sw.WriteLine("u = -log2(cdf),v = pow2(-x),g = log(2)^2 * cdf * pow2(-x) / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "under_cdf.csv")) {
+                sw.WriteLine("u = -log2(cdf),v = pow2(-x),g,gg");
 
                 for (int i = 0; i < under_cdf_spline.Length; i++) {
                     var u = under_cdf_spline.Xs[i];
                     var v = under_cdf_spline.Ys[i];
                     var g = under_cdf_spline.Grads[i];
+                    var gg = under_cdf_spline.SecondGrads[i];
 
-                    sw.WriteLine($"{u:e19},{v:e19},{g:e19}");
+                    sw.WriteLine($"{u:e19},{v:e19},{g:e19},{gg:e19}");
                 }
             }
 
-            using (StreamWriter sw = new(results_dir + "under_cdf_cubic_interp.csv")) {
-                sw.WriteLine("u = -log2(cdf),v = pow2(-x),g = log(2)^2 * cdf * pow2(-x) / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "under_cdf_quintic_interp.csv")) {
+                sw.WriteLine("u = -log2(cdf),v = pow2(-x),g,gg");
 
                 for (decimal u = 1.0000m; u <= 65; u += 1 / 16m) {
                     var v = under_cdf_spline.Value(u);
                     var g = under_cdf_spline.Grad(u);
-
-                    sw.WriteLine($"{u},{v:e9},{g:e9}");
-                }
-            }
-
-            using (StreamWriter sw = new(results_dir + "under_cdf_quintic_interp.csv")) {
-                sw.WriteLine("u = -log2(cdf),v = pow2(-x),g,gg");
-
-                for (decimal u = 1.0000m; u <= 65; u += 1 / 16m) {
-                    var v = under_cdf_spline_q.Value(u);
-                    var g = under_cdf_spline_q.Grad(u);
-                    var gg = under_cdf_spline_q.SecondGrad(u);
+                    var gg = under_cdf_spline.SecondGrad(u);
 
                     sw.WriteLine($"{u},{v:e19},{g:e19},{gg:e19}");
                 }
             }
 
-            using (StreamWriter sw = new(results_dir + "center_cdf.csv")) {
-                sw.WriteLine("u = cdf,v = x,g = 1 / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "center_cdf.csv")) {
+                sw.WriteLine("u = cdf,v = x,g,gg");
 
                 for (int i = 0; i < center_cdf_spline.Length; i++) {
                     var u = center_cdf_spline.Xs[i];
                     var v = center_cdf_spline.Ys[i];
                     var g = center_cdf_spline.Grads[i];
+                    var gg = center_cdf_spline.SecondGrads[i];
 
-                    sw.WriteLine($"{u:e19},{v},{g:e19}");
+                    sw.WriteLine($"{u:e19},{v},{g:e19},{gg:e19}");
                 }
             }
 
-            using (StreamWriter sw = new(results_dir + "center_cdf_cubic_interp.csv")) {
-                sw.WriteLine("u = cdf,v = x,g = 1 / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "center_cdf_quintic_interp.csv")) {
+                sw.WriteLine("u = cdf,v = x,g,gg");
 
                 for (decimal u = 0.250000m; u <= 3 / 4m; u += 1 / 16m / 20m) {
                     var v = center_cdf_spline.Value(u);
                     var g = center_cdf_spline.Grad(u);
-
-                    sw.WriteLine($"{u},{v:e9},{g:e9}");
-                }
-            }
-
-            using (StreamWriter sw = new(results_dir + "center_cdf_quintic_interp.csv")) {
-                sw.WriteLine("u = cdf,v = x,g,gg");
-
-                for (decimal u = 0.250000m; u <= 3 / 4m; u += 1 / 16m / 20m) {
-                    var v = center_cdf_spline_q.Value(u);
-                    var g = center_cdf_spline_q.Grad(u);
-                    var gg = center_cdf_spline_q.SecondGrad(u);
+                    var gg = center_cdf_spline.SecondGrad(u);
 
                     sw.WriteLine($"{u},{v:e19},{g:e19},{gg:e19}");
                 }
             }
 
-            using (StreamWriter sw = new(results_dir + "upper_cdf.csv")) {
-                sw.WriteLine("u = -log2(ccdf),v = log2(x),g = ccdf / x / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "upper_cdf.csv")) {
+                sw.WriteLine("u = -log2(ccdf),v = log2(x),g,gg");
 
                 for (int i = 0; i < upper_cdf_spline.Length; i++) {
                     var u = upper_cdf_spline.Xs[i];
                     var v = upper_cdf_spline.Ys[i];
                     var g = upper_cdf_spline.Grads[i];
+                    var gg = upper_cdf_spline.SecondGrads[i];
 
-                    sw.WriteLine($"{u:e19},{v:e19},{g:e19}");
+                    sw.WriteLine($"{u:e19},{v:e19},{g:e19},{gg:e19}");
                 }
             }
 
-            using (StreamWriter sw = new(results_dir + "upper_cdf_cubic_interp.csv")) {
-                sw.WriteLine("u = -log2(ccdf),v = log2(x),g = ccdf / x / pdf");
+            using (StreamWriter sw = new(resultsout_dir + "upper_cdf_quintic_interp.csv")) {
+                sw.WriteLine("u = -log2(ccdf),v = log2(x),g,gg");
 
                 for (decimal u = 1.0000m; u <= 65; u += 1 / 16m) {
                     var v = upper_cdf_spline.Value(u);
                     var g = upper_cdf_spline.Grad(u);
-
-                    sw.WriteLine($"{u},{v:e9},{g:e9}");
-                }
-            }
-
-            using (StreamWriter sw = new(results_dir + "upper_cdf_quintic_interp.csv")) {
-                sw.WriteLine("u = -log2(ccdf),v = log2(x),g,gg");
-
-                for (decimal u = 1.0000m; u <= 65; u += 1 / 16m) {
-                    var v = upper_cdf_spline_q.Value(u);
-                    var g = upper_cdf_spline_q.Grad(u);
-                    var gg = upper_cdf_spline_q.SecondGrad(u);
+                    var gg = upper_cdf_spline.SecondGrad(u);
 
                     sw.WriteLine($"{u},{v:e19},{g:e19},{gg:e19}");
                 }
@@ -142,10 +97,14 @@ namespace QuantileApproximation {
             Console.Read();
         }
 
-        static (MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)[] ReadCsv() {
-            List<(MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)> table = new();
+        static (MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)[] ReadCsv() {
+            List<(MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)> table = new();
 
             using (StreamReader sr = new StreamReader(results_dir + "table.csv")) {
+                //skip header
+                sr.ReadLine();
+                sr.ReadLine();
+
                 while (!sr.EndOfStream) {
                     string line = sr.ReadLine();
 
@@ -155,12 +114,12 @@ namespace QuantileApproximation {
 
                     string[] items = line.Split(',');
 
-                    if (items.Length < 4) {
+                    if (items.Length < 5) {
                         break;
                     }
 
                     string xstr = items[0];
-                    MultiPrecision<Pow2.N4> x, pdf = items[1], cdf = items[2], ccdf = items[3];
+                    MultiPrecision<Pow2.N8> x, pdf = items[1], cdf = items[2], ccdf = items[3], pdfdiff = items[4];
 
                     if (!xstr.Contains('^')) {
                         x = xstr;
@@ -172,80 +131,93 @@ namespace QuantileApproximation {
                             throw new FormatException();
                         }
 
-                        x = MultiPrecision<Pow2.N4>.Ldexp(1, int.Parse(x_split[1]));
+                        x = MultiPrecision<Pow2.N8>.Ldexp(1, int.Parse(x_split[1]));
                     }
 
-                    table.Add((x, pdf, cdf, ccdf));
+                    table.Add((x, pdf, cdf, ccdf, pdfdiff));
                 }
             }
 
             return table.ToArray();
         }
 
-        static CubicHermiteSpline<Pow2.N4> UnderCDF((MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)[] table) {
-            List<MultiPrecision<Pow2.N4>> xs = new(), ys = new(), gs = new();
+        static QuinticHermiteSpline<Pow2.N8> UnderCDF((MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)[] table) {
+            List<MultiPrecision<Pow2.N8>> us = new(), vs = new(), gs = new(), ggs = new();
 
-            foreach ((var x, var pdf, var cdf, _) in table.OrderByDescending((items) => items.x)) {
+            foreach ((var x, var pdf, var cdf, _, var pdfdiff) in table.OrderByDescending((items) => items.x)) {
                 if (cdf <= 0 || cdf > 0.6) {
                     continue;
                 }
 
-                MultiPrecision<Pow2.N4> dydx = MultiPrecision<Pow2.N4>.Square(MultiPrecision<Pow2.N4>.Ln2) * cdf * MultiPrecision<Pow2.N4>.Pow2(-x);
+                MultiPrecision<Pow2.N8> u = -MultiPrecision<Pow2.N8>.Log2(cdf);
+                MultiPrecision<Pow2.N8> v = MultiPrecision<Pow2.N8>.Pow2(-x);
+                MultiPrecision<Pow2.N8> g = 1 / pdf, gg = -pdfdiff * g * g * g;
 
-                MultiPrecision<Pow2.N4> g = dydx / pdf;
+                MultiPrecision<Pow2.N8> g_trans = MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * g * cdf * v;
+                MultiPrecision<Pow2.N8> gg_trans = -MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * v * 
+                                                    (g * cdf - MultiPrecision<Pow2.N8>.Ln2 * g * g * cdf * cdf + gg * cdf * cdf);
 
-                xs.Add(-MultiPrecision<Pow2.N4>.Log2(cdf));
-                ys.Add(MultiPrecision<Pow2.N4>.Pow2(-x));
-                gs.Add(g);
+                us.Add(u);
+                vs.Add(v);
+                gs.Add(g_trans);
+                ggs.Add(gg_trans);
             }
 
-            CubicHermiteSpline<Pow2.N4> spline = new(xs.ToArray(), ys.ToArray(), gs.ToArray());
+            QuinticHermiteSpline<Pow2.N8> spline = new(us.ToArray(), vs.ToArray(), gs.ToArray(), ggs.ToArray());
 
             return spline;
         }
 
-        static CubicHermiteSpline<Pow2.N4> CenterCDF((MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)[] table) {
-            List<MultiPrecision<Pow2.N4>> xs = new(), ys = new(), gs = new();
+        static QuinticHermiteSpline<Pow2.N8> CenterCDF((MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)[] table) {
+            List<MultiPrecision<Pow2.N8>> us = new(), vs = new(), gs = new(), ggs = new();
 
-            foreach ((var x, var pdf, var cdf, _) in table.OrderBy((items) => items.x)) {
+            foreach ((var x, var pdf, var cdf, _, var pdfdiff) in table.OrderBy((items) => items.x)) {
                 if (cdf < 0.2 || cdf > 0.8) {
                     continue;
                 }
 
-                MultiPrecision<Pow2.N4> g = 1 / pdf;
+                MultiPrecision<Pow2.N8> u = cdf;
+                MultiPrecision<Pow2.N8> v = x;
+                MultiPrecision<Pow2.N8> g = 1 / pdf, gg = -pdfdiff * g * g * g;
 
-                xs.Add(cdf);
-                ys.Add(x);
+                us.Add(u);
+                vs.Add(v);
                 gs.Add(g);
+                ggs.Add(gg);
             }
 
-            CubicHermiteSpline<Pow2.N4> spline = new(xs.ToArray(), ys.ToArray(), gs.ToArray());
+            QuinticHermiteSpline<Pow2.N8> spline = new(us.ToArray(), vs.ToArray(), gs.ToArray(), ggs.ToArray());
 
             return spline;
         }
 
-        static CubicHermiteSpline<Pow2.N4> UpperCDF((MultiPrecision<Pow2.N4> x, MultiPrecision<Pow2.N4> pdf, MultiPrecision<Pow2.N4> cdf, MultiPrecision<Pow2.N4> ccdf)[] table) {
-            List<MultiPrecision<Pow2.N4>> xs = new(), ys = new(), gs = new();
+        static QuinticHermiteSpline<Pow2.N8> UpperCDF((MultiPrecision<Pow2.N8> x, MultiPrecision<Pow2.N8> pdf, MultiPrecision<Pow2.N8> cdf, MultiPrecision<Pow2.N8> ccdf, MultiPrecision<Pow2.N8> pdfdiff)[] table) {
+            List<MultiPrecision<Pow2.N8>> us = new(), vs = new(), gs = new(), ggs = new();
 
-            foreach ((var x, var pdf, _, var ccdf) in table.OrderBy((items) => items.x)) {
+            foreach ((var x, var pdf, _, var ccdf, var pdfdiff) in table.OrderBy((items) => items.x)) {
                 if (ccdf <= 0 || ccdf > 0.6) {
                     continue;
                 }
 
-                MultiPrecision<Pow2.N4> dydx = ccdf / x;
+                MultiPrecision<Pow2.N8> u = -MultiPrecision<Pow2.N8>.Log2(ccdf);
+                MultiPrecision<Pow2.N8> v = MultiPrecision<Pow2.N8>.Log2(x);
+                MultiPrecision<Pow2.N8> g = 1 / -pdf, gg = pdfdiff / (-pdf * -pdf * -pdf);
 
-                MultiPrecision<Pow2.N4> g = dydx / pdf;
+                MultiPrecision<Pow2.N8> g_trans = -g * ccdf / x;
+                MultiPrecision<Pow2.N8> gg_trans = MultiPrecision<Pow2.N8>.Ln2 * (-g_trans * (1 + g_trans) + gg * ccdf * ccdf / x);
 
-                xs.Add(-MultiPrecision<Pow2.N4>.Log2(ccdf));
-                ys.Add(MultiPrecision<Pow2.N4>.Log2(x));
-                gs.Add(g);
+                us.Add(u);
+                vs.Add(v);
+                gs.Add(g_trans);
+                ggs.Add(gg_trans);
             }
 
-            xs.Add(128);
-            ys.Add(128);
+            us.Add(128);
+            vs.Add(128);
             gs.Add(1);
+            ggs.Add(0);
 
-            CubicHermiteSpline<Pow2.N4> spline = new(xs.ToArray(), ys.ToArray(), gs.ToArray());
+            QuinticHermiteSpline<Pow2.N8> spline = new(us.ToArray(), vs.ToArray(), gs.ToArray(), ggs.ToArray());
 
             return spline;
         }
