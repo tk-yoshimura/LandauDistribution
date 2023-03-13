@@ -1,13 +1,10 @@
 ﻿using MultiPrecision;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace LandauDistribution {
     class Program {
         static readonly string results_dir = "../../../../results/";
 
-        static void Main(string[] args) {
+        static void Main() {
             List<MultiPrecision<Pow2.N4>> xs = new() {
                 -2.875m,
                 -2.75m,
@@ -34,7 +31,7 @@ namespace LandauDistribution {
                 -0.03125m,
             };
 
-            using (StreamWriter sw = new StreamWriter(results_dir + "diff_pdf_n4_neg25.csv")) {
+            using (StreamWriter sw = new(results_dir + "diff_pdf_n4_neg25.csv")) {
                 sw.WriteLine("x,pdf'(x),error,accurate_bits");
 
                 foreach (MultiPrecision<Pow2.N4> x in xs) {
@@ -44,7 +41,7 @@ namespace LandauDistribution {
                     if (x < 0) {
                         (y, error, accurate_bits) = DiffPDFNegativeSide<Pow2.N4>.Value(x, intergrate_iterations: 25);
                     }
-                    else { 
+                    else {
                         (y, error, accurate_bits) = DiffPDFPositiveSide<Pow2.N4>.Value(x, intergrate_iterations: 21);
                     }
 

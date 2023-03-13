@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using System;
 
 namespace LandauDistribution {
     static class DiffPDFPositiveSide<N> where N : struct, IConstant {
@@ -50,14 +49,14 @@ namespace LandauDistribution {
                 eps = MultiPrecision<N>.Ldexp(s1, -needs_bits - 8);
 
                 double t = h;
-                for (; t + h <= 1 && !ExpCache<N>.Value(-x * t).IsZero && t < h * 1024; t += h) { 
+                for (; t + h <= 1 && !ExpCache<N>.Value(-x * t).IsZero && t < h * 1024; t += h) {
                     (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate<N>(f, t, t + h, max_iterations: intergrate_iterations, epsilon: eps);
 
                     sum += s2;
                     error += e2;
                 }
 
-                if (t < 1 && !ExpCache<N>.Value(-x * t).IsZero) { 
+                if (t < 1 && !ExpCache<N>.Value(-x * t).IsZero) {
                     (MultiPrecision<N> s2, MultiPrecision<N> e2) = MultiPrecisionUtil.RombergIntegrate<N>(f, t, 1, max_iterations: intergrate_iterations, epsilon: eps);
 
                     sum += s2;

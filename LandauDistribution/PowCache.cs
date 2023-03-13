@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using System.Collections.Generic;
 
 namespace LandauDistribution {
     static class PowCache<N> where N : struct, IConstant {

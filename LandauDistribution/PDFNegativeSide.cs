@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using System;
 
 namespace LandauDistribution {
     static class PDFNegativeSide<N> where N : struct, IConstant {

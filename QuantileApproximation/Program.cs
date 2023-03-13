@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using MultiPrecisionSpline;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -154,7 +153,7 @@ namespace QuantileApproximation {
                 MultiPrecision<Pow2.N8> g = 1 / pdf, gg = -pdfdiff * g * g * g;
 
                 MultiPrecision<Pow2.N8> g_trans = MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * g * cdf * v;
-                MultiPrecision<Pow2.N8> gg_trans = -MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * v * 
+                MultiPrecision<Pow2.N8> gg_trans = -MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * MultiPrecision<Pow2.N8>.Ln2 * v *
                                                     (g * cdf - MultiPrecision<Pow2.N8>.Ln2 * g * g * cdf * cdf + gg * cdf * cdf);
 
                 us.Add(u);

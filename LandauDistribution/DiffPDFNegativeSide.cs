@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using System;
 
 namespace LandauDistribution {
     static class DiffPDFNegativeSide<N> where N : struct, IConstant {
