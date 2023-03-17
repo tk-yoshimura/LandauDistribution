@@ -8,4 +8,8 @@ namespace LandauDistribution {
     internal struct N5 : IConstant {
         public int Value => 5;
     }
+
+    internal struct N6 : IConstant {
+        public int Value => 6;
+    }
 }
