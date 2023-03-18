@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="LandauDistribution">
+      <HintPath>..\LandauDistribution\bin\Debug\net6.0\LandauDistribution.dll</HintPath>
+    </Reference>
     <Reference Include="LandauNegativeSideRoot">
-      <HintPath>..\LandauNegativeSideRoot\bin\Release\net6.0\LandauNegativeSideRoot.dll</HintPath>
+      <HintPath>..\LandauDistribution\bin\Debug\net6.0\LandauNegativeSideRoot.dll</HintPath>
     </Reference>
   </ItemGroup>
 

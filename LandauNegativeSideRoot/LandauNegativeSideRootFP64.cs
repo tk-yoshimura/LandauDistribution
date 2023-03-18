@@ -16,7 +16,7 @@
                     if (Math.Abs(dt) > Math.Abs(dt_prev)) {
                         dt = Math.CopySign(dt_prev, dt);
                     }
-                    if(dt * dt_prev < 0) {
+                    if (dt * dt_prev < 0) {
                         dt /= 4;
                     }
                 }
@@ -51,7 +51,7 @@
                     if (Math.Abs(dt) > Math.Abs(dt_prev)) {
                         dt = Math.CopySign(dt_prev, dt);
                     }
-                    if(dt * dt_prev < 0) {
+                    if (dt * dt_prev < 0) {
                         dt /= 4;
                     }
                 }

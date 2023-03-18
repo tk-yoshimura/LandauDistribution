@@ -1,7 +1,7 @@
 ﻿using MultiPrecision;
 
 namespace LandauNegativeSideRoot {
-    public static class LandauNegativeSideRootMP<N> where N: struct, IConstant {
+    public static class LandauNegativeSideRootMP<N> where N : struct, IConstant {
         static readonly MultiPrecision<N> c = 2 / MultiPrecision<N>.PI, logc = MultiPrecision<N>.Log(c);
 
         /// <summary>solve for t : v = 2t/pi (x + log(t) + log(2/pi))</summary>
@@ -18,7 +18,7 @@ namespace LandauNegativeSideRoot {
                     if (MultiPrecision<N>.Abs(dt) > MultiPrecision<N>.Abs(dt_prev)) {
                         dt = MultiPrecision<N>.Abs(dt_prev) * (dt.Sign == Sign.Plus ? +1 : -1);
                     }
-                    if(dt * dt_prev < 0) {
+                    if (dt * dt_prev < 0) {
                         dt /= 4;
                     }
                 }
@@ -59,16 +59,13 @@ namespace LandauNegativeSideRoot {
 
         /// <summary>Enumerate cos curve waypoints</summary>
         public static IEnumerable<(MultiPrecision<N> t, int n)> EnumHalfPIValues(MultiPrecision<N> x, int maxpoints = 32) {
-            (double t, int n)[] pts = LandauNegativeSideRootFP64.EnumHalfPIValues((double)x, maxpoints).ToArray();
-
             yield return (MultiPrecision<N>.Zero, 0);
-            int i;
 
-            for (i = 1; i < maxpoints; i++) {
+            foreach ((double td, int n) in LandauNegativeSideRootFP64.EnumHalfPIValues((double)x, maxpoints).Skip(1)) {
                 MultiPrecision<N> t = LandauNegativeSideRootMP<Plus1<N>>.SearchRoot(
-                    x.Convert<Plus1<N>>(), pts[i].n * MultiPrecision<Plus1<N>>.PI / 2, pts[i].t).Convert<N>();
+                    x.Convert<Plus1<N>>(), n * MultiPrecision<Plus1<N>>.PI / 2, td).Convert<N>();
 
-                yield return (t, pts[i].n);
+                yield return (t, n);
             }
 
             yield break;
