@@ -81,7 +81,7 @@
 \end{align*}
 
 \begin{align*}
-  p(x) \approx \exp(-\exp(-x-1)) ~~(x \le -1)
+  p(x) \approx \frac{1}{\sqrt{2 \pi}} \exp((-x-1)/2-\exp(-x-1))~~(x \rightarrow -\infty)
 \end{align*}
 
 \begin{align*}

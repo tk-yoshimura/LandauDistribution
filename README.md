@@ -55,6 +55,9 @@ The left side decays rapidly.
 ![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
 ![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
 
+### Reference
+[W.Borsch-Supan(1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
+
 ## PDF derivative
 
 If the differential value is calculated, the accuracy will be improved when interpolating.
