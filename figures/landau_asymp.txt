@@ -11,8 +11,8 @@
          + \frac{t^5 \left(5 \log^4(t) - 10 \pi^2 \log^2(t)+\pi^4 \right)}{120 \omega^4}
          + \cdots
   \right)  dt\\
-  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{j-1 \land (j+k)\mathrm{mod} 2 = 1} c_{j, k} \int_{0}^{\infty} e^{-t} t^j \log^{k}(t) dt\\
-  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{j-1 \land (j+k)\mathrm{mod} 2 = 1} c_{j, k} R_{j, k} \\
+  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{k<j ~\land~ (j+k)\mathrm{mod} 2 = 1} c_{j, k} \int_{0}^{\infty} e^{-t} t^j \log^{k}(t) dt\\
+  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{k<j ~\land~ (j+k)\mathrm{mod} 2 = 1} c_{j, k} R_{j, k} \\
   &=& \frac{1}{\omega^2} \sum_{n=0}^{\infty} a_n^{+} \omega^{-n}
 \end{eqnarray*}
 
