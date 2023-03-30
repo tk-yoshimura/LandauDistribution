@@ -1,0 +1,50 @@
+\begin{eqnarray*}
+  p(\lambda)=\phi(\omega)
+  &=& \frac{1}{\pi \omega} \int_{0}^{\infty} e^{-t} t^{-t/\omega} \sin (\pi t / \omega) dt ~~~~(\lambda=\omega+\log(\omega))\\
+  &=& \frac{1}{\pi \omega} \int_{0}^{\infty} e^{-t} \cdot \sum_{m=0}^{\infty} (-1)^m \frac{t^m \log^m(t)}{m! \omega^m}  \cdot \frac{\pi t}{\omega} \sum_{m=0}^{\infty} (-1)^m \frac{\pi^{2m} t^{2m}}{(2m+1)! \omega^{2m}}  dt\\
+  &=& \frac{1}{\omega^2} \int_{0}^{\infty} e^{-t} \cdot t \cdot \sum_{m=0}^{\infty} (-1)^m \frac{t^m \log^m(t)}{m! \omega^m}  \cdot \sum_{m=0}^{\infty} (-1)^m \frac{\pi^{2m} t^{2m}}{(2m+1)! \omega^{2m}}  dt\\
+  &=& \frac{1}{\omega^2} \int_{0}^{\infty} e^{-t} \cdot 
+  \left( t
+         - \frac{t^2 \log(t)}{\omega}
+         + \frac{t^3 \left(3 \log^2(t)-\pi^2 \right)}{6 \omega^2}
+         - \frac{t^4 \left(\log^3(t) - \pi^2 \log(t) \right)}{6 \omega^3}
+         + \frac{t^5 \left(5 \log^4(t) - 10 \pi^2 \log^2(t)+\pi^4 \right)}{120 \omega^4}
+         + \cdots
+  \right)  dt\\
+  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{j-1 \land (j+k)\mathrm{mod} 2 = 1} c_{j, k} \int_{0}^{\infty} e^{-t} t^j \log^{k}(t) dt\\
+  &=& \frac{1}{\omega^2} \sum_{j=1}^{\infty} \omega^{-(j-1)} \sum_{k=0}^{j-1 \land (j+k)\mathrm{mod} 2 = 1} c_{j, k} R_{j, k} \\
+  &=& \frac{1}{\omega^2} \sum_{n=0}^{\infty} a_n^{+} \omega^{-n}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  R_{j, k}&=&\int_{0}^{\infty} e^{-t} t^j \log^{k}(t) dt \\
+          &=&(-1)^j k! \sum_{m=0}^{\min(j, k)} (-1)^m \left[ \begin{matrix} j+1 \\ m+1  \end{matrix} \right] b_{k-m} \\
+          && ~~~~ b_n := \left\{ \begin{array}{ll} \frac{1}{n} \sum_{k=1}^n (-1)^k \tilde{\zeta}(k) b_{n-k} & n > 0 \\
+                                                  1 & n=0 \end{array} \right. 
+           ~,~~~~ \tilde{\zeta}(n) := \left\{ \begin{array}{ll} \zeta(n) & n > 1 \\
+                                                  \gamma & n=1 \end{array} \right. \\
+          && ~~~~ \left[ \begin{matrix} * \\ * \end{matrix} \right]: \text{Stirling numbers of the first kind} \\
+          && ~~~~ \zeta(n): \text{Riemann zeta function for integer argument}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \begin{array}{|c||c|c|c|c|} \hline
+  R_{j, k}~~ j \backslash k  &  0 & 1           & 2 & 3 \\ \hline\hline
+                          1  &  1 & 1-\gamma    & \pi^2/6-2\gamma+\gamma^2       & \pi^2/2 - 2 \zeta(3) - (\pi^2/2) \gamma  + 3 \gamma^2 - \gamma^3 \\ \hline
+                          2  &  2 & 3-2\gamma   & 2+\pi^2/3-6\gamma+2\gamma^2    & 3\pi^2/2 - 4 \zeta(3) - (6 + \pi^2) \gamma  + 9 \gamma^2 - 2 \gamma^3 \\ \hline
+                          3  &  6 & 11-6\gamma  & 12+\pi^2-22\gamma+6\gamma^2    & 6 + 11\pi^2/2 -12 \zeta(3) - (36 + 3 \pi^2) \gamma  + 33 \gamma^2 - 6 \gamma^3 \\ \hline
+                          4  & 24 & 50-24\gamma & 70+4\pi^2-100\gamma+24\gamma^2 & 60 + 25\pi^2 -48 \zeta(3) - (210 + 12 \pi^2) \gamma  + 150 \gamma^2 - 24 \gamma^3 \\ \hline
+  \end{array}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \begin{array}{|c||c|c|c|c|c|c|} \hline
+  c_{j, k}~~ j \backslash k  &  0         & 1          & 2         & 3        & 4    & 5  \\ \hline\hline
+                          1  &  1         &            &           &          &      &    \\ \hline
+                          2  &            & -1         &           &          &      &    \\ \hline
+                          3  &  -\pi^2/6  &            & 1/2       &          &      &    \\ \hline
+                          4  &            & \pi^2/6    &           & -1/6     &      &    \\ \hline
+                          5  &  \pi^4/120 &            & -\pi^2/12 &          & 1/24 &    \\ \hline
+                          6  &            & -\pi^4/120 &           & \pi^2/36 &      & -1/120 \\ \hline
+  \end{array}
+\end{eqnarray*}
