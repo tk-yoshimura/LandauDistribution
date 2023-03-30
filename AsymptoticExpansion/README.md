@@ -3,6 +3,7 @@
 ## Positive Side
 
 ![asymp plus 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_1.svg)  
+![asymp plus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_5.svg)  
 ![asymp plus 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_2.svg)  
 ![asymp plus 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_3.svg)  
 ![asymp plus 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_4.svg)  
