@@ -72,5 +72,5 @@ If the differential value is calculated, the accuracy will be improved when inte
 [Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
 [Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
-[AsymptoticExpansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
+[Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
 [Quantile Approximation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/QuantileApproximation)  
