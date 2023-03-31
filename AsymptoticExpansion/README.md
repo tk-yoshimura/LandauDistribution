@@ -43,5 +43,5 @@
 |16|1.407099073481079449657382577173e10|
 
 ## Reference
-[K.S. Kölbig and B. Schorr, "Asymptotic expansions for the Landau density and distribution functions" (1983)](https://www.sciencedirect.com/science/article/abs/pii/0010465584900651)
-<span style="font-size: 40%;">The lack of accuracy after term 4 of the **&Phi;** function is likely due to the fact that the zeta function is not evaluated with odd integers.</span>
+[K.S. Kölbig and B. Schorr, "Asymptotic expansions for the Landau density and distribution functions" (1983)](https://www.sciencedirect.com/science/article/abs/pii/0010465584900651)  
+<span style="font-size: 20%;">The lack of accuracy after term 4 of the **&Phi;** function is likely due to the fact that the zeta function is not evaluated with odd integers.</span>
