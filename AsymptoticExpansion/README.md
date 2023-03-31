@@ -1,6 +1,6 @@
 # LandauDistribution - AsymptoticExpansion
 
-## * &lambda; * &rarr; -&infin;
+## &lambda; &rarr; -&infin;
 
 ### Method
 ![asymp minus 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_1.svg)  
@@ -16,7 +16,7 @@
 ### Coefficients
 ![asymp minus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_5.svg)  
 
-## * &lambda; * &rarr; &infin;
+## &lambda; &rarr; &infin;
 
 ### Method
 ![asymp plus 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_1.svg)  
