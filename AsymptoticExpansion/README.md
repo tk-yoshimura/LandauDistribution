@@ -20,7 +20,7 @@
 ![asymp plus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_result.svg)  
 
 ### a<sub>n</sub><sup>+</sup> Table
-[Coef Generation(Maxima)](asymp_plus.wxmx)
+[Coef Generation(Maxima)](asymp_plus.wxmx)  
 [Coef Generation(Maxima-batchfile)](asymp_plus.mxbat)
 
 |n|a<sub>n</sub><sup>+</sup>|
