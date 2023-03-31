@@ -3,7 +3,6 @@
 ## **&lambda;** &rarr; &infin;
 
 ### Method
-
 ![asymp plus 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_1.svg)  
 ![asymp plus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_5.svg)  
 ![asymp plus 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_2.svg)  
@@ -15,11 +14,9 @@
 ![asymp plus 6](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_6.svg)  
 
 ### Solving **&omega;(&lambda;)**
-
 ![asymp plus 7](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_7.svg)  
 
 ### Result
-
 ![asymp plus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_result.svg)  
 
 ### a<sub>n</sub><sup>+</sup> Table
