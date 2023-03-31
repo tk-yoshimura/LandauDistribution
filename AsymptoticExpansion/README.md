@@ -22,7 +22,7 @@
 ### a<sub>n</sub><sup>+</sup> Table
 [Coef Generation(Maxima)](asymp_plus.wxmx)
 
-|n|a|
+|n|a<sub>n</sub><sup>+</sup>|
 |----|----|
 |0|1|
 |1|-1.8455686701969342787869758198352e0|
