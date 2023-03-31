@@ -2,16 +2,28 @@
 
 ## **&lambda;** &rarr; &infin;
 
+### Method
+
 ![asymp plus 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_1.svg)  
 ![asymp plus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_5.svg)  
 ![asymp plus 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_2.svg)  
+
+### Coefficients
 
 ![asymp plus 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_3.svg)  
 ![asymp plus 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_4.svg)  
 ![asymp plus 6](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_6.svg)  
 
+### Solving **&omega;(&lambda;)**
+
 ![asymp plus 7](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_7.svg)  
+
+### Result
+
 ![asymp plus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_result.svg)  
+
+### a<sub>n</sub><sup>+</sup> Table
+[Coef Generation(Maxima)](asymp_plus.wxmx)
 
 |n|a|
 |----|----|
@@ -32,8 +44,6 @@
 |14|-8.6050618329570458836691382506984e7|
 |15|-1.5235410325018326969458736793947e9|
 |16|1.407099073481079449657382577173e10|
-
-[Coef Generation(Maxima)](asymp_plus.wxmx)
 
 ## Reference
 [K.S. Kölbig and B. Schorr, "Asymptotic expansions for the Landau density and distribution functions" (1983)](https://www.sciencedirect.com/science/article/abs/pii/0010465584900651)
