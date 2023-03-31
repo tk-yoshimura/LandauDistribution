@@ -21,6 +21,7 @@
 
 ### a<sub>n</sub><sup>+</sup> Table
 [Coef Generation(Maxima)](asymp_plus.wxmx)
+[Coef Generation(Maxima-batchfile)](asymp_plus.mxbat)
 
 |n|a<sub>n</sub><sup>+</sup>|
 |----|----|
