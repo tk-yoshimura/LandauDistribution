@@ -17,6 +17,9 @@
 ![asymp minus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_5.svg)  
 ![asymp minus 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_8.svg)  
 
+### Result
+![asymp minus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_result.svg)  
+
 ### a<sub>n</sub><sup>-</sup> Table
 [Coef Generation(C#)](AsymptoticMinus/AsymptoticMinus)
 
