@@ -17,7 +17,7 @@
 ![asymp minus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_5.svg)  
 
 ### a<sub>n</sub><sup>-</sup> Table
-[Coef Generation(C#)](AsymptoticMinus)
+[Coef Generation(C#)](AsymptoticMinus/AsymptoticMinus)
 
 |n|a<sub>n</sub><sup>-</sup>|
 |----|----|
