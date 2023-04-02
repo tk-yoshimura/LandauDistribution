@@ -1,6 +1,6 @@
 ﻿using AsymptoticMinus;
 
-using StreamWriter sw = new("../../../../../../results_disused/asymp_minus_poly.txt");
+using StreamWriter sw = new("../../../../../results_disused/asymp_minus_poly.txt");
 
 List<Fraction> poly = new();
 
