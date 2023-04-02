@@ -4,6 +4,14 @@ for (int n = 0; n <= 4; n++) {
     Console.WriteLine(BTable.Value(n));
 }
 
+for (int n = 1; n <= 4; n++) {
+    for (int k = 0; k <= n; k++) {
+        Console.WriteLine($"s_({n},{k}) = {StirlingNumberTable.SignedValue(n, k)}");
+    }
+
+    Console.WriteLine("");
+}
+
 for (int k = 0; k <= 4; k++) {
     for (int j = 1; j <= 4; j++) {
         Console.WriteLine($"R_({j},{k}) = {RTable.Value(j, k)}");

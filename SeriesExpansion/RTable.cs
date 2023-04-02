@@ -14,7 +14,7 @@ namespace SeriesExpansion {
                 SymbolicPoly poly = new();
 
                 for (int m = 0; m <= Math.Min(j, k); m++) {
-                    SymbolicPoly poly_append = BTable.Value(k - m) * new Term(StirlingNumberTable.Value(j + 1, m + 1));
+                    SymbolicPoly poly_append = BTable.Value(k - m) * new Term(StirlingNumberTable.SignedValue(j + 1, m + 1));
  
                     if ((m & 1) == 0) {
                         poly += poly_append;

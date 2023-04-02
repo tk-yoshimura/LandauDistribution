@@ -57,13 +57,6 @@ namespace SeriesExpansion {
                 return false;
             }
             
-            if (s1.pi < s2.pi) {
-                return true;
-            }
-            if (s1.pi > s2.pi) {
-                return false;
-            }
-
             for (int n = 3, nmax = Math.Max(s1.max_zeta_n, s2.max_zeta_n); n <= nmax; n += 2) {
                 int z1 = s1.Zeta(n), z2 = s2.Zeta(n);
 
@@ -73,6 +66,13 @@ namespace SeriesExpansion {
                 if (z1 > z2) {
                     return false;
                 }
+            }
+                        
+            if (s1.pi < s2.pi) {
+                return true;
+            }
+            if (s1.pi > s2.pi) {
+                return false;
             }
 
             return false;
@@ -86,13 +86,6 @@ namespace SeriesExpansion {
                 return false;
             }
             
-            if (s1.pi > s2.pi) {
-                return true;
-            }
-            if (s1.pi < s2.pi) {
-                return false;
-            }
-
             for (int n = 3, nmax = Math.Max(s1.max_zeta_n, s2.max_zeta_n); n <= nmax; n += 2) {
                 int z1 = s1.Zeta(n), z2 = s2.Zeta(n);
 
@@ -102,6 +95,13 @@ namespace SeriesExpansion {
                 if (z1 < z2) {
                     return false;
                 }
+            }
+
+            if (s1.pi > s2.pi) {
+                return true;
+            }
+            if (s1.pi < s2.pi) {
+                return false;
             }
 
             return false;
@@ -124,14 +124,14 @@ namespace SeriesExpansion {
                 return false;
             }
 
-            if (s1.pi != s2.pi) {
-                return false;
-            }
-
             for (int n = 3, nmax = Math.Max(s1.max_zeta_n, s2.max_zeta_n); n <= nmax; n += 2) {
                 if (s1.Zeta(n) != s2.Zeta(n)) {
                     return false;
                 }
+            }
+                        
+            if (s1.pi != s2.pi) {
+                return false;
             }
 
             return true;
