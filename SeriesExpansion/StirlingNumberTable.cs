@@ -1,5 +1,4 @@
-﻿using AsymptoticMinus;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace SeriesExpansion {
     public static class StirlingNumberTable {

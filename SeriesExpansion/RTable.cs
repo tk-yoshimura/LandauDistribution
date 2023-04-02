@@ -1,6 +1,4 @@
-﻿using AsymptoticMinus;
-
-namespace SeriesExpansion {
+﻿namespace SeriesExpansion {
     public static class RTable {
         private readonly static Dictionary<(int n, int k), SymbolicPoly> table = new();
 
