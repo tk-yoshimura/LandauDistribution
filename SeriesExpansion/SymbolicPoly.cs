@@ -15,6 +15,20 @@ namespace SeriesExpansion {
 
         public Term[] Terms => terms.Select(item => new Term(item.Value, item.Key)).OrderBy(term => term.Symbol).ToArray();
 
+        public static SymbolicPoly operator +(SymbolicPoly p) {
+            return p;
+        }
+
+        public static SymbolicPoly operator -(SymbolicPoly p) {
+            Dictionary<Symbol, Fraction> ret_terms = new();
+
+            foreach (Symbol symbol in p.terms.Keys) {
+                ret_terms.Add(symbol, -p.terms[symbol]);
+            }
+
+            return new SymbolicPoly(ret_terms);
+        }
+
         public static SymbolicPoly operator +(SymbolicPoly p1, SymbolicPoly p2) {
             Dictionary<Symbol, Fraction> ret_terms = new(p1.terms);
 
@@ -51,7 +65,7 @@ namespace SeriesExpansion {
                     ret_terms[symbol] -= f;
                 }
                 else {
-                    ret_terms.Add(symbol, f * -1);
+                    ret_terms.Add(symbol, -f);
                 }
             }
 

@@ -31,6 +31,14 @@ namespace SeriesExpansion {
             return new Fraction(n);
         }
 
+        public static Fraction operator +(Fraction v) {
+            return v;
+        }
+
+        public static Fraction operator -(Fraction v) {
+            return new Fraction(-v.Numer, v.Denom);
+        }
+
         public static Fraction operator +(Fraction v1, Fraction v2) {
             return new Fraction(v1.Numer * v2.Denom + v2.Numer * v1.Denom, v1.Denom * v2.Denom);
         }
@@ -99,8 +107,8 @@ namespace SeriesExpansion {
             return Numer.GetHashCode() ^ Denom.GetHashCode();
         }
 
-        public override bool Equals(object obj) {
-            return obj is Fraction v && Numer == v.Numer && Denom == v.Denom;
+        public override bool Equals(object? obj) {
+            return obj is not null && obj is Fraction v && Numer == v.Numer && Denom == v.Denom;
         }
     }
 }

@@ -17,6 +17,18 @@ namespace SeriesExpansion {
             this.Symbol = symbol;
         }
 
+        public static implicit operator Term(BigInteger n) {
+            return new Term(new Fraction(n));
+        }
+
+        public static implicit operator Term(Fraction c) {
+            return new Term(c);
+        }
+
+        public static Term operator -(Term s) {
+            return new Term(-s.C, s.Symbol);
+        }
+
         public static Term operator *(Term s1, Term s2) {
             return new Term(s1.C * s2.C, s1.Symbol * s2.Symbol);
         }

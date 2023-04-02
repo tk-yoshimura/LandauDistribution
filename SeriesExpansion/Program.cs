@@ -12,9 +12,17 @@ for (int n = 1; n <= 4; n++) {
     Console.WriteLine("");
 }
 
-for (int k = 0; k <= 4; k++) {
-    for (int j = 1; j <= 4; j++) {
+for (int k = 0; k <= 8; k++) {
+    for (int j = 1; j <= 8; j++) {
         Console.WriteLine($"R_({j},{k}) = {RTable.Value(j, k)}");
+    }
+
+    Console.WriteLine("");
+}
+
+for (int j = 1; j < 8; j++) {
+    for (int k = 0; k < j; k++) {
+        Console.WriteLine($"c_({j},{k}) = {CTable.Value(j, k)}");
     }
 
     Console.WriteLine("");
