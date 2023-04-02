@@ -24,12 +24,12 @@
 
 \begin{eqnarray*}
   R_{j, k}&=&\int_{0}^{\infty} e^{-t} t^j \log^{k}(t) dt \\
-          &=&(-1)^j k! \sum_{m=0}^{\min(j, k)} (-1)^m \left[ \begin{matrix} j+1 \\ m+1  \end{matrix} \right] b_{k-m} \\
+          &=&(-1)^j k! \sum_{m=0}^{\min(j, k)} (-1)^m s_1(j+1, m+1) b_{k-m} \\
           && ~~~~ b_n := \left\{ \begin{array}{ll} \frac{1}{n} \sum_{k=1}^n (-1)^k \tilde{\zeta}(k) b_{n-k} & n > 0 \\
                                                   1 & n=0 \end{array} \right. 
            ~,~~~~ \tilde{\zeta}(n) := \left\{ \begin{array}{ll} \zeta(n) & n > 1 \\
                                                   \gamma & n=1 \end{array} \right. \\
-          && ~~~~ \left[ \begin{matrix} * \\ * \end{matrix} \right]: \text{Stirling numbers of the first kind} \\
+          && ~~~~ s_1(*,*): \text{Signed Stirling numbers of the first kind} \\
           && ~~~~ \zeta(n): \text{Riemann zeta function for integer argument}
 \end{eqnarray*}
 
@@ -74,4 +74,77 @@
   a_6^{+} &=&28-\frac{490}{3}\pi^2+\frac{3283}{360}\pi^4-\frac{5}{24}\pi^6-\frac{6769}{3}\zeta(3)+363\pi^2\zeta(3)+280\zeta(3)^2-\frac{13068}{5}\zeta(5) \\
            && ~+ \left( -322+\frac{6769}{12}\pi^2-\frac{363}{40}\pi^4+\frac{13132}{3}\zeta(3)-140\pi^2\zeta(3)+1008\zeta(5)\right)\gamma+ \left(980-\frac{3283}{6}\pi^2+\frac{7}{4}\pi^4-2178\zeta(3) \right) \gamma^2 \\
            && ~+ \left( -\frac{6769}{6}+\frac{363}{2}\pi^2+280\zeta(3) \right) \gamma^3+ \left( \frac{3283}{6}-\frac{35}{2}\pi^2 \right) \gamma^4-\frac{1089}{10}\gamma^5+7\gamma^6
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  p(\lambda)=\phi(\sigma)
+  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
+  \exp \left( \frac{\sigma}{2} \log(1+(t/\sigma)^2) - t \arctan(t/\sigma) \right) \cdot
+  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t - \sigma \arctan(t/\sigma) \right)
+  dt \\
+  &&~~~~ (\sigma=e^{-\lambda-1}) \\
+  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
+  \exp \left( -\frac{t^2}{2 \sigma} \right) Re \left[ \exp \left( \sigma \cdot
+  h \left(\frac{t}{\sigma} \right) \right) \right] dt \\
+  && f(u) := \frac{1}{2} \log(1+u^2) - u \arctan u + \frac{1}{2} u^2 
+  ,~~ g(u) := \frac{1}{2} u \log(1+u^2) + \arctan u - u 
+  ,~~ h(u) := f(u) + i g(u)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  h(u) &=& \sum_{n=3}^{\infty} b_n u^n \\
+    b_n &=&  \left\{ \begin{array}{ll} 
+    0 & n < 3 \\
+    \cfrac{(-1)^{n/2}}{k(k-1)} & n ~\mathrm{mod}~ 2 = 0 \\
+    i \cfrac{(-1)^{(n+1)/2}}{k(k-1)} & n~ \mathrm{mod}~ 2 = 1
+    \end{array} \right.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  Re \left[ \exp \left( \sigma \cdot h \left(\frac{t}{\sigma} \right) \right) \right] &=& \sum_{n=0}^{\infty} c_{2n} (\sigma) \left( \frac{t}{\sigma} \right)^{2n}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  c_n(\sigma) = \left\{ \begin{array}{ll} 
+     \frac{1}{n} \sum_{k=1}^{n} \sigma ~ k  ~ b_k ~ c_{n-k} & n \geq 1 \\
+     1 & n=0
+  \end{array} \right.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  c_0 &=& 1 \\
+  c_2 &=& 0 \\
+  c_4 &=& \frac{1}{12}\sigma\\
+  c_6 &=& -\frac{1}{30}\sigma -\frac{1}{72}\sigma^2 \\
+  c_8 &=& \frac{1}{56}\sigma + \frac{17}{1440}\sigma^2 \\
+  c_{10} &=& -\frac{1}{90}\sigma - \frac{403}{50400} \sigma^2 - \frac{1}{864}\sigma^3 \\
+  c_{12} &=& \frac{1}{132}\sigma + \frac{839}{151200} \sigma^2 + \frac{13}{10368} \sigma^3 + \frac{1}{31104}\sigma^4 \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \int_0^{\infty} t^{2n} \exp \left( -\frac{t^2}{2 \sigma} \right) dt = \sqrt{\frac{\pi}{2}}  \sigma^{n+1/2} \prod_{k=1}^n (2k-1)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \phi(\sigma)
+  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
+  \exp \left( -\frac{t^2}{2 \sigma} \right) Re \left[ \exp \left( \sigma \cdot
+  h \left(\frac{t}{\sigma} \right) \right) \right] dt \\
+  &=& \frac{1}{\pi e^{\sigma}} \sum_{n=0}^{\infty} \left(
+  \left( \sqrt{\frac{\pi}{2}} \sigma^{n+1/2} \prod_{k=1}^n (2n-1) \right) \cdot \left( c_{2n} (\sigma) \sigma^{-2n} \right) \right) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{\sqrt{\sigma}}{e^{\sigma}} \sum_{n=0}^{\infty} \left(
+   \prod_{k=1}^n (2n-1) \cdot c_{2n}  (\sigma) \cdot \sigma^{-n} \right) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{\sqrt{\sigma}}{e^{\sigma}} \sum_{n=0}^{\infty} a_n^{-} \sigma^{-n} \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  a_0^{-} &=&1 \\
+  a_1^{-} &=&1/24 \\
+  a_2^{-} &=&-23/1152 \\
+  a_3^{-} &=&11237/414720 \\
+  a_4^{-} &=&-2482411/39813120 \\
+  a_5^{-} &=&272785979/1337720832 \\
+  a_6^{-} &=&-4175309343349/4815794995200 \\
+  a_7^{-} &=&525035501918789/115579079884800 \\
+  a_8^{-} &=&-628141988536245979/22191183337881600 \\
 \end{eqnarray*}
