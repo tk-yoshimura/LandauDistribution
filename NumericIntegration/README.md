@@ -31,11 +31,14 @@ Similarly, a lower bound is required.
 
 ## x &lt; 0
 
-Use an equation with small oscillations whose absolute value is not greater than 1 for negative x.  
-However, the period is not fixed.  
-Furthermore, for negative x, the value of the probability density function decreases rapidly,   
-allowing the calculation to be terminated before the oscillations become too severe.
+For negative x, do a variable transformation and use an equation with small oscillations that decay rapidly.   
+However, the period is not constant.
 
 ![integrad nx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_nx.svg)  
 
 ![integrate nx 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_1.svg)  
+![integrate nx 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_3.svg)  
+![integrate nx 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_2.svg)  
+
+### Reference
+[W.Börsch-Supan(1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
