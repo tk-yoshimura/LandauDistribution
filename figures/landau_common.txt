@@ -104,3 +104,18 @@
   p'(x) &=& -\frac{1}{\pi} \int_{0}^{\infty} t \cdot \frac{\exp(-x t) \sin(\pi t)}{t^t} dt \\
   &=& - \frac{4}{\pi^3} \int_{0}^{\infty} t \cdot \exp(-t) \sin \left(\frac{2 t}{\pi} (x+\log(t)+\log(2 / \pi)) \right)  dt
 \end{eqnarray*}
+
+\begin{eqnarray*}
+  p(\lambda)=\phi(\sigma)
+  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
+  \exp \left( \frac{\sigma}{2} \log(1+(t/\sigma)^2) - t \arctan(t/\sigma) \right) \cdot
+  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t + \sigma \arctan(t/\sigma) \right)
+  dt ~~~~ (\sigma=e^{-\lambda-1}) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{\sqrt{\sigma}}{e^{\sigma}} \int_{0}^{\infty}
+  \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) \cdot
+  \cos \left(\frac{1}{2} cu \log(1+(cu/\sigma)^2) - cu + \sigma \arctan(c u/\sigma) \right) du~~~~\left( t=c u, c= \sqrt{\frac{\pi \sigma}{2}} \right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  J:=\phi(\sigma) \cdot \sqrt{2 \pi} \cdot \frac{e^{\sigma}}{\sqrt{\sigma}}
+\end{eqnarray*}

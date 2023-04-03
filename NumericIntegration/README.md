@@ -31,8 +31,7 @@ Similarly, a lower bound is required.
 
 ## x &lt; 0
 
-For negative x, do a variable transformation and use an equation with small oscillations that decay rapidly.   
-However, the period is not constant.
+For negative x, do a variable transformation and use an equation with small oscillations that decay rapidly.  
 
 ![integrad nx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_nx.svg)  
 
