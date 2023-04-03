@@ -42,5 +42,9 @@ When &lambda; &rarr; -&infin;, the integral J converges to 1.
 ![integrate nx 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_3.svg)  
 ![integrate nx 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_2.svg)  
 
+Evaluate the upper bound.
+
+![integrate nx 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_4.svg)  
+
 ### Reference
 [W.Börsch-Supan(1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
