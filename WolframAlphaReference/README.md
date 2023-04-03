@@ -9,7 +9,7 @@ N&#91;PDF&#91;LandauDistribution&#91;0, pi/2&#93;, *x*&#93;, 20&#93;
 N&#91;CDF&#91;LandauDistribution&#91;0, pi/2&#93;, *x*&#93;, 20&#93;  
 N&#91;1 - CDF&#91;LandauDistribution&#91;0, pi/2&#93;, *x*&#93;, 20&#93;
 
-|lambda|pdf|cdf|1-cdf|
+|&lambda;|pdf|cdf|1-cdf|
 |----|----|----|----|
 |-8|&asymp;0|&asymp;0|&asymp;1|
 |-7.75|1.4241766197340637510e-370|1.6665645190483030779e-373|&asymp;1|
@@ -361,7 +361,7 @@ input:
 N&#91;PDF&#91;LandauDistribution&#91;0, pi/2&#93;, -22278298125640850406/100000000000000000000&#93;, 42&#93;  
 FindRoot&#91;CDF&#91;LandauDistribution&#91;0, pi/2&#93;, x&#93;==0.5, &#123;x, 1.35578&#125;, WorkingPrecision -> 10&#93;
 
-|stat|lambda|pdf/cdf|
+|stat|&lambda;|pdf/cdf|
 |----|----|----|
 |mode|-0.22278298125640850406|pdf:1.806556338205509427830338852686311455672580e-1|
 |||cdf:2.46722564066880654991e-1|
