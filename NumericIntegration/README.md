@@ -10,7 +10,7 @@ Since p(&lambda;) has periodicity due to sin, this is used.
 
 ![integrad px](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_px.svg)  
 
-If sin is evaluated here for each cycle, the point of integration can always be positive.
+If evaluated here for each cycle of sin, the integration point can always be positive.
 
 ![integrate px 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_2.svg)  
 ![integrate px 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_3.svg)  
