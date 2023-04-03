@@ -80,7 +80,7 @@
   p(\lambda)=\phi(\sigma)
   &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
   \exp \left( \frac{\sigma}{2} \log(1+(t/\sigma)^2) - t \arctan(t/\sigma) \right) \cdot
-  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t - \sigma \arctan(t/\sigma) \right)
+  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t + \sigma \arctan(t/\sigma) \right)
   dt \\
   &&~~~~ (\sigma=e^{-\lambda-1}) \\
   &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 

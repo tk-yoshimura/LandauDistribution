@@ -1,0 +1,8 @@
+a:makelist(zeta(2*n+1)-1, n, 1, 127) $
+load("numericalio") $
+
+fpprec : 2580 $
+zetas:bfloat(a) $
+fpprec : 2480 $
+zetas:bfloat(zetas) $
+write_data(transpose(zetas), "zetan_bits8192.csv", csv) $
