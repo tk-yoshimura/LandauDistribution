@@ -10,10 +10,9 @@ Since p(&lambda;) has periodicity due to sin, this is used.
 
 ![integrad px](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_px.svg)  
 
+If sin is evaluated here for each cycle, the point of integration can always be positive.
+
 ![integrate px 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_2.svg)  
-
-If &lambda; is positive, the integral value is always positive.
-
 ![integrate px 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_3.svg)  
 
 Evaluate the peak point of the integrated function. It can be seen that t &lt; 1 always.
@@ -37,6 +36,8 @@ For negative &lambda;, do a variable transformation and use an equation with sma
 ![integrate nx 1](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_1.svg)  
 
 ![integrad nx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_nx.svg)  
+
+When &lambda; &rarr; -&infin;, the integral J converges to 1.
 
 ![integrate nx 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_3.svg)  
 ![integrate nx 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_2.svg)  
