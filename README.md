@@ -25,6 +25,8 @@ The relevance of the original definition is as follows:
 ![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
 ![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
 
+[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
+
 ## Statistics
 
 |stat|&lambda;|note|
@@ -63,15 +65,12 @@ The left side decays rapidly.
 
 If the differential value is calculated, the accuracy will be improved when interpolating.
 
-[numeric table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/diff_pdf.csv)  
+[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/diff_pdf.csv)  
 
 ![formula diff png](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/formula_diff_pdf.svg)  
 ![pdf derivative](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf_derivative.svg)  
 
 ## Columns
-
-[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
-[Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
 [Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
-[Quantile Approximation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/QuantileApproximation)  
+[Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
