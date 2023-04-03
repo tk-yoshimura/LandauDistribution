@@ -17,7 +17,7 @@
 \end{eqnarray*}
 
 \begin{align*}
-  p(\lambda)=1/{\lambda^2}+ \mathcal{O}(\lambda^{-3}) ~~(\lambda \gg 1)
+  p(\lambda) \approx 1/(\lambda^2 + \pi^2) ~~(\lambda \rightarrow \infty)
 \end{align*}
 
 \begin{align*}
