@@ -1,6 +1,6 @@
 # LandauDistribution - NumericIntegration
 
-Since the convergence is different, it is necessary to use different equations for positive and negative x.
+Since the convergence is different, it is necessary to use different equations for positive and negative &lambda;.
 
 ## &lambda; &geq; 0
 
