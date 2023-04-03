@@ -1,96 +1,36 @@
 \begin{align*}
-  p(x)=\frac{1}{\pi} \int_{0}^{\infty} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt
+  p(\lambda)=\frac{1}{\pi} \int_{0}^{\infty} \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} dt
 \end{align*}
 
 \begin{align*}
-  p(x; \mu, c)=\frac{1}{\pi c} \int_{0}^{\infty} \exp(-t) \cos \left( t \left( \frac{x-\mu}{c}\right) + \frac{2t}{\pi} \log \left( \frac{t}{c} \right)  \right) dt
+  p(\lambda; \mu, c)=\frac{1}{\pi c} \int_{0}^{\infty} \exp(-t) \cos \left( t \left( \frac{\lambda-\mu}{c}\right) + \frac{2t}{\pi} \log \left( \frac{t}{c} \right)  \right) dt
 \end{align*}
 
 \begin{align*}
-  p(x) = p(x; \mu=0, c=\pi/2)
+  p(\lambda) = p(\lambda; \mu=0, c=\pi/2)
 \end{align*}
 
 \begin{eqnarray*}
-  p(x) &=& \sum_{n=0}^{\infty} I_{n} \\
-  I_{n} &:=& \int_{n}^{n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  p(x) &=& \sum_{n=0}^{\infty} I'_{n} \\
-  I'_{n} &:=& I_{2n}+I_{2n+1} \\
-  &=& \int_{2n}^{2n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt + \int_{2n+1}^{2n+2} \frac{\exp(-x t) \sin(\pi t)}{t^t} dt \\
-  &=& \int_{2n}^{2n+1} \frac{\exp(-x t) \sin(\pi t)}{t^t} + \frac{\exp(-x (t+1)) \sin(\pi (t+1))}{(t+1)^{(t+1)}} dt \\
-  &=& \int_{2n}^{2n+1} \sin(\pi t) \frac{\exp(-x t)}{t^t} - \frac{\exp(-x (t+1)) }{(t+1)^{(t+1)}} dt ~~~~ \cdots  \sin(\pi (t+1))=-\sin(\pi t)  \\
-  &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  f(t,x) &:=& \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \\
-  x \geq 0 &\Rightarrow& \forall t [ f(t,x)>0] ~~ \therefore x \geq 0 \Rightarrow I'_{n} > 0 \\
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  \lim _{x \to \infty} f'(t, x)&=&0 ~~|~~ t : t_{peak}(x \to \infty) = e^{-1} \approx 0.367879441171442321595523770... \\
-  f'(t, 0)&=&0 ~~|~~ t : t_{peak}(x=0) \approx 0.610803447420242102727900877... \\
-  &&~~~~~~~ f(t_{peak}(0), 0) \approx 0.88738767730603854001167195...\\
-  0 \leq a < b &\Rightarrow& t_{peak}(x=0) \geq t_{peak}(a) > t_{peak}(b) > e^{-1}, \\
-  && f(t_{peak}(0), 0) \leq f(t_{peak}(a), a) < f(t_{peak}(b), b) < e^{1/e}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  I'_{0} &=& \int_{0}^{1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
-  & < & \int_{0}^{1} \sin(\pi t) \exp(-x t) e^{1/e} dt \\
-  &=& \pi  \frac{(1+\exp(-x)) e^{1/e}}{x^2 + \pi^2}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
-  & < & \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) dt \\
-  &=& \pi \frac{\exp (-2 n x ) ( 1 + \exp(-x) ) \left( \frac{1}{2n^{2n}} - \frac{\exp(-x) }{(2n+1)^{(2n+1)}} \right) }{x^2 + \pi^2}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{t^t} - \frac{\exp(-x) }{(t+1)^{(t+1)}} \right) dt \\
-  & > & \int_{2n}^{2n+1} \sin(\pi t) \exp(-x t) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-x) }{(2n+2)^{(2n+2)}} \right) dt \\
-  &=& \pi \frac{\exp (-2 n x ) ( 1 + \exp(-x) ) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-x) }{(2n+2)^{(2n+2)}} \right) }{x^2 + \pi^2}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  p(x; \mu=0, c=\pi/2) &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t x}{\pi} + \frac{2t}{\pi} \log \left( \frac{2t}{\pi} \right)  \right) dt \\
-   &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right)  \right) dt
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  J &:=& \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + a \right)  \right) dt \\
-    &=& \frac{\pi^2}{4(x+a)^2+\pi^2}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  J &:=& \int_{u}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right)  \right) dt \\
-    &<& \int_{u}^{\infty} \exp(-t) dt = e^{-u}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  && \frac{2 t}{\pi} \left( x + \log(t) + \log(2 / \pi) \right) = n \pi ~~|~~t:t_n, x:x_n , n \in \mathbb{N} \\
-  && x_n = \frac{n \pi^2}{2 t} - \log(t) - \log(2 / \pi) \\
-  && t_n = \frac{n \pi^2 }{2 W \left( n \frac{\exp(x)}{2 \pi} \right)} ~~(W : \text{Lambert W})
+  p(\lambda; \mu=0, c=\pi/2) 
+   &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t \lambda}{\pi} + \frac{2t}{\pi} \log \left( \frac{2t}{\pi} \right)  \right) dt \\
+   &= &\frac{2}{\pi^2} \int_{0}^{\infty} \exp(-t) \cos \left( \frac{2 t}{\pi} \left( \lambda + \log(t) + \log(2 / \pi) \right)  \right) dt
 \end{eqnarray*}
 
 \begin{align*}
-  p(x)=1/{x^2}+ \mathcal{O}(x^{-3}) ~~(x \gg 1)
+  p(\lambda)=1/{\lambda^2}+ \mathcal{O}(\lambda^{-3}) ~~(\lambda \gg 1)
 \end{align*}
 
 \begin{align*}
-  p(x) \approx \frac{1}{\sqrt{2 \pi}} \exp((-x-1)/2-\exp(-x-1))~~(x \rightarrow -\infty)
+   \int _{\lambda}^{\infty} p(t) dt \approx \int _{\lambda}^{\infty} 1/t^2 dt = 1/\lambda
 \end{align*}
 
 \begin{align*}
-   \int _{x}^{\infty} p(t) dt \approx \int _{x}^{\infty} 1/t^2 dt = 1/x
+  p(\lambda) \approx \frac{1}{\sqrt{2 \pi}} \exp((-\lambda-1)/2-\exp(-\lambda-1))~~(\lambda \rightarrow -\infty)
 \end{align*}
 
 \begin{eqnarray*}
-  &&\int_{2 n}^{2 n + 1} c \sin(\pi t) \exp(-x t) dt ~~ ( c: \text{constant}, n \in \mathbb{Z} )\\
-  &&~~= \pi c \frac{\exp(-2 n x) (1+\exp(-x))}{x^2 + \pi^2}
+  p'(\lambda) &=& -\frac{1}{\pi} \int_{0}^{\infty} t \cdot \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} dt \\
+  &=& - \frac{4}{\pi^3} \int_{0}^{\infty} t \cdot \exp(-t) \sin \left(\frac{2 t}{\pi} (\lambda+\log(t)+\log(2 / \pi)) \right)  dt
 \end{eqnarray*}
 
 \begin{align*}
@@ -99,23 +39,3 @@
     \log_{2}(p) + 1 & (p < 1/2) \\ -\log_{2}(1-p) - 1 & (p \geq 1/2) \\
   \end{matrix}
 \end{align*}
-
-\begin{eqnarray*}
-  p'(x) &=& -\frac{1}{\pi} \int_{0}^{\infty} t \cdot \frac{\exp(-x t) \sin(\pi t)}{t^t} dt \\
-  &=& - \frac{4}{\pi^3} \int_{0}^{\infty} t \cdot \exp(-t) \sin \left(\frac{2 t}{\pi} (x+\log(t)+\log(2 / \pi)) \right)  dt
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  p(\lambda)=\phi(\sigma)
-  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
-  \exp \left( \frac{\sigma}{2} \log(1+(t/\sigma)^2) - t \arctan(t/\sigma) \right) \cdot
-  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t + \sigma \arctan(t/\sigma) \right)
-  dt ~~~~ (\sigma=e^{-\lambda-1}) \\
-  &=& \frac{1}{\sqrt{2 \pi}} \frac{\sqrt{\sigma}}{e^{\sigma}} \int_{0}^{\infty}
-  \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) \cdot
-  \cos \left(\frac{1}{2} cu \log(1+(cu/\sigma)^2) - cu + \sigma \arctan(c u/\sigma) \right) du~~~~\left( t=c u, c= \sqrt{\frac{\pi \sigma}{2}} \right)
-\end{eqnarray*}
-
-\begin{eqnarray*}
-  J:=\phi(\sigma) \cdot \sqrt{2 \pi} \cdot \frac{e^{\sigma}}{\sqrt{\sigma}}
-\end{eqnarray*}

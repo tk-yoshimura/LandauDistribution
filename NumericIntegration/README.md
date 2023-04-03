@@ -2,7 +2,7 @@
 
 Since the convergence is different, it is necessary to use different equations for positive and negative x.
 
-## x &geq; 0
+## &lambda; &geq; 0
 
 Since p(x) has periodicity due to sin, this is used.
 
@@ -29,9 +29,9 @@ Similarly, a lower bound is required.
 
 ![integrate px 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_px_8.svg)  
 
-## x &lt; 0
+## &lambda; &lt; 0
 
-For negative x, do a variable transformation and use an equation with small oscillations that decay rapidly.  
+For negative &lambda;, do a variable transformation and use an equation with small oscillations that decay rapidly.  
 
 ![integrad nx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrand_nx.svg)  
 

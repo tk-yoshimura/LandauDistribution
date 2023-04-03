@@ -1,0 +1,64 @@
+\begin{eqnarray*}
+  p(\lambda) &=& \sum_{n=0}^{\infty} I_{n} \\
+  I_{n} &:=& \int_{n}^{n+1} \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} dt
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  p(\lambda) &=& \sum_{n=0}^{\infty} I'_{n} \\
+  I'_{n} &:=& I_{2n}+I_{2n+1} \\
+  &=& \int_{2n}^{2n+1} \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} dt + \int_{2n+1}^{2n+2} \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} dt \\
+  &=& \int_{2n}^{2n+1} \frac{\exp(-\lambda t) \sin(\pi t)}{t^t} + \frac{\exp(-\lambda (t+1)) \sin(\pi (t+1))}{(t+1)^{(t+1)}} dt \\
+  &=& \int_{2n}^{2n+1} \sin(\pi t) \frac{\exp(-\lambda t)}{t^t} - \frac{\exp(-\lambda (t+1)) }{(t+1)^{(t+1)}} dt ~~~~ \cdots  \sin(\pi (t+1))=-\sin(\pi t)  \\
+  &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{t^t} - \frac{\exp(-\lambda) }{(t+1)^{(t+1)}} \right) dt \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  f(t,\lambda) &:=& \frac{1}{t^t} - \frac{\exp(-\lambda) }{(t+1)^{(t+1)}} \\
+  \lambda \geq 0 &\Rightarrow& \forall t [ f(t,\lambda)>0] ~~ \therefore \lambda \geq 0 \Rightarrow I'_{n} > 0 \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \lim _{\lambda \to \infty} f'(t, \lambda)&=&0 ~~|~~ t : t_{peak}(\lambda \to \infty) = e^{-1} \approx 0.367879441171442321595523770... \\
+  f'(t, 0)&=&0 ~~|~~ t : t_{peak}(\lambda=0) \approx 0.610803447420242102727900877... \\
+  &&~~~~~~~ f(t_{peak}(0), 0) \approx 0.88738767730603854001167195...\\
+  0 \leq a < b &\Rightarrow& t_{peak}(\lambda=0) \geq t_{peak}(a) > t_{peak}(b) > e^{-1}, \\
+  && f(t_{peak}(0), 0) \leq f(t_{peak}(a), a) < f(t_{peak}(b), b) < e^{1/e}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  &&\int_{2 n}^{2 n + 1} c \sin(\pi t) \exp(-\lambda t) dt ~~ ( c: \text{constant}, n \in \mathbb{Z} )\\
+  &&~~= \pi c \frac{\exp(-2 n \lambda) (1+\exp(-\lambda))}{\lambda^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  I'_{0} &=& \int_{0}^{1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{t^t} - \frac{\exp(-\lambda) }{(t+1)^{(t+1)}} \right) dt \\
+  & < & \int_{0}^{1} \sin(\pi t) \exp(-\lambda t) e^{1/e} dt \\
+  &=& \pi  \frac{(1+\exp(-\lambda)) e^{1/e}}{\lambda^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{t^t} - \frac{\exp(-\lambda) }{(t+1)^{(t+1)}} \right) dt \\
+  & < & \int_{2n}^{2n+1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{2n^{2n}} - \frac{\exp(-\lambda) }{(2n+1)^{(2n+1)}} \right) dt \\
+  &=& \pi \frac{\exp (-2 n \lambda ) ( 1 + \exp(-\lambda) ) \left( \frac{1}{2n^{2n}} - \frac{\exp(-\lambda) }{(2n+1)^{(2n+1)}} \right) }{\lambda^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  I'_{n \geq 1} &=& \int_{2n}^{2n+1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{t^t} - \frac{\exp(-\lambda) }{(t+1)^{(t+1)}} \right) dt \\
+  & > & \int_{2n}^{2n+1} \sin(\pi t) \exp(-\lambda t) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-\lambda) }{(2n+2)^{(2n+2)}} \right) dt \\
+  &=& \pi \frac{\exp (-2 n \lambda ) ( 1 + \exp(-\lambda) ) \left( \frac{1}{(2n+1)^{(2n+1)}} - \frac{\exp(-\lambda) }{(2n+2)^{(2n+2)}} \right) }{\lambda^2 + \pi^2}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  p(\lambda)=\phi(\sigma)
+  &=& \frac{1}{\pi e^{\sigma}} \int_0^{\infty} 
+  \exp \left( \frac{\sigma}{2} \log(1+(t/\sigma)^2) - t \arctan(t/\sigma) \right) \cdot
+  \cos \left(\frac{1}{2} t \log(1+(t/\sigma)^2) - t + \sigma \arctan(t/\sigma) \right)
+  dt ~~~~ (\sigma=e^{-\lambda-1}) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{\sqrt{\sigma}}{e^{\sigma}} \int_{0}^{\infty}
+  \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) \cdot
+  \cos \left(\frac{1}{2} cu \log(1+(cu/\sigma)^2) - cu + \sigma \arctan(c u/\sigma) \right) du~~~~\left( t=c u, c= \sqrt{\frac{\pi \sigma}{2}} \right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  J:=\phi(\sigma) \cdot \sqrt{2 \pi} \cdot \frac{e^{\sigma}}{\sqrt{\sigma}}
+\end{eqnarray*}

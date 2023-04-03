@@ -2,7 +2,8 @@
 
 In probability theory, the Landau distribution is a probability distribution named after Lev Landau.  
 Because of the distribution's "fat" tail, the moments of the distribution,  
-like mean or variance, are undefined. The distribution is a particular case of stable distribution.
+like mean or variance, are undefined. The distribution is a particular case of stable distribution.  
+The stochastic variable is traditionally &lambda;, meaning wavelength.
 
 ## Definition
 
