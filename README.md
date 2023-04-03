@@ -27,11 +27,11 @@ The relevance of the original definition is as follows:
 
 ## Statistics
 
-|stat|x|note|
+|stat|lambda|note|
 |----|----|----|
 |mean|N/A|undefined|
 |variance|N/A|undefined|
-|mode|-0.22278298125640850406...|p(x)=1.806556338205509427830338852686311455672580...e-1|
+|mode|-0.22278298125640850406...|p(lambda)=1.806556338205509427830338852686311455672580...e-1|
 |0.01-quantile|-2.10489790934939769338...||
 |0.05-quantile|-1.49825415177780273396...||
 |0.1-quantile|-1.09225452805484635423...||
