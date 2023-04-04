@@ -66,6 +66,6 @@ If the differential value is calculated, the accuracy will be improved when inte
 
 ## Reference
 [L.Landau, "On the energy loss of fast particles by ionization" (1944)](https://www.semanticscholar.org/paper/On-the-energy-loss-of-fast-particles-by-ionization-Landau/037099731178b3aeebca36a054852e4c4866a1c3)  
-[W.Börsch-Supan, "On the Evaluation of the Function \Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)  
+[W.Börsch-Supan, "On the Evaluation of the Function &Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)  
 [K.S.Kölbig and B.Schorr, "Asymptotic expansions for the Landau density and distribution functions" (1983)](https://www.sciencedirect.com/science/article/abs/pii/0010465584900651)  
 [K.S.Kölbig, "On the integral from 0 to infinity of exp(-mu x t) x t^(nu-1) x log(t)^m x dt" (1982)](https://inspirehep.net/literature/178407)
