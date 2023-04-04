@@ -7,25 +7,20 @@ The stochastic variable is traditionally &lambda;, meaning wavelength.
 
 ## Definition
 
-The original Landau distribution defined by Landau can be evaluated on real numbers as follows:
-
+The original Landau distribution defined by Landau can be evaluated on real numbers as follows:  
 ![define origin](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_origin.svg)
 
-The Landau distribution, generalized to a stable distribution by introducing position and scale parameters, is as follows:
-
+The Landau distribution, generalized to a stable distribution by introducing position and scale parameters, is as follows:  
 ![define stabledist](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_stabledist_generalized.svg)
 
-The relevance of the original definition is as follows:
-
-![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)
-
+The relevance of the original definition is as follows:  
+![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)  
 ![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
 
+[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
 ![pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf.svg)  
 ![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
 ![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
-
-[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
 
 ## Statistics
 
@@ -50,24 +45,27 @@ The relevance of the original definition is as follows:
 The right side is a fat-tail.
 
 ![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
-![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_approx.svg)  
+![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_approx.svg)
 
 The left side decays rapidly.
 
 ![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
 ![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
 
-### Reference
-[W.Börsch-Supan(1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
-
 ## PDF derivative
 
 If the differential value is calculated, the accuracy will be improved when interpolating.
 
 ![formula diff pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/formula_diff_pdf.svg)  
-![pdf derivative](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf_derivative.svg)  
+![pdf derivative](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf_derivative.svg)
 
 ## Columns
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
 [Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
 [Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
+
+## Reference
+[L.Landau, "On the energy loss of fast particles by ionization" (1944)](https://www.semanticscholar.org/paper/On-the-energy-loss-of-fast-particles-by-ionization-Landau/037099731178b3aeebca36a054852e4c4866a1c3)  
+[W.Börsch-Supan, "On the Evaluation of the Function \Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)  
+[K.S.Kölbig and B.Schorr, "Asymptotic expansions for the Landau density and distribution functions" (1983)](https://www.sciencedirect.com/science/article/abs/pii/0010465584900651)  
+[K.S.Kölbig, "On the integral from 0 to infinity of exp(-mu x t) x t^(nu-1) x log(t)^m x dt" (1982)](https://inspirehep.net/literature/178407)

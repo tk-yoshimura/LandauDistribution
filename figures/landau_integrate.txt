@@ -65,8 +65,8 @@
 
 \begin{eqnarray*}
   J_{s+}&:=&\int_s^{\infty} \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) \cos \left(\frac{1}{2} cu \log(1+(cu/\sigma)^2) - cu + \sigma \arctan(c u/\sigma) \right) du \\
-        & < & \int_s^{\infty} \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) du = \tilde{J}_{s+} \\
-  \tilde{J}_{s+} &=& \int_s^{\infty} \exp \left( - \frac{\pi c u}{2} + r(u) \right) du ~~~~ \cdots r(u) \geq 0,  r(u) = \mathcal{O}(\log (1+u)) \\
-                   &<& \int_s^{\infty} \exp \left( - \frac{\pi c k u}{2} \right) du = \frac{2}{\pi c k} \exp \left(- \frac{\pi c k s}{2} \right) ~~~~ \cdots \forall{s} \left[0 \leq k < 1 \land \frac{d k}{d s} > 0 \right] \\
-                   && ~~~~ k = \frac{\sigma \log(1+(c s/\sigma)^2) - 2 c s \arctan(c s/\sigma)}{- \pi c s}
+  |J_{s+}|& < & \int_s^{\infty} \exp \left( \frac{\sigma}{2} \log(1+(c u/\sigma)^2) - c u \arctan(c u/\sigma) \right) du = | \tilde{J}_{s+} | \\
+  |\tilde{J}_{s+}| &=& \int_s^{\infty} \exp \left( - \frac{\pi c u}{2} + r(u) \right) du ~~~~ \cdots r(u) \geq 0,  r(u) = \mathcal{O}(\log (1+u)) \\
+                   &<& \int_s^{\infty} \exp \left( - k u \right) du = \frac{1}{k} \exp \left(- k s \right) \\
+                   && ~~~~ k = \frac{\frac{1}{2} \sigma \log(1+(c s/\sigma)^2) - c s \arctan(c s/\sigma)}{- s}~~~~(k \rightarrow \frac{\pi c}{2}~~(s \rightarrow \infty))\\
 \end{eqnarray*}

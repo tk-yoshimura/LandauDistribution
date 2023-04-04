@@ -47,4 +47,4 @@ Evaluate the upper bound.
 ![integrate nx 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/integrate_nx_4.svg)  
 
 ### Reference
-[W.Börsch-Supan(1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
+[W.Börsch-Supan, "On the Evaluation of the Function \Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
