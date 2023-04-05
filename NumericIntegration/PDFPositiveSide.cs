@@ -14,26 +14,6 @@ namespace NumericIntegration {
 
             Func<MultiPrecision<N>, MultiPrecision<N>> f = (exp_mx.Exponent > -MultiPrecision<N>.Bits)
             ? (t) => {
-                MultiPrecision<N> exp_xt = MultiPrecision<N>.Exp(-x * t);
-
-                if (exp_xt.IsZero) {
-                    return MultiPrecision<N>.Zero;
-                }
-
-                return MultiPrecision<N>.SinPI(t) * exp_xt * (MultiPrecision<N>.Pow(t, -t) - exp_mx * MultiPrecision<N>.Pow(t + 1, -t - 1));
-            }
-            : (t) => {
-                MultiPrecision<N> exp_xt = MultiPrecision<N>.Exp(-x * t);
-
-                if (exp_xt.IsZero) {
-                    return MultiPrecision<N>.Zero;
-                }
-
-                return MultiPrecision<N>.SinPI(t) * exp_xt * MultiPrecision<N>.Pow(t, -t);
-            };
-
-            Func<MultiPrecision<N>, MultiPrecision<N>> f_cached = (exp_mx.Exponent > -MultiPrecision<N>.Bits)
-            ? (t) => {
                 MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
 
                 if (exp_xt.IsZero) {
@@ -54,7 +34,7 @@ namespace NumericIntegration {
 
             MultiPrecision<N> sum, error;
 
-            double t_peak = PeakT((double)x);
+            double t_peak = FloorPow2PeakT((double)x);
 
             if (t_peak < 1d / 4) {
                 MultiPrecision<N> h = t_peak * 2;
@@ -90,14 +70,14 @@ namespace NumericIntegration {
             }
             else {
                 (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f_cached, 0, 1, eps, GaussKronrodOrder.G31K63, depth: 64
+                    f, 0, 1, eps, GaussKronrodOrder.G31K63, depth: 64
                 );
             }
 
             for (long t = 2; t < long.MaxValue - 1 && !ExpCache<N>.Value(-x * t).IsZero; t += 2) {
                 (MultiPrecision<N> s, MultiPrecision<N> e)
                     = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                        f_cached, t, t + 1, eps, GaussKronrodOrder.G31K63, depth: 64
+                        f, t, t + 1, eps, GaussKronrodOrder.G31K63, depth: 64
                 );
 
                 sum += s;
@@ -137,6 +117,24 @@ namespace NumericIntegration {
             }
 
             return t;
+        }
+
+        public static double FloorPow2PeakT(double x) {
+            double t = PeakT(x);
+
+            if (double.IsNaN(t)) {
+                return double.NaN;
+            }
+
+            for (int exp = 0; exp > -1000; exp--) {
+                double v = Math.ScaleB(1, exp);
+
+                if (t >= v) {
+                    return v;
+                }
+            }
+
+            return Math.ScaleB(1, -1000);
         }
     }
 }

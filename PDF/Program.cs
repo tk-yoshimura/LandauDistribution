@@ -5,20 +5,13 @@ namespace PDF {
         static void Main() {
             {
                 (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFPositiveSide<Pow2.N8>.Value(0, 1e-64);
-
+            
                 Console.WriteLine(y);
                 Console.WriteLine(err);
-            }
-            {
-                (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFNegativeSide<Pow2.N8>.Value(0, 1e-64);
-
-                Console.WriteLine(y);
-                Console.WriteLine(err);
-            }
-
+            }            
             {
                 (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFPositiveSide<Pow2.N8>.Value(32, 1e-64);
-
+            
                 Console.WriteLine(y);
                 Console.WriteLine(err);
             }
@@ -31,6 +24,13 @@ namespace PDF {
             {
                 (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFPositiveSide<Pow2.N8>.Value(1048576, 1e-64);
 
+                Console.WriteLine(y);
+                Console.WriteLine(err);
+            }
+            
+            {
+                (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFNegativeSide<Pow2.N8>.Value(0, 1e-64);
+            
                 Console.WriteLine(y);
                 Console.WriteLine(err);
             }
