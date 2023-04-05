@@ -70,3 +70,7 @@
                    &<& \int_s^{\infty} \exp \left( - k u \right) du = \frac{1}{k} \exp \left(- k s \right) \\
                    && ~~~~ k = \frac{\frac{1}{2} \sigma \log(1+(c s/\sigma)^2) - c s \arctan(c s/\sigma)}{- s}~~~~(k \rightarrow \frac{\pi c}{2}~~(s \rightarrow \infty))\\
 \end{eqnarray*}
+
+\begin{eqnarray*}
+  \int_0^{\infty} f(x) dx = \int_0^1 \frac{1}{t^2} f \left( \frac{1-t}{t} \right) dt~~~~(x=(1-t)/t)
+\end{eqnarray*}
