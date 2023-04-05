@@ -53,3 +53,6 @@ Also, variable transformation is performed so that the integral interval is fini
 
 ### Reference
 [W.Börsch-Supan, "On the Evaluation of the Function &Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
+
+## Result
+[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64_test.csv)  
