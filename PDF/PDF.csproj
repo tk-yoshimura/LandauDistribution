@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Reference Include="NumericIntegration">
-      <HintPath>..\NumericIntegration\bin\Release\net6.0\NumericIntegration.dll</HintPath>
+      <HintPath>..\NumericIntegration\bin\Debug\net6.0\NumericIntegration.dll</HintPath>
     </Reference>
   </ItemGroup>
 
