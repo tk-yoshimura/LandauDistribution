@@ -26,7 +26,11 @@ namespace PDF {
                 sw.Flush();
             } 
 
-            foreach (MultiPrecision<Pow2.N8> x in xs) { 
+            foreach (MultiPrecision<Pow2.N8> x in xs) {
+                if (x > -16) {
+                    break;
+                }
+
                 Console.WriteLine(-x);
                 
                 (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDFNegativeSide<Pow2.N8>.Value(-x, 1e-64);
