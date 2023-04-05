@@ -12,9 +12,9 @@ for (int k = 0; k <= 512; k++) {
     for (int i = 0; i < c.Length; i++) {
         poly[^(i + 1)] += c[i];
     }
-    
+
     Poly p = new(poly.ToArray()[..k]);
-    
+
     Console.WriteLine(p);
     sw.WriteLine(p);
     sw.Flush();

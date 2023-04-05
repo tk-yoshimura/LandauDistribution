@@ -87,7 +87,7 @@ namespace SeriesExpansion {
             foreach (Symbol symbol in p.terms.Keys) {
                 Symbol ret_symbol = symbol * c.Symbol;
                 Fraction ret_fraction = p.terms[symbol] * c.C;
-                
+
                 ret_terms.Add(ret_symbol, ret_fraction);
             }
 

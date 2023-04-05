@@ -1,6 +1,6 @@
 ﻿using MultiPrecision;
 
-namespace LandauDistribution {
+namespace NumericIntegration {
     static class ExpCache<N> where N : struct, IConstant {
         static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
 

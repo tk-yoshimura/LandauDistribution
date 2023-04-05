@@ -1,6 +1,6 @@
 ﻿namespace AsymptoticMinus {
     internal static class BTable {
-        private readonly static List<Fraction> table = new() {
+        private static readonly List<Fraction> table = new() {
             0, 0, 0
         };
 

@@ -9,15 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="TYoshimura.MultiPrecision" Version="6.1.0" />
-    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.0.0" />
+    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="LandauDistribution">
-      <HintPath>..\LandauDistribution\bin\Debug\net6.0\LandauDistribution.dll</HintPath>
-    </Reference>
-    <Reference Include="LandauNegativeSideRoot">
-      <HintPath>..\LandauDistribution\bin\Debug\net6.0\LandauNegativeSideRoot.dll</HintPath>
+    <Reference Include="NumericIntegration">
+      <HintPath>..\NumericIntegration\bin\Release\net6.0\NumericIntegration.dll</HintPath>
     </Reference>
   </ItemGroup>
 

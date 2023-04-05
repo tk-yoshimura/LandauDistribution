@@ -1,6 +1,6 @@
 ﻿namespace SeriesExpansion {
     public static class BernTable {
-        private readonly static List<Fraction> table = new() {
+        private static readonly List<Fraction> table = new() {
             1, new Fraction(-1, 2)
         };
 
@@ -11,7 +11,7 @@
 
             for (int k = table.Count; k <= n; k++) {
                 Fraction f = 0;
-                
+
                 for (int i = 0; i < k; i++) {
                     f += new Fraction(Factorial.Value(k + 1), Factorial.Value(k + 1 - i) * Factorial.Value(i)) * Value(i);
                 }

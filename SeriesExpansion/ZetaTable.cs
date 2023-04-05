@@ -2,11 +2,11 @@
 
 namespace SeriesExpansion {
     internal static class ZetaTable {
-        private readonly static List<Term> table = new() {
+        private static readonly List<Term> table = new() {
             new Term(new Fraction(-1, 2)), new Term(1, new Symbol(pi: 0, gamma: 1))
         };
 
-        public static Term Value(int n) { 
+        public static Term Value(int n) {
             if (n < 0) {
                 throw new ArgumentOutOfRangeException(nameof(n));
             }

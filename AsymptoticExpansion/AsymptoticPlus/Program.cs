@@ -2,7 +2,7 @@
 
 using StreamWriter sw = new("../../../../../results_disused/asymp_plus_poly.txt");
 
-for (int j = 1; j <= 256; j++) {
+for (int j = 1; j <= 64; j++) {
     SymbolicPoly p = new();
 
     for (int k = 0; k < j; k++) {
@@ -11,8 +11,10 @@ for (int j = 1; j <= 256; j++) {
         }
     }
 
-    Console.WriteLine(p);
-    sw.WriteLine(p);
+    string str = p.ToString();
+
+    Console.WriteLine(str.Length > 128 ? $"{j}: {str[..128]}..." : $"{j}: {str}");
+    sw.WriteLine(str);
     sw.Flush();
 }
 

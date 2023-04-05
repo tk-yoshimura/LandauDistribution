@@ -1,6 +1,6 @@
 ﻿namespace AsymptoticMinus {
     internal static class CTable {
-        private readonly static List<Poly> table = new() {
+        private static readonly List<Poly> table = new() {
             new Poly(1), new Poly(0), new Poly(0)
         };
 

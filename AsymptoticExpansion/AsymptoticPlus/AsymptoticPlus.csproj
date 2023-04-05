@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Reference Include="SeriesExpansion">
-      <HintPath>..\..\SeriesExpansion\bin\Debug\net6.0\SeriesExpansion.dll</HintPath>
+      <HintPath>..\..\SeriesExpansion\bin\Release\net6.0\SeriesExpansion.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace AsymptoticMinus {
+﻿namespace AsymptoticMinus {
     internal class Poly {
         private readonly Fraction[] coef;
 

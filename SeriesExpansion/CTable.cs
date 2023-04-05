@@ -2,9 +2,9 @@
 
 namespace SeriesExpansion {
     public static class CTable {
-        private readonly static Dictionary<(int n, int k), Term> table = new();
+        private static readonly Dictionary<(int n, int k), Term> table = new();
 
-        public static Term Value(int j, int k) { 
+        public static Term Value(int j, int k) {
             if (j < 1 || k >= j) {
                 throw new ArgumentOutOfRangeException($"{nameof(j)}, {nameof(k)}");
             }

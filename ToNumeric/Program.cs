@@ -105,7 +105,7 @@ while (!sr.EndOfStream) {
             n++;
             continue;
         }
- 
+
         stage = 16;
 
         Console.WriteLine($"value: {v8_p32}");

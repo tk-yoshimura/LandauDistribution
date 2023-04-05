@@ -1,13 +1,11 @@
 ﻿using MultiPrecision;
+using MultiPrecisionIntegrate;
 
-namespace LandauDistribution {
+namespace NumericIntegration {
     public static class PDFPositiveSide<N> where N : struct, IConstant {
-        public static (MultiPrecision<N> value, MultiPrecision<N> error, long accurate_bits) Value(MultiPrecision<N> x, int points = 64, int needs_bits = 212) {
+        public static (MultiPrecision<N> value, MultiPrecision<N> error) Value(MultiPrecision<N> x, MultiPrecision<N> eps) {
             if (!(x >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(x), "Must be non-negative.");
-            }
-            if (MultiPrecision<N>.Bits < needs_bits + 16) {
-                throw new ArithmeticException("Lack of precision.");
             }
 
             MultiPrecision<N> exp_mx = MultiPrecision<N>.Exp(-x);
@@ -32,19 +30,22 @@ namespace LandauDistribution {
                 return SinPICache<N>.Value(t) * exp_xt * PowCache<N>.Value(t);
             };
 
-            MultiPrecision<N> sum, error, eps;
+            MultiPrecision<N> sum, error;
 
-            (sum, error) = GaussLegendreIntegralWithError<N>.Integrate(f, 0, 1, points);
-
-            eps = MultiPrecision<N>.Ldexp(sum, -needs_bits - 2);
+            (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
+                f, 0, 1, eps, GaussKronrodOrder.G15K31, depth: 12
+            );
 
             for (long t = 2; t < long.MaxValue - 1 && !ExpCache<N>.Value(-x * t).IsZero; t += 2) {
-                (MultiPrecision<N> s, MultiPrecision<N> e) = GaussLegendreIntegralWithError<N>.Integrate(f, t, t + 1, points);
+                (MultiPrecision<N> s, MultiPrecision<N> e)
+                    = GaussKronrodIntegral<N>.AdaptiveIntegrate(
+                        f, t, t + 1, eps, GaussKronrodOrder.G15K31, depth: 12
+                );
 
                 sum += s;
                 error += e;
 
-                if (sum.Exponent - s.Exponent < needs_bits + 8) {
+                if (sum < eps) {
                     continue;
                 }
 
@@ -53,7 +54,7 @@ namespace LandauDistribution {
 
             long accurate_bits = sum.Exponent - error.Exponent;
 
-            return (sum / MultiPrecision<N>.PI, error / MultiPrecision<N>.PI, accurate_bits);
+            return (sum / MultiPrecision<N>.PI, error / MultiPrecision<N>.PI);
         }
     }
 }

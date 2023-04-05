@@ -3,8 +3,8 @@ using SeriesExpansion;
 
 namespace ToNumeric {
     public static class SymbolNumeric<N> where N : struct, IConstant {
-        private readonly static Dictionary<Symbol, MultiPrecision<N>> table = new();
-        private readonly static Dictionary<int, MultiPrecision<N>> zeta = new();
+        private static readonly Dictionary<Symbol, MultiPrecision<N>> table = new();
+        private static readonly Dictionary<int, MultiPrecision<N>> zeta = new();
 
         static SymbolNumeric() {
             using StreamReader sr = new("../../../../AsymptoticExpansion/zetan_bits8192.csv");

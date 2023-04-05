@@ -2,7 +2,7 @@
 
 namespace SeriesExpansion {
     internal static class Factorial {
-        private readonly static List<BigInteger> table = new() {
+        private static readonly List<BigInteger> table = new() {
             1, 1
         };
 
