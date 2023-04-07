@@ -1,8 +1,8 @@
 ﻿using MultiPrecision;
 
 namespace PDF {
-    class Program {
-        static void Main() {
+    class Precision64 {
+        static void Main_() {
             List<double> xs = new();
 
             for (double x = 0; x < 1; x += 1d / 64) {
