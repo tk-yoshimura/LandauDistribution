@@ -1,4 +1,6 @@
-﻿namespace SeriesExpansion {
+﻿using SeriesExpansion;
+
+namespace AsymptoticPlus {
     public static class BTable {
         private static readonly List<SymbolicPoly> table = new() {
             new SymbolicPoly(new Term(1))

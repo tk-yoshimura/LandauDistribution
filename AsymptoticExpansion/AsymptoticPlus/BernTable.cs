@@ -1,4 +1,6 @@
-﻿namespace SeriesExpansion {
+﻿using SeriesExpansion;
+
+namespace AsymptoticPlus {
     public static class BernTable {
         private static readonly List<Fraction> table = new() {
             1, new Fraction(-1, 2)

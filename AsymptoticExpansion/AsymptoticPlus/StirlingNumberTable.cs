@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace SeriesExpansion {
+namespace AsymptoticPlus {
     public static class StirlingNumberTable {
         private static readonly Dictionary<(int n, int k), BigInteger> table = new();
 

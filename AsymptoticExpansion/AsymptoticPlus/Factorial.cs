@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace SeriesExpansion {
+namespace AsymptoticPlus {
     internal static class Factorial {
         private static readonly List<BigInteger> table = new() {
             1, 1

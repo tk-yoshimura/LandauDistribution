@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using SeriesExpansion;
+using System.Numerics;
 
-namespace SeriesExpansion {
+namespace AsymptoticPlus {
     public static class CTable {
         private static readonly Dictionary<(int n, int k), Term> table = new();
 

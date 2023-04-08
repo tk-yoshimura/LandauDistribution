@@ -1,4 +1,6 @@
-﻿namespace SeriesExpansion {
+﻿using SeriesExpansion;
+
+namespace AsymptoticPlus {
     public static class RTable {
         private static readonly Dictionary<(int n, int k), SymbolicPoly> table = new();
 

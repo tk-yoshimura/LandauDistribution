@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using SeriesExpansion;
+using System.Numerics;
 
-namespace SeriesExpansion {
+namespace AsymptoticPlus {
     internal static class ZetaTable {
         private static readonly List<Term> table = new() {
             new Term(new Fraction(-1, 2)), new Term(1, new Symbol(pi: 0, gamma: 1))
