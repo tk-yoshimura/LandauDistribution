@@ -58,7 +58,7 @@ namespace SeriesExpansion {
                 return false;
             }
 
-            for (int n = 3, nmax = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n <= nmax; n += 2) {
+            for (int n = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n >= 3; n -= 2) {
                 int z1 = s1.Zeta(n), z2 = s2.Zeta(n);
 
                 if (z1 < z2) {
@@ -87,7 +87,7 @@ namespace SeriesExpansion {
                 return false;
             }
 
-            for (int n = 3, nmax = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n <= nmax; n += 2) {
+            for (int n = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n >= 3; n -= 2) {
                 int z1 = s1.Zeta(n), z2 = s2.Zeta(n);
 
                 if (z1 > z2) {
@@ -125,7 +125,7 @@ namespace SeriesExpansion {
                 return false;
             }
 
-            for (int n = 3, nmax = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n <= nmax; n += 2) {
+            for (int n = Math.Max(s1.MaxZetaN, s2.MaxZetaN); n >= 3; n -= 2) {
                 if (s1.Zeta(n) != s2.Zeta(n)) {
                     return false;
                 }

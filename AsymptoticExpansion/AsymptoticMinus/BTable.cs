@@ -1,4 +1,6 @@
-﻿namespace AsymptoticMinus {
+﻿using SeriesExpansion;
+
+namespace AsymptoticMinus {
     internal static class BTable {
         private static readonly List<Fraction> table = new() {
             0, 0, 0

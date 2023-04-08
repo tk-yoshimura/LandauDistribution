@@ -22,7 +22,7 @@ while (!sr.EndOfStream) {
 
     Console.WriteLine($"Processing {n}...");
 
-    SymbolicPoly poly = SymbolicPolyParser.ParsePoly(line);
+    SymbolicPoly poly = SymbolicPoly.Parse(line);
 
     if (stage < 1) {
         MultiPrecision<Pow2.N8> v8_p1 = SymbolNumeric<Pow2.N8>.Value<Plus1<Pow2.N8>>(poly);

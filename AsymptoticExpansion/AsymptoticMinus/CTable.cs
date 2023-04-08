@@ -1,4 +1,6 @@
-﻿namespace AsymptoticMinus {
+﻿using SeriesExpansion;
+
+namespace AsymptoticMinus {
     internal static class CTable {
         private static readonly List<Poly> table = new() {
             new Poly(1), new Poly(0), new Poly(0)

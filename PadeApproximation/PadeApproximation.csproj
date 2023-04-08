@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="SeriesExpansion">
-      <HintPath>..\..\SeriesExpansion\bin\Release\net6.0\SeriesExpansion.dll</HintPath>
-    </Reference>
+    <PackageReference Include="TYoshimura.MultiPrecision" Version="6.1.1" />
+    <PackageReference Include="TYoshimura.MultiPrecision.Algebra" Version="1.2.6" />
+    <PackageReference Include="TYoshimura.MultiPrecision.CurveFitting" Version="1.5.5" />
   </ItemGroup>
 
 </Project>

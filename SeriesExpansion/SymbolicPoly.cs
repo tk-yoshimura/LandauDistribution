@@ -115,5 +115,15 @@ namespace SeriesExpansion {
 
             return str;
         }
+
+        public static SymbolicPoly Parse(string str) { 
+            if (str.Contains('\n')) {
+                throw new FormatException();
+            }
+
+            Term[] terms = str.Replace("+", " +").Replace("-", " -").Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(s => Term.Parse(s)).ToArray();
+
+            return new SymbolicPoly(terms);
+        }
     }
 }

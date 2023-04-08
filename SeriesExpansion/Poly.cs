@@ -1,5 +1,5 @@
-﻿namespace AsymptoticMinus {
-    internal class Poly {
+﻿namespace SeriesExpansion {
+    public class Poly {
         private readonly Fraction[] coef;
 
         public int Length => coef.Length;
@@ -48,7 +48,7 @@
             }
 
             string str = string.Join('+',
-                this.coef.Select((c, idx) => idx > 1 ? $"{c}s^{idx}" : idx > 0 ? $"{c}s" : $"{c}")
+                this.coef.Select((c, idx) => idx > 1 ? $"{c}x^{idx}" : idx > 0 ? $"{c}x" : $"{c}")
             ).Replace("+-", "-");
 
             return str;
