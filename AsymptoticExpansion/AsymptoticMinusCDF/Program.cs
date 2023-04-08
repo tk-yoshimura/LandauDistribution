@@ -1,5 +1,5 @@
-﻿using System.Numerics;
-using SymbolicArithmetic;
+﻿using SymbolicArithmetic;
+using System.Numerics;
 
 using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_minus_cdf_poly.txt");
