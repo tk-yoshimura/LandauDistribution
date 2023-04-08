@@ -55,7 +55,7 @@ namespace SymbolicArithmetic {
         }
 
         public static Term Parse(string str) {
-            string[] item = str.Split('*');
+            string[] item = str.TrimStart('+', '-').Split('*');
 
             Fraction f = 1;
             int gamma = 0, pi = 0;
@@ -80,6 +80,10 @@ namespace SymbolicArithmetic {
 
                     f = new Fraction(n, d);
                 }
+            }
+
+            if (str.StartsWith('-')) {
+                f = -f;
             }
 
             return new Term(f, new Symbol(pi, gamma, zeta.ToArray()));

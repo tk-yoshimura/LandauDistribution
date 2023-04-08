@@ -2,9 +2,9 @@
 using SymbolicArithmetic;
 using ToNumeric;
 
-using StreamReader sr = new("../../../../results_disused/asymp_plus_poly.txt");
-using StreamWriter sw = new("../../../../results_disused/asymp_plus_poly_digits64.txt");
-using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_poly_bits256.bin", FileMode.Create));
+using StreamReader sr = new("../../../../results_disused/asymp_plus_cdf_poly.txt");
+using StreamWriter sw = new("../../../../results_disused/asymp_plus_cdf_poly_digits64.txt");
+using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_cdf_poly_bits256.bin", FileMode.Create));
 
 sw.WriteLine("n,a_n,mpplus");
 
