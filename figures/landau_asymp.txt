@@ -186,6 +186,7 @@
 \begin{eqnarray*}
   \Phi(\sigma)  &=& \frac{1}{\sqrt{2 \pi}} \sum_{n=0}^{\infty} a_n^{-} e^{-\sigma} \sigma^{-n-1/2} \sum_{j=0}^{\infty} \sigma^{-j} \prod_{k=0}^{j-1} (-n-k-1/2) \\
   &=& \frac{1}{\sqrt{2 \pi}} \frac{1}{\sqrt{\sigma} e^{\sigma}} \sum_{n=0}^{\infty} a_n^{-} \sigma^{-n} \sum_{j=0}^{\infty} \sigma^{-j} \prod_{k=0}^{j-1} (-n-k-1/2) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{1}{\sqrt{\sigma} e^{\sigma}} \sum_{n=0}^{\infty} \left( \sum_{j=0}^{n} (-1)^j \cfrac{\prod_{k=0}^{j-1} ( 2(n-k)-1 )}{2^j} a_{n-j}^{-} \right) \sigma^{-n}  \\
   &=& \frac{1}{\sqrt{2 \pi}} \frac{1}{\sqrt{\sigma} e^{\sigma}} \sum_{n=0}^{\infty} A_n^{-} \sigma^{-n}
 \end{eqnarray*}
 
