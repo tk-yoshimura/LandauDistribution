@@ -148,3 +148,31 @@
   a_7^{-} &=&525035501918789/115579079884800 \\
   a_8^{-} &=&-628141988536245979/22191183337881600 \\
 \end{eqnarray*}
+
+\begin{eqnarray*}
+  1- \int_\lambda^{\infty} p(t) d t &=& 1 - \Phi(\omega) \\
+  &=& 1 - \int_\omega^{\infty} \frac{1}{\omega^2} \left( 1+\frac{1}{\omega} \right) \sum_{n=0}^{\infty} a_n^{+} \omega^{-n} d \omega~~~~\cdots \frac{d t}{d \omega }=\left( 1 + \frac{1}{\omega} \right) \ \\
+  &=& 1 - \int_\omega^{\infty} \frac{1}{\omega^2} \sum_{n=0}^{\infty} (a_n^{+} + a_{n-1}^{+} ) \omega^{-n} d \omega ~~~~( a_{-1}^{+} = 0 ) \\
+  &=& 1 - \frac{1}{\omega} \sum_{n=0}^{\infty} \frac{1}{n+1} (a_n^{+} + a_{n-1}^{+} ) \omega^{-n} \\
+  &=& 1 - \frac{1}{\omega} \sum_{n=0}^{\infty} A_n^{+} \omega^{-n} \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \int_0^{\lambda} p(t) d t &=& \Phi(\sigma) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \sum_{n=0}^{\infty} a_n^{-} \int_{\sigma}^{\infty} e^{-\sigma} \sigma^{-n-1/2} d \sigma \\
+  &=& \frac{1}{\sqrt{2 \pi}} \sum_{n=0}^{\infty} a_n^{-} \Gamma(-n+1/2, \sigma)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \Gamma(\nu, x) &=&  e^{-x} x^{\nu-1} \sum_{j=0}^{\infty} x^{-j} \prod_{k=0}^{j-1} (\nu-k - 1) \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \Gamma(-n+1/2, \sigma) &=&  e^{-\sigma} \sigma^{-n-1/2} \sum_{j=0}^{\infty} \sigma^{-j} \prod_{k=0}^{j-1} (-n-k-1/2) \\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \Phi(\sigma)  &=& \frac{1}{\sqrt{2 \pi}} \sum_{n=0}^{\infty} a_n^{-} e^{-\sigma} \sigma^{-n-1/2} \sum_{j=0}^{\infty} \sigma^{-j} \prod_{k=0}^{j-1} (-n-k-1/2) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{1}{\sqrt{\sigma} e^{\sigma}} \sum_{n=0}^{\infty} a_n^{-} \sigma^{-n} \sum_{j=0}^{\infty} \sigma^{-j} \prod_{k=0}^{j-1} (-n-k-1/2) \\
+  &=& \frac{1}{\sqrt{2 \pi}} \frac{1}{\sqrt{\sigma} e^{\sigma}} \sum_{n=0}^{\infty} A_n^{-} \sigma^{-n}
+\end{eqnarray*}

@@ -16,8 +16,13 @@
 ### Solving **&omega;(&lambda;)**
 ![asymp plus 7](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_7.svg)  
 
+### CDF
+![asymp plus 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_8.svg)  
+
 ### Result
+#### PDF
 ![asymp plus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_result.svg)  
+#### CDF
 
 ### a<sub>n</sub><sup>+</sup> Table
 [Coef Generation(Maxima)](asymp_plus.wxmx)  
@@ -60,7 +65,14 @@
 ![asymp minus 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_5.svg)  
 ![asymp minus 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_8.svg)  
 
+### CDF
+![asymp minus 9](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_9.svg)  
+![asymp minus 10](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_10.svg)  
+![asymp minus 11](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_11.svg)  
+![asymp minus 12](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_12.svg)  
+
 ### Result
+#### PDF
 ![asymp minus result](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_result.svg)  
 
 ### a<sub>n</sub><sup>-</sup> Table
