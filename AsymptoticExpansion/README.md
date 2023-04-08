@@ -18,6 +18,7 @@
 
 ### CDF
 ![asymp plus 8](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_8.svg)  
+![asymp plus 9](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_plus_9.svg)  
 
 ### Result
 #### PDF
@@ -70,6 +71,7 @@
 ![asymp minus 10](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_10.svg)  
 ![asymp minus 11](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_11.svg)  
 ![asymp minus 12](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_12.svg)  
+![asymp minus 13](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/asymp_minus_13.svg)  
 
 ### Result
 #### PDF
