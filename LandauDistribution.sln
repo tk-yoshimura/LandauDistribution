@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticMinus", "AsymptoticExpansion\AsymptoticMinus\AsymptoticMinus.csproj", "{599FEE35-083D-46BB-8304-6CF8E40EF838}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeriesExpansion", "SeriesExpansion\SeriesExpansion.csproj", "{F825E877-8C41-415C-AB77-11006E21613F}"
 EndProject
@@ -30,10 +33,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PadeApproximation", "PadeAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticPlusCDF", "AsymptoticExpansion\AsymptoticPlusCDF\AsymptoticPlusCDF.csproj", "{0C84EE60-AD22-437F-9A77-268CA5AD5536}"
 	ProjectSection(ProjectDependencies) = postProject
+		{D4311AC3-E7CF-4F21-9DF1-DC850E967F86} = {D4311AC3-E7CF-4F21-9DF1-DC850E967F86}
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsymptoticMinusCDF", "AsymptoticExpansion\AsymptoticMinusCDF\AsymptoticMinusCDF.csproj", "{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{599FEE35-083D-46BB-8304-6CF8E40EF838} = {599FEE35-083D-46BB-8304-6CF8E40EF838}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
