@@ -1,4 +1,4 @@
-﻿namespace SeriesExpansion {
+﻿namespace SymbolicArithmetic {
     public class Poly {
         private readonly Fraction[] coef;
 

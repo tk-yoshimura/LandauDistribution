@@ -1,5 +1,5 @@
 ﻿using MultiPrecision;
-using SeriesExpansion;
+using SymbolicArithmetic;
 
 namespace ToNumeric {
     public static class SymbolNumeric<N> where N : struct, IConstant {

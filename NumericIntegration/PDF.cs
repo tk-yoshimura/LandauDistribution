@@ -6,7 +6,7 @@ namespace NumericIntegration {
             if (x.Sign == Sign.Plus) {
                 return PDFPositiveSide<N>.Value(x, eps);
             }
-            else { 
+            else {
                 return PDFNegativeSide<N>.Value(x, eps);
             }
         }

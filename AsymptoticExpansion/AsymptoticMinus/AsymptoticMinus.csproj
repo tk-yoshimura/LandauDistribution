@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="SeriesExpansion">
-      <HintPath>..\..\SeriesExpansion\bin\Release\net6.0\SeriesExpansion.dll</HintPath>
+    <Reference Include="SymbolicArithmetic">
+      <HintPath>..\..\SymbolicArithmetic\bin\Release\net6.0\SymbolicArithmetic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

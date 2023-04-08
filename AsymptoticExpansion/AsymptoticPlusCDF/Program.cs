@@ -1,4 +1,4 @@
-﻿using SeriesExpansion;
+﻿using SymbolicArithmetic;
 
 using StreamReader sr = new("../../../../../results_disused/asymp_plus_poly.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_plus_cdf_poly_digits64.txt");
@@ -18,7 +18,7 @@ while (!sr.EndOfStream) {
 SymbolicPoly poly_prev = SymbolicPoly.Parse(lines[0]);
 sw.WriteLine(poly_prev);
 
-for (int n = 1; n < lines.Count; n++) { 
+for (int n = 1; n < lines.Count; n++) {
     SymbolicPoly poly = SymbolicPoly.Parse(lines[n]);
     SymbolicPoly poly_cdf = (poly + poly_prev) * new Fraction(1, n + 1);
 

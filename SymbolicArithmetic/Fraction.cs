@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
 
-namespace SeriesExpansion {
+namespace SymbolicArithmetic {
     [DebuggerDisplay("{ToString(),nq}")]
     public class Fraction {
         public BigInteger Numer { private set; get; }

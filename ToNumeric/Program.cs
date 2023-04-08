@@ -1,6 +1,6 @@
 ﻿using MultiPrecision;
-using SeriesExpansion;
 using ToNumeric;
+using SymbolicArithmetic;
 
 using StreamReader sr = new("../../../../results_disused/asymp_plus_poly.txt");
 using StreamWriter sw = new("../../../../results_disused/asymp_plus_poly_digits64.txt");

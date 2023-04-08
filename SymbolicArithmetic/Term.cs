@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
 
-namespace SeriesExpansion {
+namespace SymbolicArithmetic {
     [DebuggerDisplay("{ToString(),nq}")]
     public class Term {
         public Fraction C { private set; get; }

@@ -1,4 +1,4 @@
-﻿using SeriesExpansion;
+﻿using SymbolicArithmetic;
 
 namespace AsymptoticMinus {
     internal static class BTable {

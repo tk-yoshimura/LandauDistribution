@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace SeriesExpansion {
+namespace SymbolicArithmetic {
     [DebuggerDisplay("{ToString(),nq}")]
     public class SymbolicPoly {
         private readonly Dictionary<Symbol, Fraction> terms;
@@ -116,7 +116,7 @@ namespace SeriesExpansion {
             return str;
         }
 
-        public static SymbolicPoly Parse(string str) { 
+        public static SymbolicPoly Parse(string str) {
             if (str.Contains('\n')) {
                 throw new FormatException();
             }

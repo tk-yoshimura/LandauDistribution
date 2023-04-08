@@ -11,7 +11,7 @@ namespace AsymptoticEvalError {
 
             using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
 
-            while(!stream.EndOfStream) {
+            while (!stream.EndOfStream) {
                 string? line = stream.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(line)) {
@@ -47,7 +47,7 @@ namespace AsymptoticEvalError {
             return s;
         }
 
-        public static MultiPrecision<N> Scale(MultiPrecision<N> sigma) { 
+        public static MultiPrecision<N> Scale(MultiPrecision<N> sigma) {
             MultiPrecision<N> scale = MultiPrecision<N>.Sqrt(sigma) / MultiPrecision<N>.Exp(sigma);
 
             return c * scale;

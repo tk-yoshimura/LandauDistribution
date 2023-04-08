@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace SeriesExpansion {
+namespace SymbolicArithmetic {
     [DebuggerDisplay("{ToString(),nq}")]
     public class Symbol : IComparable, IComparable<Symbol>, IEquatable<Symbol> {
         public Symbol(int pi, int gamma, params (int n, int pow)[] zeta) {

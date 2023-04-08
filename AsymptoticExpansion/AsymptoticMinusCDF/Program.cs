@@ -1,11 +1,11 @@
-﻿using SeriesExpansion;
-using System.Numerics;
+﻿using System.Numerics;
+using SymbolicArithmetic;
 
 using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_minus_cdf_poly.txt");
 
 List<Fraction> coefs = new();
-while(!stream.EndOfStream) {
+while (!stream.EndOfStream) {
     string? line = stream.ReadLine();
 
     if (string.IsNullOrWhiteSpace(line)) {

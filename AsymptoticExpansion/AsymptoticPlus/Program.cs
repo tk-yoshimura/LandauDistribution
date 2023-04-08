@@ -1,5 +1,5 @@
 ﻿using AsymptoticPlus;
-using SeriesExpansion;
+using SymbolicArithmetic;
 
 using StreamWriter sw = new("../../../../../results_disused/asymp_plus_poly.txt");
 

@@ -8,7 +8,7 @@ for (int i = 0; i < 3; i++) {
     stream.ReadLine();
 }
 
-while(!stream.EndOfStream) {
+while (!stream.EndOfStream) {
     string? line = stream.ReadLine();
 
     if (string.IsNullOrWhiteSpace(line)) {

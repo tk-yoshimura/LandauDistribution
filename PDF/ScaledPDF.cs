@@ -32,10 +32,10 @@ namespace PDF {
             using StreamWriter sw = new("../../../../results_disused/integrate_scaled_pdf_precision68.csv", append: true);
             sw.WriteLine("# scale_pdf := (lambda >= 0) ? ( pdf * (lambda^2 + pi^2) ) : ( pdf * sqrt(2 pi) * exp(sigma) / sqrt(sigma) )");
             sw.WriteLine("# sigma := exp(-lambda-1)");
-            
+
             sw.WriteLine("lambda,scaled_pdf,error");
 
-            foreach (MultiPrecision<Pow2.N8> x in xs) { 
+            foreach (MultiPrecision<Pow2.N8> x in xs) {
                 Console.WriteLine(x);
 
                 if (x.Sign == Sign.Plus) {
@@ -60,7 +60,7 @@ namespace PDF {
                     sw.WriteLine($"{x},{y},{err:e8}");
                     sw.Flush();
                 }
-            } 
+            }
 
             Console.WriteLine("END");
             Console.Read();

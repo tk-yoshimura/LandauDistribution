@@ -1,7 +1,6 @@
 ﻿using MultiPrecision;
 using MultiPrecisionAlgebra;
 using PadeApproximation;
-using System;
 using static MultiPrecision.Pow2;
 
 namespace MathieuPadeApproximate {

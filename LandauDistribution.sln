@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticMinus", "Asymptot
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeriesExpansion", "SeriesExpansion\SeriesExpansion.csproj", "{F825E877-8C41-415C-AB77-11006E21613F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymbolicArithmetic", "SymbolicArithmetic\SymbolicArithmetic.csproj", "{F825E877-8C41-415C-AB77-11006E21613F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticPlus", "AsymptoticExpansion\AsymptoticPlus\AsymptoticPlus.csproj", "{D4311AC3-E7CF-4F21-9DF1-DC850E967F86}"
 	ProjectSection(ProjectDependencies) = postProject

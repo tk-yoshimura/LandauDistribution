@@ -34,17 +34,17 @@ namespace PDF {
             using StreamWriter sw = new("../../../../results/integrate_pdf_precision64.csv");
             sw.WriteLine("lambda,pdf,error");
 
-            foreach (MultiPrecision<Pow2.N8> x in xs) { 
+            foreach (MultiPrecision<Pow2.N8> x in xs) {
                 Console.WriteLine(x);
 
                 (MultiPrecision<Pow2.N8> y, MultiPrecision<Pow2.N8> err) = NumericIntegration.PDF<Pow2.N8>.Value(x, 1e-64);
-            
+
                 Console.WriteLine($"{y:e64}");
                 Console.WriteLine($"{err:e8}");
 
                 sw.WriteLine($"{x},{y:e64},{err:e8}");
                 sw.Flush();
-            } 
+            }
 
             Console.WriteLine("END");
             Console.Read();

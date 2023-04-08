@@ -1,4 +1,4 @@
-﻿using SeriesExpansion;
+﻿using SymbolicArithmetic;
 using System.Numerics;
 
 namespace AsymptoticPlus {

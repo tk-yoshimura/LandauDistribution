@@ -1,4 +1,4 @@
-﻿using SeriesExpansion;
+﻿using SymbolicArithmetic;
 
 namespace AsymptoticPlus {
     public static class BernTable {
