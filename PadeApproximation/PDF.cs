@@ -4,7 +4,7 @@ using PadeApproximation;
 using static MultiPrecision.Pow2;
 
 namespace PadeApproximate {
-    class Program {
+    class PDF {
         static void Main() {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = ReadExpacted();

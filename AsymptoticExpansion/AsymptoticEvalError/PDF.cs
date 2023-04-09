@@ -3,9 +3,19 @@
 namespace AsymptoticEvalError {
     class PDF {
         static void Main_() {
-            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds = new();
+            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds = ReadExpecteds();
+            
+            SummaryNegativeSide(expecteds);
+            SummaryPositiveSide(expecteds);
 
+            Console.WriteLine("END");
+            Console.Read();
+        }
+
+        private static List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> ReadExpecteds() {
+            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds = new();
             using StreamReader stream = new("../../../../../results_disused/integrate_scaled_pdf_precision68.csv");
+
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();
             }
@@ -33,8 +43,13 @@ namespace AsymptoticEvalError {
                 expecteds.Add((lambda, pdf));
             }
 
+            return expecteds;
+        }
+
+        private static void SummaryNegativeSide(List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds) {
             using StreamWriter sw_neg = new("../../../../../results_disused/pdf_negative_asymptotic_error.csv");
             List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds_neg = expecteds.Where((item) => item.lambda <= -2.0).ToList();
+
             sw_neg.Write("lambda");
             foreach (int terms in new int[] { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64 }) {
                 sw_neg.Write($",{terms} {nameof(terms)}");
@@ -56,9 +71,12 @@ namespace AsymptoticEvalError {
             }
 
             sw_neg.Flush();
+        }
 
+        private static void SummaryPositiveSide(List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds) {
             using StreamWriter sw_pos = new("../../../../../results_disused/pdf_positive_asymptotic_error.csv");
             List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> pdf)> expecteds_pos = expecteds.Where((item) => item.lambda >= 4).ToList();
+
             sw_pos.Write("lambda");
             foreach (int terms in new int[] { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64 }) {
                 sw_pos.Write($",{terms} {nameof(terms)}");
@@ -80,9 +98,6 @@ namespace AsymptoticEvalError {
             }
 
             sw_pos.Flush();
-
-            Console.WriteLine("END");
-            Console.Read();
         }
     }
 }

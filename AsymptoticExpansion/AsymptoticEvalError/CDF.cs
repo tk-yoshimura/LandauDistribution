@@ -3,7 +3,19 @@
 namespace AsymptoticEvalError {
     class CDF {
         static void Main() {
-            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_forward = new(), expecteds_backward = new();
+            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_forward, expecteds_backward;
+            (expecteds_forward, expecteds_backward) = ReadExpecteds();
+
+            SummaryNegativeSide(expecteds_forward);
+            SummaryPositiveSide(expecteds_backward);
+
+            Console.WriteLine("END");
+            Console.Read();
+        }
+
+        private static (List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_forward, List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_backward) ReadExpecteds() {
+            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_forward = new();
+            List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_backward = new();
 
             using StreamReader stream_forward = new("../../../../../results_disused/cdf_forward_precision70.csv");
             stream_forward.ReadLine();
@@ -39,8 +51,13 @@ namespace AsymptoticEvalError {
                 expecteds_backward.Add((lambda, cdf));
             }
 
-            using StreamWriter sw_neg = new("../../../../../results_disused/cdf_negative_asymptotic_error.csv");
+            return (expecteds_forward, expecteds_backward);
+        }
+
+        private static void SummaryNegativeSide(List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_forward) {
+            StreamWriter sw_neg = new("../../../../../results_disused/cdf_negative_asymptotic_error.csv");
             List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_neg = expecteds_forward.Where((item) => item.lambda <= -2.0).ToList();
+
             sw_neg.Write("lambda");
             foreach (int terms in new int[] { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64 }) {
                 sw_neg.Write($",{terms} {nameof(terms)}");
@@ -62,8 +79,10 @@ namespace AsymptoticEvalError {
             }
 
             sw_neg.Flush();
+        }
 
-            using StreamWriter sw_pos = new("../../../../../results_disused/cdf_positive_asymptotic_error.csv");
+        private static void SummaryPositiveSide(List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_backward) {
+            StreamWriter sw_pos = new("../../../../../results_disused/cdf_positive_asymptotic_error.csv");
             List<(MultiPrecision<Pow2.N8> lambda, MultiPrecision<Pow2.N8> cdf)> expecteds_pos = expecteds_backward
                 .Where((item) => item.lambda >= 4).OrderBy(item => item.lambda).ToList();
 
@@ -88,9 +107,6 @@ namespace AsymptoticEvalError {
             }
 
             sw_pos.Flush();
-
-            Console.WriteLine("END");
-            Console.Read();
         }
     }
 }
