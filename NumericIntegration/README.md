@@ -55,5 +55,6 @@ Also, variable transformation is performed so that the integral interval is fini
 [W.Börsch-Supan, "On the Evaluation of the Function &Phi;(&lambda;) for Real Values of &lambda;" (1961)](https://nvlpubs.nist.gov/nistpubs/jres/65B/jresv65Bn4p245_A1b.pdf)
 
 ## Result
-[Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64.csv)  
-[Precision 64(test)](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64_test.csv)  
+[PDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64.csv)  
+[CDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_cdf_precision64.csv)  
+[PDF Precision 64(test)](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64_test.csv)  
