@@ -17,7 +17,8 @@ The relevance of the original definition is as follows:
 ![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)  
 ![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
 
-[Numeric Table](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/table.csv)  
+[PDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64.csv)  
+[CDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_cdf_precision64.csv)  
 ![pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf.svg)  
 ![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
 ![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
