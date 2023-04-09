@@ -3,7 +3,7 @@ using MultiPrecisionAlgebra;
 using PadeApproximation;
 using static MultiPrecision.Pow2;
 
-namespace MathieuPadeApproximate {
+namespace PadeApproximate {
     class Program {
         static void Main() {
 
