@@ -10,8 +10,25 @@ namespace PadeApproximate {
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = ReadExpacted();
 
             List<(Sign sign, double min, double max, double u0, int dir)> ranges = new() {
-                (Sign.Minus, 0.00, 0.50, 0.00, +1),
-                (Sign.Minus, 0.50, 1.00, 0.50, +1),
+                (Sign.Minus, 0.00, 0.50, 0.50, -1),
+                (Sign.Minus, 0.50, 1.00, 1.00, -1),
+                (Sign.Minus, 1.00, 1.50, 1.50, -1),
+                (Sign.Minus, 1.50, 2.00, 2.00, -1),
+
+                (Sign.Minus, 2.00, 3.00, 2.00, +1),
+                (Sign.Minus, 3.00, 4.00, 3.00, +1),
+                (Sign.Minus, 4.00, 6.00, 4.00, +1),
+                (Sign.Minus, 6.00, 8.00, 6.00, +1),
+
+                (Sign.Plus, 0, 1, 0, +1),
+                (Sign.Plus, 1, 2, 1, +1),
+                (Sign.Plus, 2, 4, 2, +1),
+                (Sign.Plus, 4, 6, 4, +1),
+                (Sign.Plus, 6, 8, 6, +1),
+                (Sign.Plus, 8, 16, 8, +1),
+                (Sign.Plus, 16, 32, 16, +1),
+                (Sign.Plus, 32, 64, 32, +1),
+                (Sign.Plus, 64, 128, 64, +1),
             };
 
             foreach ((Sign sign, double min, double max, double u0, int dir) in ranges) {
@@ -35,7 +52,7 @@ namespace PadeApproximate {
                     (parameter, approx, success) = PadeApproximate<N32>(xs, ys, k, k);
 
                     if (success) {
-                        using StreamWriter sw = new($"../../../../results_disused/padecoef_pdf_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
+                        using StreamWriter sw = new($"../../../../results_disused/padecoef_pdf_precision82_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
                         PlotResult(sw, expecteds_range, u0, k, dir, parameter, approx);
                         break;
                     }
@@ -65,7 +82,7 @@ namespace PadeApproximate {
         private static List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> ReadExpacted() {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = new();
-            StreamReader stream = new("../../../../results_disused/integrate_scaled_pdf_precision_com.csv");
+            StreamReader stream = new("../../../../results_disused/integrate_scaled_pdf_precision80.csv");
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();
             }
@@ -89,7 +106,7 @@ namespace PadeApproximate {
 
         static (Vector<N> parameter, Vector<N> approx, bool success) PadeApproximate<N>(MultiPrecision<N16>[] xs, MultiPrecision<N16>[] ys, int numer, int denom) where N : struct, IConstant {
             static bool needs_increase_weight(MultiPrecision<N> error) {
-                return error.Exponent >= -232;
+                return error.Exponent >= -275;
             }
 
             Vector<N> weights = Vector<N>.Fill(xs.Length, 1);

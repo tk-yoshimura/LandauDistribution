@@ -13,10 +13,12 @@ namespace PadeApproximate {
                 (Sign.Plus, 0, 1, 0, +1),
                 (Sign.Plus, 1, 2, 1, +1),
                 (Sign.Plus, 2, 4, 2, +1),
-                (Sign.Plus, 4, 8, 4, +1),
+                (Sign.Plus, 4, 6, 4, +1),
+                (Sign.Plus, 6, 8, 6, +1),
                 (Sign.Plus, 8, 16, 8, +1),
                 (Sign.Plus, 16, 32, 16, +1),
-                (Sign.Plus, 32, 66.5, 32, +1),
+                (Sign.Plus, 32, 64, 32, +1),
+                (Sign.Plus, 64, 128, 64, +1),
             };
 
             foreach ((Sign sign, double min, double max, double u0, int dir) in ranges) {
@@ -40,7 +42,7 @@ namespace PadeApproximate {
                     (parameter, approx, success) = PadeApproximate<N32>(xs, ys, k, k);
 
                     if (success) {
-                        using StreamWriter sw = new($"../../../../results_disused/padecoef_cdf_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
+                        using StreamWriter sw = new($"../../../../results_disused/padecoef_cdf_precision82_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
                         PlotResult(sw, expecteds_range, u0, k, dir, parameter, approx);
                         break;
                     }
@@ -70,7 +72,7 @@ namespace PadeApproximate {
         private static List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> ReadExpacted() {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> expecteds = new();
-            StreamReader stream = new("../../../../results_disused/cdf_backward_precision70.csv");
+            StreamReader stream = new("../../../../results_disused/cdf_backward_precision82.csv");
             stream.ReadLine();
 
             while (!stream.EndOfStream) {
@@ -94,7 +96,7 @@ namespace PadeApproximate {
 
         static (Vector<N> parameter, Vector<N> approx, bool success) PadeApproximate<N>(MultiPrecision<N16>[] xs, MultiPrecision<N16>[] ys, int numer, int denom) where N : struct, IConstant {
             static bool needs_increase_weight(MultiPrecision<N> error) {
-                return error.Exponent >= -232;
+                return error.Exponent >= -275;
             }
 
             Vector<N> weights = Vector<N>.Fill(xs.Length, 1);

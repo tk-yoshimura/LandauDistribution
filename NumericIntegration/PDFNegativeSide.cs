@@ -25,7 +25,7 @@ namespace NumericIntegration {
 
             (MultiPrecision<N> sum, MultiPrecision<N> error)
                 = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G32K65, depth: 16
+                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G32K65, depth: 40
             );
 
             return (sum, error);
