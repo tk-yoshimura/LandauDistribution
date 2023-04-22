@@ -40,14 +40,14 @@ namespace NumericIntegration {
                 MultiPrecision<N> h = t_peak * 2;
 
                 (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, h, eps, GaussKronrodOrder.G32K65, depth: 80
+                    f, 0, h, eps, GaussKronrodOrder.G32K65, depth: 128
                 );
 
                 MultiPrecision<N> t = h;
                 for (; t + h <= 1 && !ExpCache<N>.Value(-x * t).IsZero; t += h) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                            f, t, t + h, eps, GaussKronrodOrder.G32K65, depth: 80
+                            f, t, t + h, eps, GaussKronrodOrder.G32K65, depth: 128
                     );
 
                     sum += s;
@@ -61,7 +61,7 @@ namespace NumericIntegration {
                 if (t < 1 && !ExpCache<N>.Value(-x * t).IsZero) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                            f, t, 1, eps, GaussKronrodOrder.G32K65, depth: 80
+                            f, t, 1, eps, GaussKronrodOrder.G32K65, depth: 128
                     );
 
                     sum += s;
@@ -70,14 +70,14 @@ namespace NumericIntegration {
             }
             else {
                 (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, 1, eps, GaussKronrodOrder.G32K65, depth: 80
+                    f, 0, 1, eps, GaussKronrodOrder.G32K65, depth: 128
                 );
             }
 
             for (long t = 2; t < long.MaxValue - 1 && !ExpCache<N>.Value(-x * t).IsZero; t += 2) {
                 (MultiPrecision<N> s, MultiPrecision<N> e)
                     = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                        f, t, t + 1, eps, GaussKronrodOrder.G32K65, depth: 80
+                        f, t, t + 1, eps, GaussKronrodOrder.G32K65, depth: 128
                 );
 
                 sum += s;
