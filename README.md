@@ -65,7 +65,7 @@ If the differential value is calculated, the accuracy will be improved when inte
 [Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
 [Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 
-## Pade Based Approximate
+## Páde Based Approximation
 [Digits100](https://github.com/tk-yoshimura/LandauDistribution/tree/main/Digits100)  
 
 ## Reference
