@@ -1,6 +1,6 @@
 ﻿using MultiPrecision;
 
-namespace Digits82 {
+namespace Digits100 {
     class CDFAsymptotic {
         static void Main_() {
             using StreamReader sr = new("../../../../results_disused/asymptotic_pade_pdfintegrate_precision82.csv");

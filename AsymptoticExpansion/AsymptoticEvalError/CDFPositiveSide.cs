@@ -8,10 +8,10 @@ namespace AsymptoticEvalError {
         static CDFPositiveSide() {
             List<MultiPrecision<N>> coefs = new();
 
-            using BinaryReader stream = new(File.OpenRead("../../../../../results_disused/asymp_plus_cdf_poly_bits256.bin"));
+            using BinaryReader stream = new(File.OpenRead("../../../../../results_disused/asymp_plus_cdf_poly_bits768.bin"));
 
             for (int i = 0; i < 64; i++) {
-                MultiPrecision<Pow2.N8> coef = stream.ReadMultiPrecision<Pow2.N8>();
+                MultiPrecision<N24> coef = stream.ReadMultiPrecision<N24>();
                 coefs.Add(coef.Convert<N>());
             }
 

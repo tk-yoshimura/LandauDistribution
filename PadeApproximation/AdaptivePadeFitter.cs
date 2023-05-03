@@ -7,7 +7,7 @@ namespace PadeApproximation {
         public AdaptivePadeFitter(Vector<N> xs, Vector<N> ys, int numer, int denom, MultiPrecision<N>? intercept = null)
             : base(xs, ys, numer, denom, intercept) { }
 
-        public (Vector<N> parameters, bool success) ExecuteFitting(Vector<N> weights, Func<MultiPrecision<N>, bool> needs_increase_weight, MultiPrecision<N>? norm_cost = null, int iter = 16) {
+        public (Vector<N> parameters, bool success) ExecuteFitting(Vector<N> weights, Func<MultiPrecision<N>, bool> needs_increase_weight, MultiPrecision<N>? norm_cost = null, int iter = 12) {
             Vector<N> parameters = base.ExecuteFitting(weights, norm_cost);
 
             int min_increase_weight_count = Points;

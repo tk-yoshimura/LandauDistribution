@@ -26,7 +26,7 @@ namespace PDF {
             for (MultiPrecision<N12> x = 16; x <= 20; x += 1d / 128) {
                 xs.Add(-x);
             }
-            
+
             xs.Sort();
 
             xs.Insert(0, MultiPrecision<N12>.MinusZero);

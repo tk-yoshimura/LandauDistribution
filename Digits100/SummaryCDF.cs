@@ -1,8 +1,8 @@
 ﻿using MultiPrecision;
 
-namespace Digits82 {
+namespace Digits100 {
     class SummaryCDF {
-        static void Main_() {
+        static void Main() {
             List<double> xs = new();
 
             for (double x = 0; x < 1; x += 1d / 4096) {
@@ -32,26 +32,26 @@ namespace Digits82 {
             xs.Sort();
 
             {
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision82.csv");
+                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision103.csv");
                 sw.WriteLine("lambda,cdf,ccdf");
 
                 foreach (MultiPrecision<N12> x in xs) {
                     MultiPrecision<N12> cdf = CDF.Value(x), ccdf = CDF.Value(x, is_complementary: true);
 
                     Console.WriteLine($"{x},{cdf:e16},{ccdf:e16}");
-                    sw.WriteLine($"{x},{cdf:e82},{ccdf:e82}");
+                    sw.WriteLine($"{x},{cdf:e103},{ccdf:e103}");
                 }
 
                 sw.Flush();
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_forward_precision82.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_forward_precision103.csv");
 
                 sr.ReadLine();
-                
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision82_evalerr.csv");
-                
+
+                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision103_evalerr.csv");
+
                 sw.WriteLine("lambda,cdf,error");
 
                 while (!sr.EndOfStream) {
@@ -74,12 +74,12 @@ namespace Digits82 {
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_backward_precision82.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_backward_precision103.csv");
 
                 sr.ReadLine();
-                
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_ccdf_precision82_evalerr.csv");
-                
+
+                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_ccdf_precision103_evalerr.csv");
+
                 sw.WriteLine("lambda,ccdf,error");
 
                 while (!sr.EndOfStream) {

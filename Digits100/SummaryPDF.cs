@@ -1,6 +1,6 @@
 ﻿using MultiPrecision;
 
-namespace Digits82 {
+namespace Digits100 {
     class SummaryPDF {
         static void Main_() {
             List<double> xs = new();
@@ -32,27 +32,27 @@ namespace Digits82 {
             xs.Sort();
 
             {
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_pdf_precision82.csv");
+                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_pdf_precision103.csv");
                 sw.WriteLine("lambda,pdf");
 
                 foreach (MultiPrecision<N12> x in xs) {
                     MultiPrecision<N12> y = PDF.Value(x);
 
                     Console.WriteLine($"{x},{y:e16}");
-                    sw.WriteLine($"{x},{y:e82}");
+                    sw.WriteLine($"{x},{y:e103}");
                 }
 
                 sw.Flush();
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/integrate_scaled_pdf_precision80.csv");
+                using StreamReader sr = new("../../../../results_disused/integrate_scaled_pdf_precision100.csv");
 
                 for (int i = 0; i < 3; i++) {
                     sr.ReadLine();
                 }
 
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_scaledpdf_precision82.csv");
+                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_scaledpdf_precision103.csv");
                 sw.WriteLine("# scale_pdf := (lambda >= 0) ? ( pdf * (lambda^2 + pi^2) ) : ( pdf * sqrt(2 pi) * exp(sigma) / sqrt(sigma) )");
                 sw.WriteLine("# sigma := exp(-lambda-1)");
 

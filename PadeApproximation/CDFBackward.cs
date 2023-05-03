@@ -19,6 +19,7 @@ namespace PadeApproximate {
                 (Sign.Plus, 16, 32, 16, +1),
                 (Sign.Plus, 32, 64, 32, +1),
                 (Sign.Plus, 64, 128, 64, +1),
+                (Sign.Plus, 128, 256, 128, +1),
             };
 
             foreach ((Sign sign, double min, double max, double u0, int dir) in ranges) {
@@ -34,15 +35,15 @@ namespace PadeApproximate {
                     xs = -(Vector<N16>)xs;
                 }
 
-                Vector<N32> parameter, approx;
+                Vector<N64> parameter, approx;
                 bool success = false;
 
-                for (int k = 8; k <= 64 && k * 2 + 1 < xs.Length; k++) {
+                for (int k = 37; k <= 64 && k * 2 + 1 < xs.Length; k++) {
                     Console.WriteLine($"k {k}");
-                    (parameter, approx, success) = PadeApproximate<N32>(xs, ys, k, k);
+                    (parameter, approx, success) = PadeApproximate<N64>(xs, ys, k, k);
 
                     if (success) {
-                        using StreamWriter sw = new($"../../../../results_disused/padecoef_cdf_precision82_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
+                        using StreamWriter sw = new($"../../../../results_disused/padecoef_cdf_precision103_{sign}_{min}_{max}_{u0}_{((dir > 0) ? "+1" : "-1")}.csv");
                         PlotResult(sw, expecteds_range, u0, k, dir, parameter, approx);
                         break;
                     }
@@ -72,7 +73,7 @@ namespace PadeApproximate {
         private static List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> ReadExpacted() {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> expecteds = new();
-            StreamReader stream = new("../../../../results_disused/cdf_backward_precision82.csv");
+            StreamReader stream = new("../../../../results_disused/cdf_backward_precision103.csv");
             stream.ReadLine();
 
             while (!stream.EndOfStream) {
@@ -96,7 +97,7 @@ namespace PadeApproximate {
 
         static (Vector<N> parameter, Vector<N> approx, bool success) PadeApproximate<N>(MultiPrecision<N16>[] xs, MultiPrecision<N16>[] ys, int numer, int denom) where N : struct, IConstant {
             static bool needs_increase_weight(MultiPrecision<N> error) {
-                return error.Exponent >= -275;
+                return error.Exponent >= -344;
             }
 
             Vector<N> weights = Vector<N>.Fill(xs.Length, 1);

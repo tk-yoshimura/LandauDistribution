@@ -2,11 +2,15 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Digits82 {
+namespace Digits100 {
     internal static class ApproxUtil {
 
         public static MultiPrecision<N12> Pade(MultiPrecision<N12> x, ReadOnlyCollection<(MultiPrecision<N12> c, MultiPrecision<N12> d)> table) {
             (MultiPrecision<N12> sc, MultiPrecision<N12> sd) = table[^1];
+
+#if DEBUG
+            Trace.Assert(x >= 0, $"must be positive! {x}");
+#endif
 
             for (int i = table.Count - 2; i >= 0; i--) {
                 sc = sc * x + table[i].c;

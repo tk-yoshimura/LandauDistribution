@@ -13,8 +13,4 @@
     <PackageReference Include="TYoshimura.MultiPrecision.CurveFitting" Version="1.5.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Digits82\Digits82.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,9 +1,9 @@
 ﻿using MultiPrecision;
 
-namespace Digits82 {
+namespace Digits100 {
     class CDFGenExpected {
         static void Main_() {
-            using StreamReader sr = new("../../../../results_disused/asymptotic_pade_pdfintegrate_precision82.csv");
+            using StreamReader sr = new("../../../../results_disused/asymptotic_pade_pdfintegrate_precision103.csv");
 
             List<(MultiPrecision<N12> x0, MultiPrecision<N12> x1, MultiPrecision<N12> cdf)> cdf_expecteds = new();
 
@@ -26,11 +26,11 @@ namespace Digits82 {
 
             sr.Close();
 
-            const double asymptotic_plus_threshold = 128, asymptotic_minus_threshold = -8;
+            const double asymptotic_plus_threshold = 256, asymptotic_minus_threshold = -8;
 
             List<MultiPrecision<N12>> xs = new();
 
-            for (MultiPrecision<N12> x = 0; x < 1; x += 1d / 1024) {
+            for (MultiPrecision<N12> x = 0; x < 1; x += 1d / 2048) {
                 xs.Add(x);
             }
             for (MultiPrecision<N12> h = 1d / 1024, x0 = 1, x1 = 2; x1 <= 8192; h *= 2, x0 *= 2, x1 *= 2) {
@@ -40,7 +40,7 @@ namespace Digits82 {
             }
             xs.Add(8192);
 
-            for (MultiPrecision<N12> x = 0; x < 1; x += 1d / 1024) {
+            for (MultiPrecision<N12> x = 0; x < 1; x += 1d / 2048) {
                 xs.Add(-x);
             }
             for (MultiPrecision<N12> h = 1d / 1024, x0 = 1, x1 = 2; x1 <= 16; h *= 2, x0 *= 2, x1 *= 2) {
@@ -48,13 +48,13 @@ namespace Digits82 {
                     xs.Add(-x);
                 }
             }
-            for (MultiPrecision<N12> x = 16; x <= 20; x += 1d / 64) {
+            for (MultiPrecision<N12> x = 16; x <= 20; x += 1d / 128) {
                 xs.Add(-x);
             }
 
             xs.Sort();
             {
-                using StreamWriter sw_forward = new("../../../../results_disused/cdf_forward_precision82.csv");
+                using StreamWriter sw_forward = new("../../../../results_disused/cdf_forward_precision103.csv");
                 sw_forward.WriteLine("lambda,cdf");
 
 
@@ -94,7 +94,7 @@ namespace Digits82 {
                 xs.Reverse();
                 cdf_expecteds.Reverse();
 
-                using StreamWriter sw_backward = new("../../../../results_disused/cdf_backward_precision82.csv");
+                using StreamWriter sw_backward = new("../../../../results_disused/cdf_backward_precision103.csv");
                 sw_backward.WriteLine("lambda,ccdf,cdf");
 
                 foreach (MultiPrecision<N12> x in xs) {

@@ -2,9 +2,9 @@
 using SymbolicArithmetic;
 using ToNumeric;
 
-using StreamReader sr = new("../../../../results_disused/asymp_plus_cdf_poly.txt");
-using StreamWriter sw = new("../../../../results_disused/asymp_plus_cdf_poly_digits64.txt");
-using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_cdf_poly_bits256.bin", FileMode.Create));
+using StreamReader sr = new("../../../../results_disused/asymp_plus_poly.txt");
+using StreamWriter sw = new("../../../../results_disused/asymp_plus_poly_digit227.txt");
+using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_poly_bits768.bin", FileMode.Create));
 
 sw.WriteLine("n,a_n,mpplus");
 
@@ -25,14 +25,14 @@ while (!sr.EndOfStream) {
     SymbolicPoly poly = SymbolicPoly.Parse(line);
 
     if (stage < 1) {
-        MultiPrecision<Pow2.N8> v8_p1 = SymbolNumeric<Pow2.N8>.Value<Plus1<Pow2.N8>>(poly);
-        MultiPrecision<Pow2.N8> v8_p2 = SymbolNumeric<Pow2.N8>.Value<Plus2<Pow2.N8>>(poly);
+        MultiPrecision<N24> v8_p1 = SymbolNumeric<N24>.Value<Plus1<N24>>(poly);
+        MultiPrecision<N24> v8_p2 = SymbolNumeric<N24>.Value<Plus2<N24>>(poly);
 
         if (v8_p1 == v8_p2) {
             Console.WriteLine($"value: {v8_p1}");
             Console.WriteLine($"stage: {stage}");
 
-            sw.WriteLine($"{n},{v8_p1:e64},1");
+            sw.WriteLine($"{n},{v8_p1:e227},1");
             swb.Write(v8_p1);
             n++;
             continue;
@@ -42,14 +42,14 @@ while (!sr.EndOfStream) {
     }
 
     if (stage < 2) {
-        MultiPrecision<Pow2.N8> v8_p2 = SymbolNumeric<Pow2.N8>.Value<Plus2<Pow2.N8>>(poly);
-        MultiPrecision<Pow2.N8> v8_p4 = SymbolNumeric<Pow2.N8>.Value<Plus4<Pow2.N8>>(poly);
+        MultiPrecision<N24> v8_p2 = SymbolNumeric<N24>.Value<Plus2<N24>>(poly);
+        MultiPrecision<N24> v8_p4 = SymbolNumeric<N24>.Value<Plus4<N24>>(poly);
 
         if (v8_p2 == v8_p4) {
             Console.WriteLine($"value: {v8_p2}");
             Console.WriteLine($"stage: {stage}");
 
-            sw.WriteLine($"{n},{v8_p2:e64},2");
+            sw.WriteLine($"{n},{v8_p2:e227},2");
             swb.Write(v8_p2);
             n++;
             continue;
@@ -59,14 +59,14 @@ while (!sr.EndOfStream) {
     }
 
     if (stage < 4) {
-        MultiPrecision<Pow2.N8> v8_p4 = SymbolNumeric<Pow2.N8>.Value<Plus4<Pow2.N8>>(poly);
-        MultiPrecision<Pow2.N8> v8_p8 = SymbolNumeric<Pow2.N8>.Value<Plus8<Pow2.N8>>(poly);
+        MultiPrecision<N24> v8_p4 = SymbolNumeric<N24>.Value<Plus4<N24>>(poly);
+        MultiPrecision<N24> v8_p8 = SymbolNumeric<N24>.Value<Plus8<N24>>(poly);
 
         if (v8_p4 == v8_p8) {
             Console.WriteLine($"value: {v8_p4}");
             Console.WriteLine($"stage: {stage}");
 
-            sw.WriteLine($"{n},{v8_p4:e64},4");
+            sw.WriteLine($"{n},{v8_p4:e227},4");
             swb.Write(v8_p4);
             n++;
             continue;
@@ -76,14 +76,14 @@ while (!sr.EndOfStream) {
     }
 
     if (stage < 8) {
-        MultiPrecision<Pow2.N8> v8_p8 = SymbolNumeric<Pow2.N8>.Value<Plus8<Pow2.N8>>(poly);
-        MultiPrecision<Pow2.N8> v8_p16 = SymbolNumeric<Pow2.N8>.Value<Plus16<Pow2.N8>>(poly);
+        MultiPrecision<N24> v8_p8 = SymbolNumeric<N24>.Value<Plus8<N24>>(poly);
+        MultiPrecision<N24> v8_p16 = SymbolNumeric<N24>.Value<Plus16<N24>>(poly);
 
         if (v8_p8 == v8_p16) {
             Console.WriteLine($"value: {v8_p8}");
             Console.WriteLine($"stage: {stage}");
 
-            sw.WriteLine($"{n},{v8_p8:e64},8");
+            sw.WriteLine($"{n},{v8_p8:e227},8");
             swb.Write(v8_p8);
             n++;
             continue;
@@ -93,14 +93,14 @@ while (!sr.EndOfStream) {
     }
 
     if (stage <= 16) {
-        MultiPrecision<Pow2.N8> v8_p16 = SymbolNumeric<Pow2.N8>.Value<Plus16<Pow2.N8>>(poly);
-        MultiPrecision<Pow2.N8> v8_p32 = SymbolNumeric<Pow2.N8>.Value<Plus32<Pow2.N8>>(poly);
+        MultiPrecision<N24> v8_p16 = SymbolNumeric<N24>.Value<Plus16<N24>>(poly);
+        MultiPrecision<N24> v8_p32 = SymbolNumeric<N24>.Value<Plus32<N24>>(poly);
 
         if (v8_p16 == v8_p32) {
             Console.WriteLine($"value: {v8_p16}");
             Console.WriteLine($"stage: {stage}");
 
-            sw.WriteLine($"{n},{v8_p16:e64},16");
+            sw.WriteLine($"{n},{v8_p16:e227},16");
             swb.Write(v8_p16);
             n++;
             continue;
@@ -111,7 +111,7 @@ while (!sr.EndOfStream) {
         Console.WriteLine($"value: {v8_p32}");
         Console.WriteLine($"stage: {stage}");
 
-        sw.WriteLine($"{n},{v8_p32:e64},32+");
+        sw.WriteLine($"{n},{v8_p32:e227},32+");
         swb.Write(v8_p32);
         n++;
         continue;
