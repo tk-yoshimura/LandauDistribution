@@ -66,7 +66,8 @@ If the differential value is calculated, the accuracy will be improved when inte
 [Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 
 ## Páde Based Approximation of PDF, CDF and Quantile
-[Digits100](https://github.com/tk-yoshimura/LandauDistribution/tree/main/Digits100)  
+[Digits100 source](https://github.com/tk-yoshimura/LandauDistribution/tree/main/Digits100)  
+[Digits100 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
 
 ## Reference
 [L.Landau, "On the energy loss of fast particles by ionization" (1944)](https://www.semanticscholar.org/paper/On-the-energy-loss-of-fast-particles-by-ionization-Landau/037099731178b3aeebca36a054852e4c4866a1c3)  
