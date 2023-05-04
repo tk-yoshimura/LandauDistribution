@@ -2,7 +2,7 @@
 
 namespace Digits100 {
     class SummaryCDF {
-        static void Main() {
+        static void Main_() {
             List<double> xs = new();
 
             for (double x = 0; x < 1; x += 1d / 4096) {

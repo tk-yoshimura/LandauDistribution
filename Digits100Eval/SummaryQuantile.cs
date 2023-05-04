@@ -2,7 +2,7 @@
 
 namespace Digits100 {
     class SummaryQuantile {
-        static void Main_() {
+        static void Main() {
             List<MultiPrecision<N12>> ps = new();
 
             int exp0 = -1;
@@ -59,7 +59,7 @@ namespace Digits100 {
 
                 sw.WriteLine("cdf,lambda_expected,lambda_predict,error");
 
-                StreamReader sr = new("../../../../results_disused/quantile_cdf_precision103.csv");
+                StreamReader sr = new("../../../../results_disused/quantile_cdf_precision102_2.csv");
                 sr.ReadLine();
 
                 while (!sr.EndOfStream) {
