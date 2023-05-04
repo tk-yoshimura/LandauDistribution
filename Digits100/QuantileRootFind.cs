@@ -57,13 +57,25 @@ namespace Digits100 {
                     cdfs.Add(MultiPrecision<N12>.Ldexp(1, exp));
                 }
 
-                for (int exp = -65536; exp >= -262144; exp -= 32) {
+                for (int exp = -65536; exp > -262144; exp -= 32) {
+                    cdfs.Add(MultiPrecision<N12>.Ldexp(1, exp));
+                }
+
+                for (int exp = -262144; exp > -1048576; exp -= 128) {
+                    cdfs.Add(MultiPrecision<N12>.Ldexp(1, exp));
+                }
+
+                for (int exp = -1048576; exp > -4194304; exp -= 512) {
+                    cdfs.Add(MultiPrecision<N12>.Ldexp(1, exp));
+                }
+
+                for (int exp = -4194304; exp >= -16777216; exp -= 2048) {
                     cdfs.Add(MultiPrecision<N12>.Ldexp(1, exp));
                 }
 
                 MultiPrecision<N12> lambda = "1.355780420990801325032092809390650910517114086024118870";
 
-                using StreamWriter sw = new("../../../../results_disused/quantile_cdf_precision102.csv");
+                using StreamWriter sw = new("../../../../results_disused/quantile_cdf_precision102_2.csv");
                 sw.WriteLine("cdf(exp),cdf(frac),lambda,scaled_lambda,err");
 
                 foreach (MultiPrecision<N12> cdf in cdfs) {
