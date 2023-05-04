@@ -1,4 +1,7 @@
-﻿using MultiPrecision;
+﻿﻿// Copyright (c) T.Yoshimura 2023
+// https://github.com/tk-yoshimura
+
+using MultiPrecision;
 using System.Collections.ObjectModel;
 
 namespace Digits100 {
