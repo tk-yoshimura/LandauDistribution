@@ -9,10 +9,10 @@ The variables that depend on the stable distribution are obtained as follows:
 ![randomgen 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/randomgen_2.svg)  
 ![randomgen 3](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/randomgen_3.svg)  
 
-- &alpha; &neq; 1:
+- &alpha; &neq; 1:  
  ![randomgen 4](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/randomgen_4.svg)  
 
-- &alpha; = 1:
+- &alpha; = 1:  
  ![randomgen 5](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/randomgen_5.svg)  
 
 ![randomgen 6](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/randomgen_6.svg)  
