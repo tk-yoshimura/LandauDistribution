@@ -63,6 +63,7 @@ If the differential value is calculated, the accuracy will be improved when inte
 ## Columns
 [Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
 [Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
+[Random Generation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/RandomGeneration)  
 [Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
 
 ## Padé Based Approximation of PDF, CDF and Quantile

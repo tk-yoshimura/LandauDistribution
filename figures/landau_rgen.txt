@@ -1,0 +1,35 @@
+\begin{align*}
+    U \sim \text{Uniform} \left( -\frac{\pi}{2}, \frac{\pi}{2} \right), W \sim \text{Uniform} (0, 1)
+\end{align*}
+
+\begin{eqnarray*}
+    X &=& (1+\zeta^2)^{\frac{1}{2 \alpha}} \frac{\sin(\alpha(U+\xi))}{(\cos(U))^{\frac{1}{\alpha}}} 
+    \left( \frac{\cos(U - \alpha (U+\xi))}{-\log(W)} \right)^{\frac{1-\alpha}{\alpha}} \\
+      && \zeta = -\beta \tan \left( \frac{\pi \alpha}{2} \right), ~ \xi = \frac{1}{\alpha} \arctan (- \zeta)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    X &=& \frac{2}{\pi} \left( \left( \frac{\pi}{2} + \beta U  \right) \tan(U) 
+        - \beta \log \left( - \frac{\frac{\pi}{2} \log(W) \cos (U)}{ \frac{\pi}{2} + \beta U } \right) \right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    X &=& \frac{2}{\pi} \left( \left( \frac{\pi}{2} + U  \right) \tan(U) 
+        - \log \left( - \frac{\frac{\pi}{2} \log(W) \cos (U)}{ \frac{\pi}{2} + U } \right) \right)
+\end{eqnarray*}
+
+\begin{align*}
+    X \sim S(\alpha, \beta, c=1, \mu=0)
+\end{align*}
+
+\begin{align*}
+    X' \sim S(\alpha, \beta, c, \mu)
+\end{align*}
+
+\begin{align*}
+    X' = 
+    \begin{cases}
+         c X + \mu &~~~~(\alpha \neq 1) \\
+         c X + \frac{2 c \beta}{\pi} \log c + \mu  &~~~~(\alpha = 1)
+    \end{cases}
+\end{align*}
