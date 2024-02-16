@@ -3,7 +3,7 @@ using SymbolicArithmetic;
 
 using StreamWriter sw = new("../../../../../results_disused/asymp_minus_poly.txt");
 
-List<Fraction> poly = new();
+List<Fraction> poly = [];
 
 for (int k = 0; k <= 512; k++) {
     poly.Add(0);

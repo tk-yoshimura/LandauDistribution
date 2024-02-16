@@ -2,22 +2,18 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TYoshimura.MultiPrecision" Version="6.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AsymptoticExpansion\AsymptoticPlus\AsymptoticPlus.csproj" />
+    <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="SymbolicArithmetic">
-      <HintPath>..\SymbolicArithmetic\bin\Release\net6.0\SymbolicArithmetic.dll</HintPath>
+      <HintPath>..\SymbolicArithmetic\bin\Release\net8.0\SymbolicArithmetic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

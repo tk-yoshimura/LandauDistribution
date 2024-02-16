@@ -9,7 +9,7 @@ namespace PadeApproximate {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = ReadExpacted();
 
-            List<(Sign sign, double min, double max, double u0, int dir)> ranges = new() {
+            List<(Sign sign, double min, double max, double u0, int dir)> ranges = [
                 (Sign.Minus, 0.00, 0.50, 0.50, -1),
                 (Sign.Minus, 0.50, 1.00, 1.00, -1),
                 (Sign.Minus, 1.00, 1.50, 1.50, -1),
@@ -30,7 +30,7 @@ namespace PadeApproximate {
                 (Sign.Plus, 32, 64, 32, +1),
                 (Sign.Plus, 64, 128, 64, +1),
                 (Sign.Plus, 128, 256, 128, +1),
-            };
+            ];
 
             foreach ((Sign sign, double min, double max, double u0, int dir) in ranges) {
                 List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds_range =
@@ -82,7 +82,7 @@ namespace PadeApproximate {
 
         private static List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> ReadExpacted() {
 
-            List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = new();
+            List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = [];
             StreamReader stream = new("../../../../results_disused/integrate_scaled_pdf_precision100.csv");
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();

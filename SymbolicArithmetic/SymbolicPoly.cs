@@ -20,7 +20,7 @@ namespace SymbolicArithmetic {
         }
 
         public static SymbolicPoly operator -(SymbolicPoly p) {
-            Dictionary<Symbol, Fraction> ret_terms = new();
+            Dictionary<Symbol, Fraction> ret_terms = [];
 
             foreach (Symbol symbol in p.terms.Keys) {
                 ret_terms.Add(symbol, -p.terms[symbol]);
@@ -35,15 +35,12 @@ namespace SymbolicArithmetic {
             foreach (Symbol symbol in p2.terms.Keys) {
                 Fraction f = p2.terms[symbol];
 
-                if (ret_terms.ContainsKey(symbol)) {
+                if (!ret_terms.TryAdd(symbol, f)) {
                     ret_terms[symbol] += f;
-                }
-                else {
-                    ret_terms.Add(symbol, f);
                 }
             }
 
-            Symbol[] symbols = ret_terms.Keys.ToArray();
+            Symbol[] symbols = [.. ret_terms.Keys];
             foreach (Symbol symbol in symbols) {
                 Fraction f = ret_terms[symbol];
 
@@ -69,7 +66,7 @@ namespace SymbolicArithmetic {
                 }
             }
 
-            Symbol[] symbols = ret_terms.Keys.ToArray();
+            Symbol[] symbols = [.. ret_terms.Keys];
             foreach (Symbol symbol in symbols) {
                 Fraction f = ret_terms[symbol];
 
@@ -82,7 +79,7 @@ namespace SymbolicArithmetic {
         }
 
         public static SymbolicPoly operator *(SymbolicPoly p, Term c) {
-            Dictionary<Symbol, Fraction> ret_terms = new();
+            Dictionary<Symbol, Fraction> ret_terms = [];
 
             foreach (Symbol symbol in p.terms.Keys) {
                 Symbol ret_symbol = symbol * c.Symbol;

@@ -3,7 +3,7 @@
 namespace Digits100 {
     class SummaryCDF {
         static void Main_() {
-            List<double> xs = new();
+            List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {
                 xs.Add(x);
@@ -36,7 +36,7 @@ namespace Digits100 {
                 sw.WriteLine("lambda,cdf,ccdf");
 
                 foreach (MultiPrecision<N12> x in xs) {
-                    MultiPrecision<N12> cdf = CDF.Value(x), ccdf = CDF.Value(x, is_complementary: true);
+                    MultiPrecision<N12> cdf = CDF.Value(x), ccdf = CDF.Value(x, complementary: true);
 
                     Console.WriteLine($"{x},{cdf:e16},{ccdf:e16}");
                     sw.WriteLine($"{x},{cdf:e103},{ccdf:e103}");
@@ -46,7 +46,7 @@ namespace Digits100 {
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_forward_precision103.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_lower_precision103.csv");
 
                 sr.ReadLine();
 
@@ -74,7 +74,7 @@ namespace Digits100 {
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_backward_precision103.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_upper_precision103.csv");
 
                 sr.ReadLine();
 
@@ -92,7 +92,7 @@ namespace Digits100 {
                     string[] line_split = line.Split(',');
 
                     MultiPrecision<N12> x = line_split[0], expected = line_split[1];
-                    MultiPrecision<N12> y = CDF.Value(x, is_complementary: true);
+                    MultiPrecision<N12> y = CDF.Value(x, complementary: true);
                     MultiPrecision<N12> err = MultiPrecision<N12>.Abs(y - expected) / expected;
 
                     Console.WriteLine($"{x},{y:e16},{err:e8}");

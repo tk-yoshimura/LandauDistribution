@@ -7,7 +7,7 @@ namespace AsymptoticEvalError {
         static readonly MultiPrecision<N> c = 1 / MultiPrecision<N>.Sqrt(2 * MultiPrecision<N>.PI);
 
         static CDFNegativeSide() {
-            List<MultiPrecision<N>> coefs = new();
+            List<MultiPrecision<N>> coefs = [];
 
             using StreamReader stream = new("../../../../../results_disused/asymp_minus_cdf_poly_frac.txt");
 

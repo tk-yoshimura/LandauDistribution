@@ -2,14 +2,13 @@
 
 namespace AsymptoticPlus {
     public static class BernTable {
-        private static readonly List<Fraction> table = new() {
-            1, new Fraction(-1, 2)
-        };
+        private static readonly List<Fraction> table = [
+            1,
+            new Fraction(-1, 2)
+        ];
 
         public static Fraction Value(int n) {
-            if (n < 0) {
-                throw new ArgumentOutOfRangeException(nameof(n));
-            }
+            ArgumentOutOfRangeException.ThrowIfNegative(n);
 
             for (int k = table.Count; k <= n; k++) {
                 Fraction f = 0;

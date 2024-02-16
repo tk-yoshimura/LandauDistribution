@@ -3,7 +3,7 @@
 using StreamReader sr = new("../../../../../results_disused/asymp_plus_poly.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_plus_cdf_poly_digits64.txt");
 
-List<string> lines = new();
+List<string> lines = [];
 
 while (!sr.EndOfStream) {
     string? line = sr.ReadLine();

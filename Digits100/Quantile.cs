@@ -1,4 +1,4 @@
-﻿﻿// Copyright (c) T.Yoshimura 2023
+﻿// Copyright (c) T.Yoshimura 2023
 // https://github.com/tk-yoshimura
 
 using MultiPrecision;
@@ -1462,8 +1462,8 @@ namespace Digits100 {
             ("1.2181873022039007102817518935980044402425064371000783276912531357380565393135561713186641406675850699024620e-45","1.2181873022039007102817518935980044402425064371000783276912531357380565393135561713198510700933148217527510e-45"),
         }));
 
-        public static MultiPrecision<N12> Value(MultiPrecision<N12> p, bool is_complementary = false) {
-            if (is_complementary) {
+        public static MultiPrecision<N12> Value(MultiPrecision<N12> p, bool complementary = false) {
+            if (complementary) {
                 MultiPrecision<N12> y = (p < 0.5) ? CCDF(p) : CDF(1.0 - p);
 
                 return y;

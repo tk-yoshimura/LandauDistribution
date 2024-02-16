@@ -59,7 +59,7 @@ namespace SymbolicArithmetic {
 
             Fraction f = 1;
             int gamma = 0, pi = 0;
-            List<(int n, int pow)> zeta = new();
+            List<(int n, int pow)> zeta = [];
 
             foreach (string s in item) {
                 if (s.StartsWith("gamma")) {

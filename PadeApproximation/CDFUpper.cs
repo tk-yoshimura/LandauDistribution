@@ -4,12 +4,12 @@ using PadeApproximation;
 using static MultiPrecision.Pow2;
 
 namespace PadeApproximate {
-    class CDFbackward {
+    class CDFUpper {
         static void Main_() {
 
             List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds = ReadExpacted();
 
-            List<(Sign sign, double min, double max, double u0, int dir)> ranges = new() {
+            List<(Sign sign, double min, double max, double u0, int dir)> ranges = [
                 (Sign.Plus, 0, 1, 0, +1),
                 (Sign.Plus, 1, 2, 1, +1),
                 (Sign.Plus, 2, 4, 2, +1),
@@ -20,7 +20,7 @@ namespace PadeApproximate {
                 (Sign.Plus, 32, 64, 32, +1),
                 (Sign.Plus, 64, 128, 64, +1),
                 (Sign.Plus, 128, 256, 128, +1),
-            };
+            ];
 
             foreach ((Sign sign, double min, double max, double u0, int dir) in ranges) {
                 List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_pdf)> expecteds_range =
@@ -72,8 +72,8 @@ namespace PadeApproximate {
 
         private static List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> ReadExpacted() {
 
-            List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> expecteds = new();
-            StreamReader stream = new("../../../../results_disused/cdf_backward_precision103.csv");
+            List<(MultiPrecision<N16> lambda, MultiPrecision<N16> scaled_cdf)> expecteds = [];
+            StreamReader stream = new("../../../../results_disused/cdf_upper_precision103.csv");
             stream.ReadLine();
 
             while (!stream.EndOfStream) {

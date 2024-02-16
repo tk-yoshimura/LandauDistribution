@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace AsymptoticPlus {
     public static class CTable {
-        private static readonly Dictionary<(int n, int k), Term> table = new();
+        private static readonly Dictionary<(int n, int k), Term> table = [];
 
         public static Term Value(int j, int k) {
             if (j < 1 || k >= j) {

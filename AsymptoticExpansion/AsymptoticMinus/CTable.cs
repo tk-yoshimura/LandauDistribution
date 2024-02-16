@@ -2,9 +2,11 @@
 
 namespace AsymptoticMinus {
     internal static class CTable {
-        private static readonly List<Poly> table = new() {
-            new Poly(1), new Poly(0), new Poly(0)
-        };
+        private static readonly List<Poly> table = [
+            new Poly(1),
+            new Poly(0),
+            new Poly(0)
+        ];
 
         public static (Poly p, bool imag) Value(int n) {
             for (int k = table.Count; k <= n; k++) {

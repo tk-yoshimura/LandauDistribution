@@ -3,14 +3,13 @@ using System.Numerics;
 
 namespace AsymptoticPlus {
     internal static class ZetaTable {
-        private static readonly List<Term> table = new() {
-            new Term(new Fraction(-1, 2)), new Term(1, new Symbol(pi: 0, gamma: 1))
-        };
+        private static readonly List<Term> table = [
+            new Term(new Fraction(-1, 2)),
+            new Term(1, new Symbol(pi: 0, gamma: 1))
+        ];
 
         public static Term Value(int n) {
-            if (n < 0) {
-                throw new ArgumentOutOfRangeException(nameof(n));
-            }
+            ArgumentOutOfRangeException.ThrowIfNegative(n);
 
             for (int k = table.Count; k <= n; k++) {
                 if ((k & 1) == 0) {

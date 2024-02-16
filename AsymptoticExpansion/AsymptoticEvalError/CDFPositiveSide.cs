@@ -6,7 +6,7 @@ namespace AsymptoticEvalError {
         public static readonly ReadOnlyCollection<MultiPrecision<N>> Coefs;
 
         static CDFPositiveSide() {
-            List<MultiPrecision<N>> coefs = new();
+            List<MultiPrecision<N>> coefs = [];
 
             using BinaryReader stream = new(File.OpenRead("../../../../../results_disused/asymp_plus_cdf_poly_bits768.bin"));
 
@@ -27,7 +27,7 @@ namespace AsymptoticEvalError {
                 MultiPrecision<Plus1<N>> d = (2 * omega * (omega + 1) * f) / (2 * MultiPrecision<Plus1<N>>.Square(omega + 1) + f);
                 omega -= d;
 
-                if (d.IsZero || omega.Exponent - d.Exponent > MultiPrecision<N>.Bits) {
+                if (MultiPrecision<Plus1<N>>.IsZero(d) || omega.Exponent - d.Exponent > MultiPrecision<N>.Bits) {
                     break;
                 }
             }

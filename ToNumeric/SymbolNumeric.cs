@@ -3,8 +3,8 @@ using SymbolicArithmetic;
 
 namespace ToNumeric {
     public static class SymbolNumeric<N> where N : struct, IConstant {
-        private static readonly Dictionary<Symbol, MultiPrecision<N>> table = new();
-        private static readonly Dictionary<int, MultiPrecision<N>> zeta = new();
+        private static readonly Dictionary<Symbol, MultiPrecision<N>> table = [];
+        private static readonly Dictionary<int, MultiPrecision<N>> zeta = [];
 
         static SymbolNumeric() {
             using StreamReader sr = new("../../../../AsymptoticExpansion/zetan_bits8192.csv");
@@ -26,17 +26,18 @@ namespace ToNumeric {
         }
 
         public static MultiPrecision<N> Value(Symbol symbol) {
-            if (!table.ContainsKey(symbol)) {
+            if (!table.TryGetValue(symbol, out MultiPrecision<N>? value)) {
                 MultiPrecision<N> v = MultiPrecision<N>.Pow(MultiPrecision<N>.PI, symbol.PI) * MultiPrecision<N>.Pow(MultiPrecision<N>.EulerGamma, symbol.Gamma);
 
                 foreach ((int n, int pow) in symbol.ZetaList) {
                     v *= MultiPrecision<N>.Pow(zeta[n], pow);
                 }
 
-                table.Add(symbol, v);
+                value = v;
+                table.Add(symbol, value);
             }
 
-            return table[symbol];
+            return value;
         }
 
         public static MultiPrecision<N> Value(Term term) {

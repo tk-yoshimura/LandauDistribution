@@ -3,42 +3,25 @@
 namespace AsymptoticEvalError {
     class CDF {
         static void Main_() {
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_forward, expecteds_backward;
-            (expecteds_forward, expecteds_backward) = ReadExpecteds();
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_lower, expecteds_upper;
+            (expecteds_lower, expecteds_upper) = ReadExpecteds();
 
-            SummaryNegativeSide(expecteds_forward);
-            SummaryPositiveSide(expecteds_backward);
+            SummaryNegativeSide(expecteds_lower);
+            SummaryPositiveSide(expecteds_upper);
 
             Console.WriteLine("END");
             Console.Read();
         }
 
-        private static (List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_forward, List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_backward) ReadExpecteds() {
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_forward = new();
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_backward = new();
+        private static (List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_lower, List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_upper) ReadExpecteds() {
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_lower = [];
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_upper = [];
 
-            using StreamReader stream_forward = new("../../../../../results_disused/cdf_forward_precision70.csv");
-            stream_forward.ReadLine();
+            using StreamReader stream_lower = new("../../../../../results_disused/cdf_lower_precision70.csv");
+            stream_lower.ReadLine();
 
-            while (!stream_forward.EndOfStream) {
-                string? line = stream_forward.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(line)) {
-                    break;
-                }
-
-                string[] item = line.Split(',');
-
-                MultiPrecision<N12> lambda = item[0], cdf = item[1];
-
-                expecteds_forward.Add((lambda, cdf));
-            }
-
-            using StreamReader stream_backward = new("../../../../../results_disused/cdf_backward_precision70.csv");
-            stream_backward.ReadLine();
-
-            while (!stream_backward.EndOfStream) {
-                string? line = stream_backward.ReadLine();
+            while (!stream_lower.EndOfStream) {
+                string? line = stream_lower.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(line)) {
                     break;
@@ -48,15 +31,32 @@ namespace AsymptoticEvalError {
 
                 MultiPrecision<N12> lambda = item[0], cdf = item[1];
 
-                expecteds_backward.Add((lambda, cdf));
+                expecteds_lower.Add((lambda, cdf));
             }
 
-            return (expecteds_forward, expecteds_backward);
+            using StreamReader stream_upper = new("../../../../../results_disused/cdf_upper_precision70.csv");
+            stream_upper.ReadLine();
+
+            while (!stream_upper.EndOfStream) {
+                string? line = stream_upper.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(line)) {
+                    break;
+                }
+
+                string[] item = line.Split(',');
+
+                MultiPrecision<N12> lambda = item[0], cdf = item[1];
+
+                expecteds_upper.Add((lambda, cdf));
+            }
+
+            return (expecteds_lower, expecteds_upper);
         }
 
-        private static void SummaryNegativeSide(List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_forward) {
+        private static void SummaryNegativeSide(List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_lower) {
             StreamWriter sw_neg = new("../../../../../results_disused/cdf_negative_asymptotic_error.csv");
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_neg = expecteds_forward.Where((item) => item.lambda <= -2.0).ToList();
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_neg = expecteds_lower.Where((item) => item.lambda <= -2.0).ToList();
 
             sw_neg.Write("lambda");
             foreach (int terms in new int[] { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64 }) {
@@ -81,10 +81,10 @@ namespace AsymptoticEvalError {
             sw_neg.Flush();
         }
 
-        private static void SummaryPositiveSide(List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_backward) {
+        private static void SummaryPositiveSide(List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_upper) {
             StreamWriter sw_pos = new("../../../../../results_disused/cdf_positive_asymptotic_error.csv");
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_pos = expecteds_backward
-                .Where((item) => item.lambda >= 4).OrderBy(item => item.lambda).ToList();
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> cdf)> expecteds_pos =
+                [.. expecteds_upper.Where((item) => item.lambda >= 4).OrderBy(item => item.lambda)];
 
             sw_pos.Write("lambda");
             foreach (int terms in new int[] { 2, 4, 6, 8, 12, 16, 24, 32, 48, 64 }) {

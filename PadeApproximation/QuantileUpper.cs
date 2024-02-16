@@ -4,12 +4,12 @@ using PadeApproximation;
 using static MultiPrecision.Pow2;
 
 namespace PadeApproximate {
-    class QuantileBackward {
-        static void Main() {
+    class QuantileUpper {
+        static void Main_() {
 
             List<(MultiPrecision<N64> ccdf, MultiPrecision<N64> lambda)> expecteds = ReadExpacted();
 
-            List<(MultiPrecision<N64> c0, MultiPrecision<N64> c1, bool log2scale)> ranges = new() {
+            List<(MultiPrecision<N64> c0, MultiPrecision<N64> c1, bool log2scale)> ranges = [
                 (MultiPrecision<N64>.Ldexp(1, -1), MultiPrecision<N64>.Ldexp(1, -2), true),
                 (MultiPrecision<N64>.Ldexp(1, -2), MultiPrecision<N64>.Ldexp(1, -4), true),
                 (MultiPrecision<N64>.Ldexp(1, -4), MultiPrecision<N64>.Ldexp(1, -8), true),
@@ -19,7 +19,7 @@ namespace PadeApproximate {
                 (MultiPrecision<N64>.Ldexp(1, -64), MultiPrecision<N64>.Ldexp(1, -128), true),
                 (MultiPrecision<N64>.Ldexp(1, -128), MultiPrecision<N64>.Ldexp(1, -240), true),
                 (MultiPrecision<N64>.Ldexp(1, -240), MultiPrecision<N64>.Ldexp(1, -360), true),
-            };
+            ];
 
             foreach ((MultiPrecision<N64> u0, MultiPrecision<N64> u1, bool log2scale) in ranges) {
                 List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds_range =
@@ -72,7 +72,7 @@ namespace PadeApproximate {
 
         private static List<(MultiPrecision<N64> lambda, MultiPrecision<N64> scaled_ccdf)> ReadExpacted() {
 
-            List<(MultiPrecision<N64> ccdf, MultiPrecision<N64> lambda)> expecteds = new();
+            List<(MultiPrecision<N64> ccdf, MultiPrecision<N64> lambda)> expecteds = [];
             StreamReader stream = new("../../../../results_disused/quantile_ccdf_precision103_2.csv");
             stream.ReadLine();
 

@@ -3,7 +3,7 @@
 namespace PDF {
     class ScaledPDF {
         static void Main() {
-            List<MultiPrecision<N12>> xs = new();
+            List<MultiPrecision<N12>> xs = [];
 
             for (MultiPrecision<N12> x = 0; x < 1; x += 1d / 2048) {
                 xs.Add(x);

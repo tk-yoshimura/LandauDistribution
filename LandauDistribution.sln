@@ -43,10 +43,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticMinusCDF", "Asymp
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitsAny", "DigitsAny\DigitsAny.csproj", "{A6AAD05E-3D54-401A-AE45-E0368DD98C49}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA} = {7BFA44AB-4C1A-4C16-9F70-77B037017ECA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digits100", "Digits100\Digits100.csproj", "{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digits100Eval", "Digits100Eval\Digits100Eval.csproj", "{2130620F-72D5-4D69-8DCF-68EDEC6B5553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digits100Eval", "Digits100Eval\Digits100Eval.csproj", "{2130620F-72D5-4D69-8DCF-68EDEC6B5553}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA} = {7BFA44AB-4C1A-4C16-9F70-77B037017ECA}
 	EndProjectSection

@@ -4,7 +4,7 @@ using System.Numerics;
 using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_minus_cdf_poly.txt");
 
-List<Fraction> coefs = new();
+List<Fraction> coefs = [];
 while (!stream.EndOfStream) {
     string? line = stream.ReadLine();
 
@@ -22,7 +22,7 @@ Poly poly = new(new Fraction(BigInteger.Zero));
 
 for (int n = 0; n < coefs.Count; n++) {
 
-    List<Fraction> p = new();
+    List<Fraction> p = [];
     for (int j = 0; j < n; j++) {
         p.Add(0);
     }
@@ -34,7 +34,7 @@ for (int n = 0; n < coefs.Count; n++) {
         p.Add(f);
     }
 
-    poly += new Poly(p.ToArray()) * coefs[n];
+    poly += new Poly([.. p]) * coefs[n];
 }
 
 sw.WriteLine(poly);

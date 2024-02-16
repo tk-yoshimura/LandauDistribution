@@ -2,7 +2,7 @@
 
 namespace NumericIntegration {
     static class ExpCache<N> where N : struct, IConstant {
-        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
+        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
             if (!cache.ContainsKey(t)) {
@@ -14,7 +14,7 @@ namespace NumericIntegration {
     }
 
     static class LogCache<N> where N : struct, IConstant {
-        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
+        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
             if (!cache.ContainsKey(t)) {
@@ -26,7 +26,7 @@ namespace NumericIntegration {
     }
 
     static class SinPICache<N> where N : struct, IConstant {
-        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
+        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
             if (!cache.ContainsKey(t)) {
@@ -38,7 +38,7 @@ namespace NumericIntegration {
     }
 
     static class CosPICache<N> where N : struct, IConstant {
-        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
+        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
             if (!cache.ContainsKey(t)) {
@@ -50,7 +50,7 @@ namespace NumericIntegration {
     }
 
     static class PowCache<N> where N : struct, IConstant {
-        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = new();
+        static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {

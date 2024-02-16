@@ -2,14 +2,12 @@
 
 namespace AsymptoticPlus {
     public static class BTable {
-        private static readonly List<SymbolicPoly> table = new() {
+        private static readonly List<SymbolicPoly> table = [
             new SymbolicPoly(new Term(1))
-        };
+        ];
 
         public static SymbolicPoly Value(int n) {
-            if (n < 0) {
-                throw new ArgumentOutOfRangeException(nameof(n));
-            }
+            ArgumentOutOfRangeException.ThrowIfNegative(n);
 
             for (int k = table.Count; k <= n; k++) {
                 SymbolicPoly poly = new();

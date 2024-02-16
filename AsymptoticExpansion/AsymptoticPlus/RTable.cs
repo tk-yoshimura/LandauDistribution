@@ -2,7 +2,7 @@
 
 namespace AsymptoticPlus {
     public static class RTable {
-        private static readonly Dictionary<(int n, int k), SymbolicPoly> table = new();
+        private static readonly Dictionary<(int n, int k), SymbolicPoly> table = [];
 
         public static SymbolicPoly Value(int j, int k) {
             if (j < 0 || k < 0) {

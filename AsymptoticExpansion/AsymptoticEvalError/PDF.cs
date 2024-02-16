@@ -13,7 +13,7 @@ namespace AsymptoticEvalError {
         }
 
         private static List<(MultiPrecision<N12> lambda, MultiPrecision<N12> pdf)> ReadExpecteds() {
-            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> pdf)> expecteds = new();
+            List<(MultiPrecision<N12> lambda, MultiPrecision<N12> pdf)> expecteds = [];
             using StreamReader stream = new("../../../../../results_disused/integrate_scaled_pdf_precision100.csv");
 
             for (int i = 0; i < 3; i++) {

@@ -2,9 +2,11 @@
 
 namespace AsymptoticMinus {
     internal static class BTable {
-        private static readonly List<Fraction> table = new() {
-            0, 0, 0
-        };
+        private static readonly List<Fraction> table = [
+            0,
+            0,
+            0
+        ];
 
         public static (Fraction f, bool imag) Value(int n) {
             for (int k = table.Count; k <= n; k++) {

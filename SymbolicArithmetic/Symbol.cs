@@ -26,7 +26,7 @@ namespace SymbolicArithmetic {
         public int Gamma { get; }
         public int MaxZetaN { get; }
         public ReadOnlyDictionary<int, int> ZetaList { get; }
-        public int Zeta(int n) => ZetaList.ContainsKey(n) ? ZetaList[n] : 0;
+        public int Zeta(int n) => ZetaList.TryGetValue(n, out int value) ? value : 0;
 
         public static Symbol None { private set; get; } = new Symbol(pi: 0, gamma: 0);
 
@@ -39,8 +39,8 @@ namespace SymbolicArithmetic {
             foreach (int n in s2.ZetaList.Keys) {
                 int pow = s2.ZetaList[n];
 
-                if (ret_zeta.ContainsKey(n)) {
-                    ret_zeta[n] = checked(ret_zeta[n] + pow);
+                if (ret_zeta.TryGetValue(n, out int value)) {
+                    ret_zeta[n] = checked(value + pow);
                 }
                 else {
                     ret_zeta.Add(n, pow);
@@ -143,9 +143,7 @@ namespace SymbolicArithmetic {
         }
 
         public int CompareTo(Symbol? value) {
-            if (value is null) {
-                throw new ArgumentNullException(nameof(value));
-            }
+            ArgumentNullException.ThrowIfNull(value);
 
             if (this < value) {
                 return -1;

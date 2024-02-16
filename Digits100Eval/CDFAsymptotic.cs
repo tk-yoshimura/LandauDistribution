@@ -28,8 +28,8 @@ namespace Digits100 {
 
                 MultiPrecision<N12> cdf_expected = line_split[2];
 
-                MultiPrecision<N12> y0 = CDF.Value(x0, is_complementary: x0 > 0);
-                MultiPrecision<N12> y1 = CDF.Value(x1, is_complementary: x1 > 0);
+                MultiPrecision<N12> y0 = CDF.Value(x0, complementary: x0 > 0);
+                MultiPrecision<N12> y1 = CDF.Value(x1, complementary: x1 > 0);
 
                 MultiPrecision<N12> cdf_actual = (x1.Sign == Sign.Minus) ? (y1 - y0) : (y0 - y1);
 

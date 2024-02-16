@@ -4,12 +4,12 @@ using PadeApproximation;
 using static MultiPrecision.Pow2;
 
 namespace PadeApproximate {
-    class QuantileForward {
-        static void Main_() {
+    class QuantileLower {
+        static void Main() {
 
             List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds = ReadExpacted();
 
-            List<(MultiPrecision<N64> c0, MultiPrecision<N64> c1, bool log2scale)> ranges = new() {
+            List<(MultiPrecision<N64> c0, MultiPrecision<N64> c1, bool log2scale)> ranges = [
                 (MultiPrecision<N64>.Ldexp(1, -1), MultiPrecision<N64>.Ldexp(1, -2), true),
                 (MultiPrecision<N64>.Ldexp(1, -2), MultiPrecision<N64>.Ldexp(1, -4), true),
                 (MultiPrecision<N64>.Ldexp(1, -4), MultiPrecision<N64>.Ldexp(1, -8), true),
@@ -28,7 +28,13 @@ namespace PadeApproximate {
                 (MultiPrecision<N64>.Ldexp(1, -32768), MultiPrecision<N64>.Ldexp(1, -65536), true),
                 (MultiPrecision<N64>.Ldexp(1, -65536), MultiPrecision<N64>.Ldexp(1, -131072), true),
                 (MultiPrecision<N64>.Ldexp(1, -131072), MultiPrecision<N64>.Ldexp(1, -262144), true),
-            };
+                (MultiPrecision<N64>.Ldexp(1, -262144), MultiPrecision<N64>.Ldexp(1, -524288), true),
+                (MultiPrecision<N64>.Ldexp(1, -524288), MultiPrecision<N64>.Ldexp(1, -1048576), true),
+                (MultiPrecision<N64>.Ldexp(1, -1048576), MultiPrecision<N64>.Ldexp(1, -2097152), true),
+                (MultiPrecision<N64>.Ldexp(1, -2097152), MultiPrecision<N64>.Ldexp(1, -4194304), true),
+                (MultiPrecision<N64>.Ldexp(1, -4194304), MultiPrecision<N64>.Ldexp(1, -8388608), true),
+                (MultiPrecision<N64>.Ldexp(1, -8388608), MultiPrecision<N64>.Ldexp(1, -16777216), true),
+            ];
 
             foreach ((MultiPrecision<N64> u0, MultiPrecision<N64> u1, bool log2scale) in ranges) {
                 List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds_range =
@@ -81,8 +87,8 @@ namespace PadeApproximate {
 
         private static List<(MultiPrecision<N64> lambda, MultiPrecision<N64> scaled_cdf)> ReadExpacted() {
 
-            List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds = new();
-            StreamReader stream = new("../../../../results_disused/quantile_cdf_precision103.csv");
+            List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds = [];
+            StreamReader stream = new("../../../../results_disused/quantile_cdf_precision102_2.csv");
             stream.ReadLine();
 
             while (!stream.EndOfStream) {

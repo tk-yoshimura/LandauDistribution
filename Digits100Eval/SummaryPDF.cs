@@ -3,7 +3,7 @@
 namespace Digits100 {
     class SummaryPDF {
         static void Main_() {
-            List<double> xs = new();
+            List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {
                 xs.Add(x);

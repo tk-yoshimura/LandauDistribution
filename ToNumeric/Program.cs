@@ -1,5 +1,4 @@
 ﻿using MultiPrecision;
-using SymbolicArithmetic;
 using ToNumeric;
 
 using StreamReader sr = new("../../../../results_disused/asymp_plus_poly.txt");

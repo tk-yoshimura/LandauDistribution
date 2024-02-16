@@ -2,7 +2,7 @@
 
 namespace AsymptoticPlus {
     public static class StirlingNumberTable {
-        private static readonly Dictionary<(int n, int k), BigInteger> table = new();
+        private static readonly Dictionary<(int n, int k), BigInteger> table = [];
 
         public static BigInteger UnsignedValue(int n, int k) {
             if (n < 0 || n < k) {

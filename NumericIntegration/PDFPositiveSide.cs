@@ -16,7 +16,7 @@ namespace NumericIntegration {
             ? (t) => {
                 MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
 
-                if (exp_xt.IsZero) {
+                if (MultiPrecision<N>.IsZero(exp_xt)) {
                     return MultiPrecision<N>.Zero;
                 }
 
@@ -25,7 +25,7 @@ namespace NumericIntegration {
             : (t) => {
                 MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
 
-                if (exp_xt.IsZero) {
+                if (MultiPrecision<N>.IsZero(exp_xt)) {
                     return MultiPrecision<N>.Zero;
                 }
 
@@ -44,7 +44,7 @@ namespace NumericIntegration {
                 );
 
                 MultiPrecision<N> t = h;
-                for (; t + h <= 1 && !ExpCache<N>.Value(-x * t).IsZero; t += h) {
+                for (; t + h <= 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t)); t += h) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                             f, t, t + h, eps, GaussKronrodOrder.G32K65, depth: 128
@@ -58,7 +58,7 @@ namespace NumericIntegration {
                         break;
                     }
                 }
-                if (t < 1 && !ExpCache<N>.Value(-x * t).IsZero) {
+                if (t < 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t))) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                             f, t, 1, eps, GaussKronrodOrder.G32K65, depth: 128
@@ -74,7 +74,7 @@ namespace NumericIntegration {
                 );
             }
 
-            for (long t = 2; t < long.MaxValue - 1 && !ExpCache<N>.Value(-x * t).IsZero; t += 2) {
+            for (long t = 2; t < long.MaxValue - 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t)); t += 2) {
                 (MultiPrecision<N> s, MultiPrecision<N> e)
                     = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                         f, t, t + 1, eps, GaussKronrodOrder.G32K65, depth: 128

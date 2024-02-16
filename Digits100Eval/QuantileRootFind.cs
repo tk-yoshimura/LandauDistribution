@@ -5,7 +5,7 @@ namespace Digits100 {
     class QuantileRootFind {
         static void Main_() {
             {
-                List<MultiPrecision<N12>> cdfs = new();
+                List<MultiPrecision<N12>> cdfs = [];
 
                 for (int exp = -1; exp > -2; exp--) {
                     for (double v = 1; v > 0.5; v -= 1d / 4096) {
@@ -92,7 +92,7 @@ namespace Digits100 {
             }
 
             {
-                List<MultiPrecision<N12>> ccdfs = new();
+                List<MultiPrecision<N12>> ccdfs = [];
 
                 for (int exp0 = -1, h = 2048; exp0 >= -512; exp0 *= 2, h /= 2) {
                     for (int exp = exp0; exp > exp0 * 2 && exp >= -400; exp--) {
@@ -108,8 +108,8 @@ namespace Digits100 {
                 sw.WriteLine("ccdf,lambda,scaled_lambda,err");
 
                 foreach (MultiPrecision<N12> ccdf in ccdfs) {
-                    lambda = NewtonRaphsonFinder<N12>.RootFind((l) => (CDF.Value(l, is_complementary: true) - ccdf, -PDF.Value(l)), lambda, (-20, "inf"), accurate_bits: 344);
-                    MultiPrecision<N12> err = (CDF.Value(lambda, is_complementary: true) - ccdf) / CDF.Value(lambda, is_complementary: true);
+                    lambda = NewtonRaphsonFinder<N12>.RootFind((l) => (CDF.Value(l, complementary: true) - ccdf, -PDF.Value(l)), lambda, (-20, "inf"), accurate_bits: 344);
+                    MultiPrecision<N12> err = (CDF.Value(lambda, complementary: true) - ccdf) / CDF.Value(lambda, complementary: true);
 
                     MultiPrecision<N12> s = lambda * ccdf;
 

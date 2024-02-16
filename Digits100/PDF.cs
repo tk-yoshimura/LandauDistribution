@@ -1,4 +1,4 @@
-﻿﻿// Copyright (c) T.Yoshimura 2023
+﻿// Copyright (c) T.Yoshimura 2023
 // https://github.com/tk-yoshimura
 
 using MultiPrecision;
@@ -836,7 +836,7 @@ namespace Digits100 {
                 MultiPrecision<Plus1<N12>> d = (2 * omega * (omega + 1) * f) / (2 * MultiPrecision<Plus1<N12>>.Square(omega + 1) + f);
                 omega -= d;
 
-                if (d.IsZero || omega.Exponent - d.Exponent > MultiPrecision<N12>.Bits) {
+                if (MultiPrecision<Plus1<N12>>.IsZero(d) || omega.Exponent - d.Exponent > MultiPrecision<N12>.Bits) {
                     break;
                 }
             }
