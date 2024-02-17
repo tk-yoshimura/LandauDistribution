@@ -2,6 +2,6 @@
 
 namespace PDF {
     internal struct N12 : IConstant {
-        public int Value => 12;
+        public readonly int Value => 12;
     }
 }

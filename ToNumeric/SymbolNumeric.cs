@@ -48,7 +48,7 @@ namespace ToNumeric {
         }
 
         public static MultiPrecision<N> Value<M>(SymbolicPoly poly) where M : struct, IConstant {
-            MultiPrecision<M> s = poly.Terms.Select(term => SymbolNumeric<M>.Value(term)).Sum();
+            MultiPrecision<M> s = poly.Terms.Select(SymbolNumeric<M>.Value).Sum();
 
             return s.Convert<N>();
         }

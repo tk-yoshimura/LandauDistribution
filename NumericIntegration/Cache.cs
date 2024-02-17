@@ -5,11 +5,12 @@ namespace NumericIntegration {
         static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
-            if (!cache.ContainsKey(t)) {
-                cache.Add(t, MultiPrecision<N>.Exp(t));
+            if (!cache.TryGetValue(t, out MultiPrecision<N> value)) {
+                value = MultiPrecision<N>.Exp(t);
+                cache.Add(t, value);
             }
 
-            return cache[t];
+            return value;
         }
     }
 
@@ -17,11 +18,12 @@ namespace NumericIntegration {
         static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
-            if (!cache.ContainsKey(t)) {
-                cache.Add(t, MultiPrecision<N>.Log(t));
+            if (!cache.TryGetValue(t, out MultiPrecision<N> value)) {
+                value = MultiPrecision<N>.Log(t);
+                cache.Add(t, value);
             }
 
-            return cache[t];
+            return value;
         }
     }
 
@@ -29,11 +31,12 @@ namespace NumericIntegration {
         static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
-            if (!cache.ContainsKey(t)) {
-                cache.Add(t, MultiPrecision<N>.SinPI(t));
+            if (!cache.TryGetValue(t, out MultiPrecision<N> value)) {
+                value = MultiPrecision<N>.SinPI(t);
+                cache.Add(t, value);
             }
 
-            return cache[t];
+            return value;
         }
     }
 
@@ -41,11 +44,12 @@ namespace NumericIntegration {
         static readonly Dictionary<MultiPrecision<N>, MultiPrecision<N>> cache = [];
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
-            if (!cache.ContainsKey(t)) {
-                cache.Add(t, MultiPrecision<N>.CosPI(t));
+            if (!cache.TryGetValue(t, out MultiPrecision<N> value)) {
+                value = MultiPrecision<N>.CosPI(t);
+                cache.Add(t, value);
             }
 
-            return cache[t];
+            return value;
         }
     }
 
@@ -54,11 +58,12 @@ namespace NumericIntegration {
 
 
         public static MultiPrecision<N> Value(MultiPrecision<N> t) {
-            if (!cache.ContainsKey(t)) {
-                cache.Add(t, MultiPrecision<N>.Pow(t, -t));
+            if (!cache.TryGetValue(t, out MultiPrecision<N> value)) {
+                value = MultiPrecision<N>.Pow(t, -t);
+                cache.Add(t, value);
             }
 
-            return cache[t];
+            return value;
         }
     }
 }
