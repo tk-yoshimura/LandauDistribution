@@ -90,8 +90,10 @@ namespace NumericIntegration {
                 }
             }
 
-            sum *= scale / MultiPrecision<N>.PI;
-            error *= scale / MultiPrecision<N>.PI;
+            scale *= MultiPrecision<N>.RcpPI;
+
+            sum *= scale;
+            error *= scale;
 
             return (sum, error);
         }
