@@ -8,7 +8,9 @@ namespace NumericIntegration {
                 throw new ArgumentOutOfRangeException(nameof(x), "Must be non-negative.");
             }
 
-            eps /= x * x + MultiPrecision<N>.PI * MultiPrecision<N>.PI;
+            MultiPrecision<N> scale = x * x + MultiPrecision<N>.PI * MultiPrecision<N>.PI;
+
+            eps /= scale;
 
             MultiPrecision<N> exp_mx = MultiPrecision<N>.Exp(-x);
 
@@ -88,7 +90,10 @@ namespace NumericIntegration {
                 }
             }
 
-            return (sum / MultiPrecision<N>.PI, error / MultiPrecision<N>.PI);
+            sum *= scale / MultiPrecision<N>.PI;
+            error *= scale / MultiPrecision<N>.PI;
+
+            return (sum, error);
         }
 
         public static double PeakT(double x) {

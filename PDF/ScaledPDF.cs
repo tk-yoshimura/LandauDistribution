@@ -41,28 +41,13 @@ namespace PDF {
             foreach (MultiPrecision<N18> x in xs) {
                 Console.WriteLine(x);
 
-                if (x.Sign == Sign.Plus) {
-                    MultiPrecision<N18> s = x * x + MultiPrecision<N18>.PI * MultiPrecision<N18>.PI;
-                    (MultiPrecision<N18> y, MultiPrecision<N18> err) = NumericIntegration.PDFPositiveSide<N18>.Value(x, eps: 1e-150 / s);
+                (MultiPrecision<N18> y, MultiPrecision<N18> err) = NumericIntegration.PDF<N18>.Value(x, eps: 1e-150);
+                    
+                Console.WriteLine($"{y:e64}");
+                Console.WriteLine($"{err:e8}");
 
-                    y *= s;
-                    err *= s;
-
-                    Console.WriteLine($"{y:e64}");
-                    Console.WriteLine($"{err:e8}");
-
-                    sw.WriteLine($"{x},{y},{err:e8}");
-                    sw.Flush();
-                }
-                else {
-                    (MultiPrecision<N18> y, MultiPrecision<N18> err) = NumericIntegration.PDFNegativeSide<N18>.ScaledValue(x, eps: 1e-150);
-
-                    Console.WriteLine($"{y:e64}");
-                    Console.WriteLine($"{err:e8}");
-
-                    sw.WriteLine($"{x},{y},{err:e8}");
-                    sw.Flush();
-                }
+                sw.WriteLine($"{x},{y},{err:e8}");
+                sw.Flush();
             }
 
             Console.WriteLine("END");
