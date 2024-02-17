@@ -3,7 +3,7 @@ using MultiPrecisionIntegrate;
 
 namespace NumericIntegration {
     public static class PDFPositiveSide<N> where N : struct, IConstant {
-        public static (MultiPrecision<N> value, MultiPrecision<N> error) Value(MultiPrecision<N> x, MultiPrecision<N> eps) {
+        public static (MultiPrecision<N> value, MultiPrecision<N> error) ScaledValue(MultiPrecision<N> x, MultiPrecision<N> eps) {
             if (!(x >= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(x), "Must be non-negative.");
             }

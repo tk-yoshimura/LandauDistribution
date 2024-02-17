@@ -41,7 +41,7 @@ namespace PDF {
             foreach (MultiPrecision<N18> x in xs) {
                 Console.WriteLine(x);
 
-                (MultiPrecision<N18> y, MultiPrecision<N18> err) = NumericIntegration.PDF<N18>.Value(x, eps: 1e-150);
+                (MultiPrecision<N18> y, MultiPrecision<N18> err) = NumericIntegration.ScaledPDF<N18>.Value(x, eps: 1e-150);
                     
                 Console.WriteLine($"{y:e64}");
                 Console.WriteLine($"{err:e8}");

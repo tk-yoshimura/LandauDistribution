@@ -3,8 +3,6 @@ using MultiPrecisionIntegrate;
 
 namespace NumericIntegration {
     public static class PDFNegativeSide<N> where N : struct, IConstant {
-        static readonly MultiPrecision<N> c = 1 / MultiPrecision<N>.Sqrt(2 * MultiPrecision<N>.PI);
-
         public static (MultiPrecision<N> value, MultiPrecision<N> error) ScaledValue(MultiPrecision<N> x, MultiPrecision<N> eps) {
             if (!(x <= 0)) {
                 throw new ArgumentOutOfRangeException(nameof(x), "Must be non-positive.");
@@ -29,15 +27,6 @@ namespace NumericIntegration {
             );
 
             return (sum, error);
-        }
-
-        public static (MultiPrecision<N> value, MultiPrecision<N> error) Value(MultiPrecision<N> x, MultiPrecision<N> eps) {
-            (MultiPrecision<N> value, MultiPrecision<N> error) = ScaledValue(x, eps);
-
-            MultiPrecision<N> sigma = MultiPrecision<N>.Exp(-x - 1);
-            MultiPrecision<N> scale = c * MultiPrecision<N>.Sqrt(sigma) * MultiPrecision<N>.Exp(-sigma);
-
-            return (value * scale, error * scale);
         }
     }
 }
