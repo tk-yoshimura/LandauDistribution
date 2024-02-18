@@ -46,6 +46,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauEvalPadeApprox", "Lan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauCDFNumericIntegration", "LandauCDFNumericIntegration\LandauCDFNumericIntegration.csproj", "{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandauBasicFunctionCache", "LandauBasicFunctionCache\LandauBasicFunctionCache.csproj", "{31C07F1E-9650-488A-A241-D877633CBA55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandauBasicFunctionCacheTests", "LandauBasicFunctionCacheTests\LandauBasicFunctionCacheTests.csproj", "{08E05DA1-48A9-49B8-AC90-C320A8A8DC67}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31C07F1E-9650-488A-A241-D877633CBA55} = {31C07F1E-9650-488A-A241-D877633CBA55}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +107,14 @@ Global
 		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C07F1E-9650-488A-A241-D877633CBA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C07F1E-9650-488A-A241-D877633CBA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C07F1E-9650-488A-A241-D877633CBA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C07F1E-9650-488A-A241-D877633CBA55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08E05DA1-48A9-49B8-AC90-C320A8A8DC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08E05DA1-48A9-49B8-AC90-C320A8A8DC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08E05DA1-48A9-49B8-AC90-C320A8A8DC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08E05DA1-48A9-49B8-AC90-C320A8A8DC67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
