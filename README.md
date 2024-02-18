@@ -61,7 +61,7 @@ If the differential value is calculated, the accuracy will be improved when inte
 ![pdf derivative](figures/pdf_derivative.svg)
 
 ## Columns
-[Numeric Integration](LandauPDFNumericIntegration)  
+[Numeric Integration](NumericIntegration)  
 [Asymptotic Expansion](AsymptoticExpansion)  
 [Random Generation](RandomGeneration)  
 [Wolfram Alpha Reference Values](WolframAlphaReference)  
