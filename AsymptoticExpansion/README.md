@@ -28,7 +28,7 @@
 
 ### a<sub>n</sub><sup>+</sup> Table
 [Coef Generation(Maxima)](asymp_plus.wxmx)  
-[Coef Generation(C#)](AsymptoticPlus)
+[Coef Generation(C#)](LandauPDFPlusAsymptotic)
 
 |n|a<sub>n</sub><sup>+</sup>|n|a<sub>n</sub><sup>+</sup>|
 |----|----|----|----|
@@ -104,7 +104,7 @@
 
 ### a<sub>n</sub><sup>-</sup> Table
 [Coef Generation(Maxima)](asymp_minus.wxmx)  
-[Coef Generation(C#)](AsymptoticMinus)
+[Coef Generation(C#)](LandauPDFMinusAsymptotic)
 
 |n|a<sub>n</sub><sup>-</sup>|n|a<sub>n</sub><sup>-</sup>|
 |----|----|----|----|
