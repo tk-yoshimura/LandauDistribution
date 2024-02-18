@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LandauSymbolicArithmetic">
+      <HintPath>..\LandauSymbolicArithmetic\bin\Debug\net8.0\LandauSymbolicArithmetic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

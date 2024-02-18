@@ -8,20 +8,20 @@ The stochastic variable is traditionally &lambda;, meaning wavelength.
 ## Definition
 
 The original Landau distribution defined by Landau can be evaluated on real numbers as follows:  
-![define origin](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_origin.svg)
+![define origin](figures/define_origin.svg)
 
 The Landau distribution, generalized to a stable distribution by introducing position and scale parameters, is as follows:  
-![define stabledist](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_stabledist_generalized.svg)
+![define stabledist](figures/define_stabledist_generalized.svg)
 
 The relevance of the original definition is as follows:  
-![define relevance](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance.svg)  
-![define relevance 2](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/define_relevance_2.svg)
+![define relevance](figures/define_relevance.svg)  
+![define relevance 2](figures/define_relevance_2.svg)
 
-[PDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_pdf_precision64.csv)  
-[CDF Precision 64](https://github.com/tk-yoshimura/LandauDistribution/tree/main/results/integrate_cdf_precision64.csv)  
-![pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf.svg)  
-![logpdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/logpdf.svg)  
-![cdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/cdf.svg)  
+[PDF Precision 64](results/integrate_pdf_precision64.csv)  
+[CDF Precision 64](results/integrate_cdf_precision64.csv)  
+![pdf](figures/pdf.svg)  
+![logpdf](figures/logpdf.svg)  
+![cdf](figures/cdf.svg)  
 
 ## Statistics
 
@@ -45,29 +45,29 @@ The relevance of the original definition is as follows:
 
 The right side is a fat-tail.
 
-![tail largex](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex.svg)  
-![tail largex approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_largex_approx.svg)
+![tail largex](figures/tail_largex.svg)  
+![tail largex approx](figures/tail_largex_approx.svg)
 
 The left side decays rapidly.
 
-![tail lessx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx.svg)  
-![tail lessx approx](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/tail_lessx_approx.svg)
+![tail lessx](figures/tail_lessx.svg)  
+![tail lessx approx](figures/tail_lessx_approx.svg)
 
 ## PDF derivative
 
 If the differential value is calculated, the accuracy will be improved when interpolating.
 
-![formula diff pdf](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/formula_diff_pdf.svg)  
-![pdf derivative](https://github.com/tk-yoshimura/LandauDistribution/blob/main/figures/pdf_derivative.svg)
+![formula diff pdf](figures/formula_diff_pdf.svg)  
+![pdf derivative](figures/pdf_derivative.svg)
 
 ## Columns
-[Numeric Integration](https://github.com/tk-yoshimura/LandauDistribution/tree/main/NumericIntegration)  
-[Asymptotic Expansion](https://github.com/tk-yoshimura/LandauDistribution/tree/main/AsymptoticExpansion)  
-[Random Generation](https://github.com/tk-yoshimura/LandauDistribution/tree/main/RandomGeneration)  
-[Wolfram Alpha Reference Values](https://github.com/tk-yoshimura/LandauDistribution/tree/main/WolframAlphaReference)  
+[Numeric Integration](LandauPDFNumericIntegration)  
+[Asymptotic Expansion](AsymptoticExpansion)  
+[Random Generation](RandomGeneration)  
+[Wolfram Alpha Reference Values](WolframAlphaReference)  
 
 ## Padé Based Approximation of PDF, CDF and Quantile
-[Digits100 source](https://github.com/tk-yoshimura/LandauDistribution/tree/main/Digits100)  
+[Digits100 source](LandauPadeApprox)  
 [Digits100 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
 
 ## Reference

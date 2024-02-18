@@ -3,56 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticMinus", "AsymptoticExpansion\AsymptoticMinus\AsymptoticMinus.csproj", "{599FEE35-083D-46BB-8304-6CF8E40EF838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauPDFMinusAsymptotic", "AsymptoticExpansion\LandauPDFMinusAsymptotic\LandauPDFMinusAsymptotic.csproj", "{599FEE35-083D-46BB-8304-6CF8E40EF838}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymbolicArithmetic", "SymbolicArithmetic\SymbolicArithmetic.csproj", "{F825E877-8C41-415C-AB77-11006E21613F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauSymbolicArithmetic", "LandauSymbolicArithmetic\LandauSymbolicArithmetic.csproj", "{F825E877-8C41-415C-AB77-11006E21613F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticPlus", "AsymptoticExpansion\AsymptoticPlus\AsymptoticPlus.csproj", "{D4311AC3-E7CF-4F21-9DF1-DC850E967F86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauPDFPlusAsymptotic", "AsymptoticExpansion\LandauPDFPlusAsymptotic.\LandauPDFPlusAsymptotic.csproj", "{D4311AC3-E7CF-4F21-9DF1-DC850E967F86}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToNumeric", "ToNumeric\ToNumeric.csproj", "{872DE5D5-8D17-4F8D-ACEC-B9D210B0A413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauSymbolToNumeric", "LandauSymbolToNumeric\LandauSymbolToNumeric.csproj", "{872DE5D5-8D17-4F8D-ACEC-B9D210B0A413}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDF", "PDF\PDF.csproj", "{A6145D7E-96DB-4F73-9C58-4F42D7D6FD95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauEvalScalePDF", "LandauEvalScalePDF\LandauEvalScalePDF.csproj", "{A6145D7E-96DB-4F73-9C58-4F42D7D6FD95}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5067A209-2E49-4F5B-B504-85379FD9B157} = {5067A209-2E49-4F5B-B504-85379FD9B157}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumericIntegration", "NumericIntegration\NumericIntegration.csproj", "{5067A209-2E49-4F5B-B504-85379FD9B157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauPDFNumericIntegration", "LandauPDFNumericIntegration\LandauPDFNumericIntegration.csproj", "{5067A209-2E49-4F5B-B504-85379FD9B157}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticEvalError", "AsymptoticExpansion\AsymptoticEvalError\AsymptoticEvalError.csproj", "{27BE5E57-7CE3-4EA1-9139-8E3439DFF879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauEvalErrorAsymptoticPDF", "AsymptoticExpansion\LandauEvalErrorAsymptoticPDF\LandauEvalErrorAsymptoticPDF.csproj", "{27BE5E57-7CE3-4EA1-9139-8E3439DFF879}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PadeApproximation", "PadeApproximation\PadeApproximation.csproj", "{F063C47B-0FAE-4433-ACA9-B5EBEB1CD283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauPadeCoefGeneration", "LandauPadeCoefGeneration\LandauPadeCoefGeneration.csproj", "{F063C47B-0FAE-4433-ACA9-B5EBEB1CD283}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticPlusCDF", "AsymptoticExpansion\AsymptoticPlusCDF\AsymptoticPlusCDF.csproj", "{0C84EE60-AD22-437F-9A77-268CA5AD5536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauCDFPlusAsymptotic", "AsymptoticExpansion\LandauCDFPlusAsymptotic\LandauCDFPlusAsymptotic.csproj", "{0C84EE60-AD22-437F-9A77-268CA5AD5536}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D4311AC3-E7CF-4F21-9DF1-DC850E967F86} = {D4311AC3-E7CF-4F21-9DF1-DC850E967F86}
 		{F825E877-8C41-415C-AB77-11006E21613F} = {F825E877-8C41-415C-AB77-11006E21613F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsymptoticMinusCDF", "AsymptoticExpansion\AsymptoticMinusCDF\AsymptoticMinusCDF.csproj", "{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauCDFMinusAsymptotic", "AsymptoticExpansion\LandauCDFMinusAsymptotic\LandauCDFMinusAsymptotic.csproj", "{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{599FEE35-083D-46BB-8304-6CF8E40EF838} = {599FEE35-083D-46BB-8304-6CF8E40EF838}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitsAny", "DigitsAny\DigitsAny.csproj", "{A6AAD05E-3D54-401A-AE45-E0368DD98C49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauPadeApprox", "LandauPadeApprox\LandauPadeApprox.csproj", "{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandauEvalPadeApprox", "LandauEvalPadeApprox\LandauEvalPadeApprox.csproj", "{2130620F-72D5-4D69-8DCF-68EDEC6B5553}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA} = {7BFA44AB-4C1A-4C16-9F70-77B037017ECA}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digits100", "Digits100\Digits100.csproj", "{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digits100Eval", "Digits100Eval\Digits100Eval.csproj", "{2130620F-72D5-4D69-8DCF-68EDEC6B5553}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA} = {7BFA44AB-4C1A-4C16-9F70-77B037017ECA}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandauCDFNumericIntegration", "LandauCDFNumericIntegration\LandauCDFNumericIntegration.csproj", "{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,10 +97,6 @@ Global
 		{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8350D2-CA30-4F5F-AFCB-77E9AC749ABE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6AAD05E-3D54-401A-AE45-E0368DD98C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6AAD05E-3D54-401A-AE45-E0368DD98C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6AAD05E-3D54-401A-AE45-E0368DD98C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6AAD05E-3D54-401A-AE45-E0368DD98C49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BFA44AB-4C1A-4C16-9F70-77B037017ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -112,6 +105,10 @@ Global
 		{2130620F-72D5-4D69-8DCF-68EDEC6B5553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2130620F-72D5-4D69-8DCF-68EDEC6B5553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2130620F-72D5-4D69-8DCF-68EDEC6B5553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C7AF2F-13C2-4842-BEC5-8C3A3F356D7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

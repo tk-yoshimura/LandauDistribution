@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.1" />
+    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LandauPDFNumericIntegration">
+      <HintPath>..\LandauPDFNumericIntegration\bin\Debug\net8.0\LandauPDFNumericIntegration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
