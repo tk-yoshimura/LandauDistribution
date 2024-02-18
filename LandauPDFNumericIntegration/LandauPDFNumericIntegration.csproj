@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.1" />
-    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.4.0" />
+    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LandauBasicFunctionCache">
+      <HintPath>..\LandauBasicFunctionCache\bin\Release\net8.0\LandauBasicFunctionCache.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

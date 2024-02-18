@@ -1,4 +1,5 @@
-﻿using MultiPrecision;
+﻿using LandauBasicFunctionCache;
+using MultiPrecision;
 using MultiPrecisionIntegrate;
 
 namespace LandauPDFNumericIntegration {
@@ -12,26 +13,26 @@ namespace LandauPDFNumericIntegration {
 
             eps /= scale;
 
-            MultiPrecision<N> exp_mx = MultiPrecision<N>.Exp(-x);
+            MultiPrecision<N> exp_mx = ExpCache<N>.Exp(-x);
 
             Func<MultiPrecision<N>, MultiPrecision<N>> f = (exp_mx.Exponent > -MultiPrecision<N>.Bits)
             ? (t) => {
-                MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
+                MultiPrecision<N> exp_xt = ExpCache<N>.Exp(-x * t);
 
                 if (MultiPrecision<N>.IsZero(exp_xt)) {
                     return MultiPrecision<N>.Zero;
                 }
 
-                return SinPICache<N>.Value(t) * exp_xt * (PowCache<N>.Value(t) - exp_mx * PowCache<N>.Value(t + 1));
+                return SinCosCache<N>.SinPI(t) * exp_xt * (XPowerX(t) - exp_mx * XPowerX(t + 1));
             }
             : (t) => {
-                MultiPrecision<N> exp_xt = ExpCache<N>.Value(-x * t);
+                MultiPrecision<N> exp_xt = ExpCache<N>.Exp(-x * t);
 
                 if (MultiPrecision<N>.IsZero(exp_xt)) {
                     return MultiPrecision<N>.Zero;
                 }
 
-                return SinPICache<N>.Value(t) * exp_xt * PowCache<N>.Value(t);
+                return SinCosCache<N>.SinPI(t) * exp_xt * XPowerX(t);
             };
 
             MultiPrecision<N> sum, error;
@@ -46,7 +47,7 @@ namespace LandauPDFNumericIntegration {
                 );
 
                 MultiPrecision<N> t = h;
-                for (; t + h <= 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t)); t += h) {
+                for (; t + h <= 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t)); t += h) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                             f, t, t + h, eps, GaussKronrodOrder.G32K65, depth: 160
@@ -60,7 +61,7 @@ namespace LandauPDFNumericIntegration {
                         break;
                     }
                 }
-                if (t < 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t))) {
+                if (t < 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t))) {
                     (MultiPrecision<N> s, MultiPrecision<N> e)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                             f, t, 1, eps, GaussKronrodOrder.G32K65, depth: 160
@@ -76,7 +77,7 @@ namespace LandauPDFNumericIntegration {
                 );
             }
 
-            for (long t = 2; t < long.MaxValue - 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Value(-x * t)); t += 2) {
+            for (long t = 2; t < long.MaxValue - 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t)); t += 2) {
                 (MultiPrecision<N> s, MultiPrecision<N> e)
                     = GaussKronrodIntegral<N>.AdaptiveIntegrate(
                         f, t, t + 1, eps, GaussKronrodOrder.G32K65, depth: 160
@@ -142,6 +143,10 @@ namespace LandauPDFNumericIntegration {
             }
 
             return Math.ScaleB(1, -1000);
+        }
+
+        public static MultiPrecision<N> XPowerX(MultiPrecision<N> x) {
+            return ExpCache<N>.Exp(-x * LogCache<N>.Log(x));
         }
     }
 }
