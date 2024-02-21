@@ -42,15 +42,15 @@ namespace LandauPDFNumericIntegration {
             if (t_peak < 1d / 4) {
                 MultiPrecision<N> h = t_peak * 2;
 
-                (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, h, eps, GaussKronrodOrder.G64K129, depth: 160
+                (sum, error, _) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
+                    f, 0, h, eps, GaussKronrodOrder.G64K129, maxdepth: 160
                 );
 
                 MultiPrecision<N> t = h;
                 for (; t + h <= 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t)); t += h) {
-                    (MultiPrecision<N> s, MultiPrecision<N> e)
+                    (MultiPrecision<N> s, MultiPrecision<N> e, _)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                            f, t, t + h, eps, GaussKronrodOrder.G64K129, depth: 160
+                            f, t, t + h, eps, GaussKronrodOrder.G64K129, maxdepth: 160
                     );
 
                     sum += s;
@@ -62,9 +62,9 @@ namespace LandauPDFNumericIntegration {
                     }
                 }
                 if (t < 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t))) {
-                    (MultiPrecision<N> s, MultiPrecision<N> e)
+                    (MultiPrecision<N> s, MultiPrecision<N> e, _)
                         = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                            f, t, 1, eps, GaussKronrodOrder.G64K129, depth: 160
+                            f, t, 1, eps, GaussKronrodOrder.G64K129, maxdepth: 160
                     );
 
                     sum += s;
@@ -72,15 +72,15 @@ namespace LandauPDFNumericIntegration {
                 }
             }
             else {
-                (sum, error) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, 1, eps, GaussKronrodOrder.G64K129, depth: 160
+                (sum, error, _) = GaussKronrodIntegral<N>.AdaptiveIntegrate(
+                    f, 0, 1, eps, GaussKronrodOrder.G64K129, maxdepth: 160
                 );
             }
 
             for (long t = 2; t < long.MaxValue - 1 && !MultiPrecision<N>.IsZero(ExpCache<N>.Exp(-x * t)); t += 2) {
-                (MultiPrecision<N> s, MultiPrecision<N> e)
+                (MultiPrecision<N> s, MultiPrecision<N> e, _)
                     = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                        f, t, t + 1, eps, GaussKronrodOrder.G64K129, depth: 160
+                        f, t, t + 1, eps, GaussKronrodOrder.G64K129, maxdepth: 160
                 );
 
                 sum += s;

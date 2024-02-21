@@ -22,9 +22,9 @@ namespace LandauPDFNumericIntegration {
                 return ExpCache<N>.Exp(exp) * SinCosCache<N>.Cos(cos);
             }
 
-            (MultiPrecision<N> sum, MultiPrecision<N> error)
+            (MultiPrecision<N> sum, MultiPrecision<N> error, _)
                 = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G32K65, depth: 64
+                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G32K65, maxdepth: 64
             );
 
             return (sum, error);
