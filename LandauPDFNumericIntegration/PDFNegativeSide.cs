@@ -24,7 +24,7 @@ namespace LandauPDFNumericIntegration {
 
             (MultiPrecision<N> sum, MultiPrecision<N> error, _)
                 = GaussKronrodIntegral<N>.AdaptiveIntegrate(
-                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G32K65, maxdepth: 64
+                    f, 0, MultiPrecision<N>.PositiveInfinity, eps, GaussKronrodOrder.G64K129, maxdepth: 64
             );
 
             return (sum, error);
