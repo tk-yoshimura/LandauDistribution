@@ -1,7 +1,7 @@
 ﻿using MultiPrecision;
 using System.Collections.ObjectModel;
 
-namespace LandauEvalErrorAsymptoticPDF {
+namespace LandauEvalPDFAsymptotic {
     public static class PDFNegativeSide<N> where N : struct, IConstant {
         public static readonly ReadOnlyCollection<MultiPrecision<N>> Coefs;
         static readonly MultiPrecision<N> c = 1 / MultiPrecision<N>.Sqrt(2 * MultiPrecision<N>.PI);
