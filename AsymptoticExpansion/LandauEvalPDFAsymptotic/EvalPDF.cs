@@ -2,7 +2,7 @@
 
 namespace LandauEvalPDFAsymptotic {
     class EvalPDF {
-        static void Main() {
+        static void Main_() {
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> pdf)> expecteds = ReadExpecteds();
 
             SummaryNegativeSide(expecteds);
