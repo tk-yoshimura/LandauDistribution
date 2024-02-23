@@ -10,7 +10,7 @@ namespace LandauPadeCoefGeneration {
             Console.WriteLine($"expected: {expecteds.Count} loaded");
 
             List<(MultiPrecision<Pow2.N64> min, MultiPrecision<Pow2.N64> max, MultiPrecision<Pow2.N64> minrange)> ranges = [
-                (0, 1d / 2048, 1d / 1048576), 
+                (0, 1d / 2048, 1d / 1048576),
             ];
 
             using (StreamWriter sw = new("../../../../results_disused/pade_pdf_pluslimit_invert_precision152.csv")) {

@@ -1,7 +1,6 @@
-﻿using MultiPrecision;
-
+﻿using LandauBasicFunctionCache;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LandauBasicFunctionCache;
+using MultiPrecision;
 
 namespace LandauBasicFunctionCacheTests {
     [TestClass()]
