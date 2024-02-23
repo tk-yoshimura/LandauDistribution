@@ -3,7 +3,7 @@ using MultiPrecision;
 
 namespace LandauEvalPadeApprox {
     class EvalPDF {
-        static void Main_() {
+        static void Main() {
             List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {
@@ -33,27 +33,27 @@ namespace LandauEvalPadeApprox {
             xs.Sort();
 
             {
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_pdf_precision103.csv");
+                using StreamWriter sw = new("../../../../results_disused/pade_pdf_precision154.csv");
                 sw.WriteLine("lambda,pdf");
 
-                foreach (MultiPrecision<N12> x in xs) {
-                    MultiPrecision<N12> y = PDFPadeN12.Value(x);
+                foreach (MultiPrecision<Pow2.N16> x in xs) {
+                    MultiPrecision<Pow2.N16> y = PDFPadeN16.Value(x);
 
                     Console.WriteLine($"{x},{y:e16}");
-                    sw.WriteLine($"{x},{y:e103}");
+                    sw.WriteLine($"{x},{y}");
                 }
 
                 sw.Flush();
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/integrate_scaled_pdf_precision100.csv");
+                using StreamReader sr = new("../../../../results_disused/scaled_pdf_precision165.csv");
 
                 for (int i = 0; i < 3; i++) {
                     sr.ReadLine();
                 }
 
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_scaledpdf_precision103.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalpade_scaledpdf_precision150.csv");
                 sw.WriteLine("# scale_pdf := (lambda >= 0) ? ( pdf * (lambda^2 + pi^2) ) : ( pdf * sqrt(2 pi) * exp(sigma) / sqrt(sigma) )");
                 sw.WriteLine("# sigma := exp(-lambda-1)");
 
@@ -68,9 +68,10 @@ namespace LandauEvalPadeApprox {
 
                     string[] line_split = line.Split(',');
 
-                    MultiPrecision<N12> x = line_split[0], expected = line_split[1];
-                    MultiPrecision<N12> y = (x.Sign == Sign.Plus) ? PDFPadeN12.APlus(x) : PDFPadeN12.AMinus(x);
-                    MultiPrecision<N12> err = MultiPrecision<N12>.Abs(y - expected) / expected;
+                    MultiPrecision<Pow2.N16> x = line_split[0];
+                    MultiPrecision<Pow2.N32> expected = line_split[1];
+                    MultiPrecision<Pow2.N32> y = ((x.Sign == Sign.Plus) ? PDFPadeN16.APlus(x) : PDFPadeN16.AMinus(x)).Convert<Pow2.N32>();
+                    MultiPrecision<Pow2.N32> err = MultiPrecision<Pow2.N32>.Abs(y - expected) / expected;
 
                     Console.WriteLine($"{x},{y:e16},{err:e8}");
                     sw.WriteLine($"{x},{y},{err:e8}");
