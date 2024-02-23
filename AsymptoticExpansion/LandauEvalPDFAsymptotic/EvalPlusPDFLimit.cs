@@ -7,7 +7,7 @@ namespace LandauEvalPDFAsymptotic {
                 sw.WriteLine("# scale_pdf := (lambda >= 0) ? ( pdf * (lambda^2 + pi^2) ) : ( pdf * sqrt(2 pi) * exp(sigma) / sqrt(sigma) )");
                 sw.WriteLine("# sigma := exp(-lambda-1)");
 
-                sw.WriteLine("lambda,scaled_pdf");
+                sw.WriteLine("1/lambda,scaled_pdf");
 
                 sw.WriteLine("0,1");
 

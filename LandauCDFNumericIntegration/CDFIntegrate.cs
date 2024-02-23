@@ -4,7 +4,7 @@ using MultiPrecisionIntegrate;
 
 namespace LandauCDFMinusAsymptotic {
     class CDFIntegrate {
-        static void Main() {
+        static void Main_() {
             List<MultiPrecision<Pow2.N16>> xs = [];
 
             {
@@ -72,6 +72,9 @@ namespace LandauCDFMinusAsymptotic {
                     x0 = x1;
                 }
             }
+
+            Console.WriteLine("END");
+            Console.Read();
         }
     }
 }
