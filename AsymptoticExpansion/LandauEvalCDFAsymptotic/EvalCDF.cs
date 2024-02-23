@@ -2,7 +2,7 @@
 
 namespace LandauEvalCDFAsymptotic {
     class EvalCDF {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> cdf)> expecteds_lower, expecteds_upper;
             (expecteds_lower, expecteds_upper) = ReadExpecteds();
 
@@ -17,7 +17,7 @@ namespace LandauEvalCDFAsymptotic {
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> cdf)> expecteds_lower = [];
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> cdf)> expecteds_upper = [];
 
-            using StreamReader stream_lower = new("../../../../../results_disused/cdf_lower_precision70.csv");
+            using StreamReader stream_lower = new("../../../../../results_disused/cdf_lower_precision150.csv");
             stream_lower.ReadLine();
 
             while (!stream_lower.EndOfStream) {
@@ -34,7 +34,7 @@ namespace LandauEvalCDFAsymptotic {
                 expecteds_lower.Add((lambda, cdf));
             }
 
-            using StreamReader stream_upper = new("../../../../../results_disused/cdf_upper_precision70.csv");
+            using StreamReader stream_upper = new("../../../../../results_disused/cdf_upper_precision150.csv");
             stream_upper.ReadLine();
 
             while (!stream_upper.EndOfStream) {

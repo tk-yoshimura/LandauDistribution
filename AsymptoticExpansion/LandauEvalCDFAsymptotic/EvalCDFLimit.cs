@@ -2,7 +2,7 @@
 
 namespace LandauEvalCDFAsymptotic {
     class EvalCDFLimit {
-        static void Main() {
+        static void Main_() {
             List<MultiPrecision<N18>> xs = [];
 
             for (MultiPrecision<N18> x = 0; x < 1; x += 1d / 4096) {
