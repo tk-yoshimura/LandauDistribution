@@ -31,8 +31,10 @@ namespace LandauCDFMinusAsymptotic {
 
             xs.Sort();
 
+            xs = xs.Where(x => x >= -10).ToList();
+
             {
-                using StreamWriter sw = new("../../../../results_disused/cdfintegrate_precision152.csv");
+                using StreamWriter sw = new("../../../../results_disused/cdfintegrate_precision152_2.csv");
                 sw.WriteLine("lambda0,lambda1,integrate,error/eps,error,relative_error");
 
                 MultiPrecision<Pow2.N16> x0 = xs[0];
@@ -57,9 +59,13 @@ namespace LandauCDFMinusAsymptotic {
 
                         eps = y1 - y0;
                     }
-                    (MultiPrecision<Pow2.N16> y, MultiPrecision<Pow2.N16> error, long eval_points) = 
-                        GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(
-                            PDFPadeN16.Value, x0, x1, eps * 1e-152, GaussKronrodOrder.G128K257, 64
+
+                    (MultiPrecision<Pow2.N16> y, MultiPrecision<Pow2.N16> error, long eval_points) = (x0 > -4)
+                        ? GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(
+                            PDFPadeN16.Value, x0, x1, eps * 1e-152, GaussKronrodOrder.G256K513, 64
+                        )
+                        : BisectionAdaptiveIntegrate(
+                            PDFPadeN16.Value, x0, x1, eps * 1e-152, GaussKronrodOrder.G256K513, 64
                         );
 
                     MultiPrecision<Pow2.N16> relative_eps = error / eps;
@@ -75,6 +81,44 @@ namespace LandauCDFMinusAsymptotic {
 
             Console.WriteLine("END");
             Console.Read();
+        }
+
+        static (MultiPrecision<N> y, MultiPrecision<N> error, long eval_points) BisectionAdaptiveIntegrate<N>(
+            Func<MultiPrecision<N>, MultiPrecision<N>> f,
+            MultiPrecision<N> a, MultiPrecision<N> b,
+            MultiPrecision<N> eps,
+            GaussKronrodOrder order = GaussKronrodOrder.G31K63, int maxdepth = -1) where N : struct, IConstant {
+
+            if (a > b) {
+                (MultiPrecision<N> y, MultiPrecision<N> error, long eval_points) =
+                    BisectionAdaptiveIntegrate(f, b, a, eps, order, maxdepth);
+
+                return (-y, error, eval_points);
+            }
+            else {
+                MultiPrecision<N> fa = f(a), fb = f(b), h = b - a;
+
+                while (h > 0) {
+                    h /= 2;
+
+                    MultiPrecision<N> c = a + h, fc = f(c);
+
+                    if ((fa + fc) * h / 2 < eps) {
+                        a = c;
+                        fa = fc;
+                        continue;
+                    }
+                    if ((fc + fb) * h / 2 < eps) {
+                        b = c;
+                        fb = fc;
+                        continue;
+                    }
+
+                    break;
+                }
+
+                return GaussKronrodIntegral<N>.AdaptiveIntegrate(f, a, b, eps, order, maxdepth);
+            }
         }
     }
 }
