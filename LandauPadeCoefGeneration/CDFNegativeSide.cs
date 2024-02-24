@@ -4,7 +4,7 @@ using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class CDFNegativeSide {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> expecteds = ReadExpacted();
 
             Console.WriteLine($"expected: {expecteds.Count} loaded");
