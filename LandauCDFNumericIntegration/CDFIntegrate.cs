@@ -4,7 +4,7 @@ using MultiPrecisionIntegrate;
 
 namespace LandauCDFNumericIntegration {
     class CDFIntegrate {
-        static void Main() {
+        static void Main_() {
             MultiPrecision<N20> sqrt_2pi_inv = 1 / MultiPrecision<N20>.Sqrt(2 * MultiPrecision<N20>.PI);
 
             List<MultiPrecision<Pow2.N16>> xs = [];

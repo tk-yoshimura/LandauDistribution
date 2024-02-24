@@ -22,7 +22,7 @@ namespace LandauPadeCoefGeneration {
                 (1024, 2048, 2),
             ];
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_cdf_precision151_plus.csv")) {
+            using (StreamWriter sw = new("../../../../results_disused/pade_cdf_precision152_plus.csv")) {
                 bool approximate(MultiPrecision<Pow2.N64> xmin, MultiPrecision<Pow2.N64> xmax) {
                     Console.WriteLine($"[{xmin}, {xmax}]");
 
@@ -58,7 +58,7 @@ namespace LandauPadeCoefGeneration {
                                 break;
                             }
 
-                            if (max_rateerr < "1e-151" &&
+                            if (max_rateerr < "2e-152" &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xmax - xmin) &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xmax - xmin)) {
 

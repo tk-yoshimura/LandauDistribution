@@ -2,11 +2,11 @@
 
 namespace LandauCDFNumericIntegration {
     class CDFGenExpected {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<Pow2.N32> x0, MultiPrecision<Pow2.N32> x1, MultiPrecision<Pow2.N32> integral)> integrals = [];
             List<(MultiPrecision<Pow2.N32> x, MultiPrecision<Pow2.N32> cdf)> cdf_lower = [], cdf_upper = [];
 
-            using (StreamReader sr = new("../../../../results_disused/cdfintegrate_precision152_3.csv")) {
+            using (StreamReader sr = new("../../../../results_disused/cdfintegrate_precision152.csv")) {
                 sr.ReadLine();
                 while (!sr.EndOfStream) {
                     string? line = sr.ReadLine();

@@ -2,7 +2,7 @@
 
 namespace LandauEvalCDFAsymptotic {
     class EvalCDF {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> cdf)> expecteds_lower, expecteds_upper;
             (expecteds_lower, expecteds_upper) = ReadExpecteds();
 

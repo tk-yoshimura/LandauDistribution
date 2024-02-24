@@ -32,7 +32,7 @@ namespace LandauEvalCDFAsymptotic {
             using (StreamWriter sw = new("../../../../../results_disused/cdfasymp_lower_precision152.csv")) {
                 sw.WriteLine("x,cdf");
 
-                foreach (MultiPrecision<N18> x in xs.Where(x => x <= -10)) {
+                foreach (MultiPrecision<N18> x in xs.Where(x => x <= -9.9375)) {
                     MultiPrecision<N18> cdf = CDFNegativeSide<N18>.Value(x, terms: 64);
 
                     sw.WriteLine($"{x},{cdf}");
