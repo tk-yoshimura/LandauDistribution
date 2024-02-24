@@ -2,9 +2,11 @@
 using MultiPrecision;
 using MultiPrecisionIntegrate;
 
-namespace LandauCDFMinusAsymptotic {
+namespace LandauCDFNumericIntegration {
     class CDFIntegrate {
-        static void Main_() {
+        static void Main() {
+            MultiPrecision<N20> sqrt_2pi_inv = 1 / MultiPrecision<N20>.Sqrt(2 * MultiPrecision<N20>.PI);
+
             List<MultiPrecision<Pow2.N16>> xs = [];
 
             {
@@ -31,10 +33,7 @@ namespace LandauCDFMinusAsymptotic {
 
             xs.Sort();
 
-            xs = xs.Where(x => x >= -10).ToList();
-
-            {
-                using StreamWriter sw = new("../../../../results_disused/cdfintegrate_precision152_2.csv");
+            using (StreamWriter sw = new("../../../../results_disused/cdfintegrate_precision152.csv")) {
                 sw.WriteLine("lambda0,lambda1,integrate,error/eps,error,relative_error");
 
                 MultiPrecision<Pow2.N16> x0 = xs[0];
@@ -60,19 +59,28 @@ namespace LandauCDFMinusAsymptotic {
                         eps = y1 - y0;
                     }
 
-                    (MultiPrecision<Pow2.N16> y, MultiPrecision<Pow2.N16> error, long eval_points) = (x0 > -4)
-                        ? GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(
-                            PDFPadeN16.Value, x0, x1, eps * 1e-152, GaussKronrodOrder.G256K513, 64
+                    (MultiPrecision<N20> y, MultiPrecision<N20> error, long eval_points) = (x0 > -2)
+                        ? GaussKronrodIntegral<N20>.AdaptiveIntegrate(
+                            lambda => PDFPadeN16.Value(lambda.Convert<Pow2.N16>()).Convert<N20>(),
+                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-154, GaussKronrodOrder.G256K513, 64
                         )
                         : BisectionAdaptiveIntegrate(
-                            PDFPadeN16.Value, x0, x1, eps * 1e-152, GaussKronrodOrder.G256K513, 64
+                            lambda => {
+                                MultiPrecision<N20> sigma = MultiPrecision<N20>.Exp(-lambda - 1);
+
+                                MultiPrecision<N20> scale = sqrt_2pi_inv * MultiPrecision<N20>.Sqrt(sigma) / MultiPrecision<N20>.Exp(sigma);
+
+                                return PDFPadeN16.AMinus(lambda.Convert<Pow2.N16>()).Convert<N20>() * scale;
+                            },
+                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-156, GaussKronrodOrder.G256K513, 64
                         );
 
-                    MultiPrecision<Pow2.N16> relative_eps = error / eps;
-                    MultiPrecision<Pow2.N16> relative_error = error / y;
+                    MultiPrecision<Pow2.N16> relative_eps = error.Convert<Pow2.N16>() / eps;
+                    MultiPrecision<Pow2.N16> relative_error = error.Convert<Pow2.N16>() / y.Convert<Pow2.N16>();
 
                     Console.WriteLine($"{y:e16},{eps:e8},{error:e8},{relative_eps:e8}");
                     sw.WriteLine($"{x0},{x1},{y},{relative_eps:e8},{error:e8},{relative_error:e8}");
+
                     sw.Flush();
 
                     x0 = x1;

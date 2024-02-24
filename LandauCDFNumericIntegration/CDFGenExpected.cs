@@ -1,12 +1,12 @@
 ﻿using MultiPrecision;
 
-namespace LandauCDFMinusAsymptotic {
+namespace LandauCDFNumericIntegration {
     class CDFGenExpected {
-        static void Main() {
+        static void Main_() {
             List<(MultiPrecision<Pow2.N32> x0, MultiPrecision<Pow2.N32> x1, MultiPrecision<Pow2.N32> integral)> integrals = [];
             List<(MultiPrecision<Pow2.N32> x, MultiPrecision<Pow2.N32> cdf)> cdf_lower = [], cdf_upper = [];
 
-            using (StreamReader sr = new("../../../../results_disused/cdfintegrate_precision152_2.csv")) {
+            using (StreamReader sr = new("../../../../results_disused/cdfintegrate_precision152_3.csv")) {
                 sr.ReadLine();
                 while (!sr.EndOfStream) {
                     string? line = sr.ReadLine();
@@ -68,7 +68,7 @@ namespace LandauCDFMinusAsymptotic {
 
                 foreach ((MultiPrecision<Pow2.N32> x, MultiPrecision<Pow2.N32> cdf) in cdf_lower) {
                     Console.WriteLine($"{x},{cdf:e8}");
-                    sw_lower.WriteLine($"{x},{cdf:e155}");
+                    sw_lower.WriteLine($"{x},{cdf}");
                 }
 
                 (MultiPrecision<Pow2.N32> asymptotic_minus_threshold, sum_cdf) = cdf_lower[^1];
@@ -81,7 +81,7 @@ namespace LandauCDFMinusAsymptotic {
                     sum_cdf += integral;
 
                     Console.WriteLine($"{x1},{sum_cdf:e8}");
-                    sw_lower.WriteLine($"{x1},{sum_cdf:e155}");
+                    sw_lower.WriteLine($"{x1},{sum_cdf}");
 
                     if (x1 >= 0) {
                         break;
@@ -97,7 +97,7 @@ namespace LandauCDFMinusAsymptotic {
 
                 foreach ((MultiPrecision<Pow2.N32> x, MultiPrecision<Pow2.N32> cdf) in cdf_upper) {
                     Console.WriteLine($"{x},{cdf:e8}");
-                    sw_upper.WriteLine($"{x},{cdf:e155}");
+                    sw_upper.WriteLine($"{x},{cdf}");
                 }
 
                 (MultiPrecision<Pow2.N32> asymptotic_plus_threshold, sum_ccdf) = cdf_upper[^1];
@@ -110,7 +110,7 @@ namespace LandauCDFMinusAsymptotic {
                     sum_ccdf += integral;
 
                     Console.WriteLine($"{x0},{sum_ccdf:e8}");
-                    sw_upper.WriteLine($"{x0},{sum_ccdf:e155}");
+                    sw_upper.WriteLine($"{x0},{sum_ccdf}");
 
                     if (x0 <= 0) {
                         break;
