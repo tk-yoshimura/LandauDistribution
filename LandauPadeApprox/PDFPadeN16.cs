@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace LandauPadeApprox {
     public static class PDFPadeN16 {
-        static readonly MultiPrecision<Pow2.N16> c = 1 / MultiPrecision<Pow2.N16>.Sqrt(2 * MultiPrecision<Pow2.N16>.PI);
+        static readonly MultiPrecision<Plus1<Pow2.N16>> c = 1 / MultiPrecision<Plus1<Pow2.N16>>.Sqrt(2 * MultiPrecision<Plus1<Pow2.N16>>.PI);
         static readonly MultiPrecision<Pow2.N16> pi2 = MultiPrecision<Pow2.N16>.PI * MultiPrecision<Pow2.N16>.PI;
 
         private static readonly ReadOnlyCollection<MultiPrecision<Pow2.N16>> asymptotic_minus = new(Array.AsReadOnly(new MultiPrecision<Pow2.N16>[]{
@@ -2462,8 +2462,8 @@ namespace LandauPadeApprox {
             ("7.24800516936456223125758521630175401356840258832587473795764597276456938956278571556658743042105546985143853730708863552298169211376657692202505867629828813e64", "4.08289524664498924935186826778680051321907725328504439764726900556229983894920105395781484113599383617718340256398076553289759643770535936362133577233652015e64"),
         }));
 
-        public static MultiPrecision<Pow2.N16> Sigma(MultiPrecision<Pow2.N16> lambda) {
-            MultiPrecision<Pow2.N16> sigma = MultiPrecision<Pow2.N16>.Exp(-lambda - 1);
+        public static MultiPrecision<N> Sigma<N>(MultiPrecision<N> lambda) where N: struct, IConstant {
+            MultiPrecision<N> sigma = MultiPrecision<N>.Exp(-lambda - 1);
 
             return sigma;
         }
@@ -2611,11 +2611,11 @@ namespace LandauPadeApprox {
                 throw new ArgumentOutOfRangeException(nameof(lambda));
             }
 
-            MultiPrecision<Pow2.N16> a = AMinus(lambda);
-            MultiPrecision<Pow2.N16> sigma = Sigma(lambda);
+            MultiPrecision<Plus1<Pow2.N16>> a = AMinus(lambda).Convert<Plus1<Pow2.N16>>();
+            MultiPrecision<Plus1<Pow2.N16>> sigma = Sigma(lambda.Convert<Plus1<Pow2.N16>>());
 
-            MultiPrecision<Pow2.N16> scale = c * MultiPrecision<Pow2.N16>.Sqrt(sigma) / MultiPrecision<Pow2.N16>.Exp(sigma);
-            MultiPrecision<Pow2.N16> y = a * scale;
+            MultiPrecision<Plus1<Pow2.N16>> scale = c * MultiPrecision<Plus1<Pow2.N16>>.Sqrt(sigma) / MultiPrecision<Plus1<Pow2.N16>>.Exp(sigma);
+            MultiPrecision<Pow2.N16> y = (a * scale).Convert<Pow2.N16>();
 
             return y;
         }
