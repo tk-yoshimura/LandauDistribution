@@ -106,7 +106,7 @@ namespace LandauPadeCoefGeneration {
         private static List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> ReadExpacted() {
 
             List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> expecteds = [];
-            StreamReader stream = new("../../../../results_disused/cdf_upper_precision150.csv");
+            StreamReader stream = new("../../../../results_disused/cdf_upper_precision152.csv");
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();
             }

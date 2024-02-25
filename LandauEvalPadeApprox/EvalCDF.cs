@@ -3,7 +3,7 @@ using MultiPrecision;
 
 namespace LandauEvalPadeApprox {
     class EvalCDF {
-        static void Main_() {
+        static void Main() {
             List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {
@@ -33,25 +33,25 @@ namespace LandauEvalPadeApprox {
             xs.Sort();
 
             {
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision103.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalpade_cdf_precision152.csv");
                 sw.WriteLine("lambda,cdf,ccdf");
 
-                foreach (MultiPrecision<N12> x in xs) {
-                    MultiPrecision<N12> cdf = CDFPadeN12.Value(x), ccdf = CDFPadeN12.Value(x, complementary: true);
+                foreach (MultiPrecision<Pow2.N16> x in xs) {
+                    MultiPrecision<Pow2.N16> cdf = CDFPadeN16.Value(x), ccdf = CDFPadeN16.Value(x, complementary: true);
 
                     Console.WriteLine($"{x},{cdf:e16},{ccdf:e16}");
-                    sw.WriteLine($"{x},{cdf:e103},{ccdf:e103}");
+                    sw.WriteLine($"{x},{cdf},{ccdf}");
                 }
 
                 sw.Flush();
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_lower_precision103.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_lower_precision152.csv");
 
                 sr.ReadLine();
 
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_cdf_precision103_evalerr.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalpade_cdf_precision152_evalerr.csv");
 
                 sw.WriteLine("lambda,cdf,error");
 
@@ -64,9 +64,9 @@ namespace LandauEvalPadeApprox {
 
                     string[] line_split = line.Split(',');
 
-                    MultiPrecision<N12> x = line_split[0], expected = line_split[1];
-                    MultiPrecision<N12> y = CDFPadeN12.Value(x);
-                    MultiPrecision<N12> err = MultiPrecision<N12>.Abs(y - expected) / expected;
+                    MultiPrecision<N24> x = line_split[0], expected = line_split[1];
+                    MultiPrecision<N24> y = CDFPadeN16.Value(x.Convert<Pow2.N16>()).Convert<N24>();
+                    MultiPrecision<N24> err = MultiPrecision<N24>.Abs(y - expected) / expected;
 
                     Console.WriteLine($"{x},{y:e16},{err:e8}");
                     sw.WriteLine($"{x},{y},{err:e8}");
@@ -75,11 +75,11 @@ namespace LandauEvalPadeApprox {
             }
 
             {
-                using StreamReader sr = new("../../../../results_disused/cdf_upper_precision103.csv");
+                using StreamReader sr = new("../../../../results_disused/cdf_upper_precision152.csv");
 
                 sr.ReadLine();
 
-                using StreamWriter sw = new("../../../../results_disused/asymptotic_pade_ccdf_precision103_evalerr.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalpade_ccdf_precision152_evalerr.csv");
 
                 sw.WriteLine("lambda,ccdf,error");
 
@@ -92,9 +92,9 @@ namespace LandauEvalPadeApprox {
 
                     string[] line_split = line.Split(',');
 
-                    MultiPrecision<N12> x = line_split[0], expected = line_split[1];
-                    MultiPrecision<N12> y = CDFPadeN12.Value(x, complementary: true);
-                    MultiPrecision<N12> err = MultiPrecision<N12>.Abs(y - expected) / expected;
+                    MultiPrecision<N24> x = line_split[0], expected = line_split[1];
+                    MultiPrecision<N24> y = CDFPadeN16.Value(x.Convert<Pow2.N16>(), complementary: true).Convert<N24>();
+                    MultiPrecision<N24> err = MultiPrecision<N24>.Abs(y - expected) / expected;
 
                     Console.WriteLine($"{x},{y:e16},{err:e8}");
                     sw.WriteLine($"{x},{y},{err:e8}");

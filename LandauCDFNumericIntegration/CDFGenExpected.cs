@@ -63,7 +63,7 @@ namespace LandauCDFNumericIntegration {
 
             MultiPrecision<Pow2.N32> sum_cdf, sum_ccdf;
 
-            using (StreamWriter sw_lower = new("../../../../results_disused/cdf_lower_precision150.csv")) {
+            using (StreamWriter sw_lower = new("../../../../results_disused/cdf_lower_precision152.csv")) {
                 sw_lower.WriteLine("lambda,cdf");
 
                 foreach ((MultiPrecision<Pow2.N32> x, MultiPrecision<Pow2.N32> cdf) in cdf_lower) {
@@ -89,7 +89,7 @@ namespace LandauCDFNumericIntegration {
                 }
             }
 
-            using (StreamWriter sw_upper = new("../../../../results_disused/cdf_upper_precision150.csv")) {
+            using (StreamWriter sw_upper = new("../../../../results_disused/cdf_upper_precision152.csv")) {
                 sw_upper.WriteLine("lambda,cdf");
 
                 cdf_upper.Reverse();
