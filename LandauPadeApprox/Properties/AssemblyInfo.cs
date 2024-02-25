@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("LandauDistribution Pade Approximate")]
-[assembly: AssemblyDescription("Landau Distribution Pade Approximate")]
+[assembly: AssemblyTitle("LandauDistribution Pade Approximation")]
+[assembly: AssemblyDescription("Landau Distribution Pade Approximation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LandauDistributionPadeApproximate")]
-[assembly: AssemblyCopyright("Copyright © T.Yoshimura 2023")]
+[assembly: AssemblyProduct("LandauDistributionPadeApproximation")]
+[assembly: AssemblyCopyright("Copyright © T.Yoshimura 2023-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyVersion("1.0.1.*")]

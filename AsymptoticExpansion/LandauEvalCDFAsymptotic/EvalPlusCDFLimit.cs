@@ -2,7 +2,7 @@
 
 namespace LandauEvalCDFAsymptotic {
     class EvalPlusCDFLimit {
-        static void Main() {
+        static void Main_() {
             using (StreamWriter sw = new("../../../../../results_disused/scaled_cdf_pluslimit_invert_precision162.csv")) {
                 sw.WriteLine("# scale_cdf := (lambda >= 0) ? ( cdf * (lambda + pi) ) : ( cdf * sqrt(2 * pi * sigma) * exp(sigma) )");
                 sw.WriteLine("# sigma := exp(-lambda-1)");
