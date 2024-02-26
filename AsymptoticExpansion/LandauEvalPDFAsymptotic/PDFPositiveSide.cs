@@ -8,7 +8,11 @@ namespace LandauEvalPDFAsymptotic {
         static PDFPositiveSide() {
             List<MultiPrecision<N>> coefs = [];
 
-            using BinaryReader stream = new(File.OpenRead("../../../../../results_disused/asymp_plus_poly_bits768.bin"));
+            string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
+                ?    "../../../../results_disused/asymp_plus_poly_bits768.bin"
+                : "../../../../../results_disused/asymp_plus_poly_bits768.bin";
+
+            using BinaryReader stream = new(File.OpenRead(filepath));
 
             for (int i = 0; i < 64; i++) {
                 MultiPrecision<N24> coef = stream.ReadMultiPrecision<N24>();

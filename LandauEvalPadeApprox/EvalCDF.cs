@@ -3,7 +3,7 @@ using MultiPrecision;
 
 namespace LandauEvalPadeApprox {
     class EvalCDF {
-        static void Main() {
+        static void Main_() {
             List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {

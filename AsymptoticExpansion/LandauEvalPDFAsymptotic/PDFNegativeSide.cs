@@ -9,7 +9,11 @@ namespace LandauEvalPDFAsymptotic {
         static PDFNegativeSide() {
             List<MultiPrecision<N>> coefs = [];
 
-            using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
+            string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
+                ?    "../../../../results_disused/asymp_minus_poly_frac.txt"
+                : "../../../../../results_disused/asymp_minus_poly_frac.txt";
+
+            using StreamReader stream = new(filepath);
 
             while (!stream.EndOfStream) {
                 string? line = stream.ReadLine();

@@ -1,112 +1,124 @@
 ﻿using MultiPrecision;
 using MultiPrecisionAlgebra;
-using static MultiPrecision.Pow2;
+using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class QuantileUpper {
-        static void Main_() {
+        static void Main() {
+            List<(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax, MultiPrecision<Pow2.N64> limit_range)> ranges = [];
 
-            List<(MultiPrecision<N64> ccdf, MultiPrecision<N64> lambda)> expecteds = ReadExpacted();
+            for (MultiPrecision<Pow2.N64> pmin = 1; pmin < 8; pmin *= 2) {
+                ranges.Add((pmin, pmin * 2, pmin / 256));
+            }
+            for (MultiPrecision<Pow2.N64> pmin = 8; pmin < 512; pmin *= 2) {
+                ranges.Add((pmin, pmin * 2, pmin / 128));
+            }
 
-            List<(MultiPrecision<N64> c0, MultiPrecision<N64> c1, bool log2scale)> ranges = [
-                (MultiPrecision<N64>.Ldexp(1, -1), MultiPrecision<N64>.Ldexp(1, -2), true),
-                (MultiPrecision<N64>.Ldexp(1, -2), MultiPrecision<N64>.Ldexp(1, -4), true),
-                (MultiPrecision<N64>.Ldexp(1, -4), MultiPrecision<N64>.Ldexp(1, -8), true),
-                (MultiPrecision<N64>.Ldexp(1, -8), MultiPrecision<N64>.Ldexp(1, -16), true),
-                (MultiPrecision<N64>.Ldexp(1, -16), MultiPrecision<N64>.Ldexp(1, -32), true),
-                (MultiPrecision<N64>.Ldexp(1, -32), MultiPrecision<N64>.Ldexp(1, -64), true),
-                (MultiPrecision<N64>.Ldexp(1, -64), MultiPrecision<N64>.Ldexp(1, -128), true),
-                (MultiPrecision<N64>.Ldexp(1, -128), MultiPrecision<N64>.Ldexp(1, -240), true),
-                (MultiPrecision<N64>.Ldexp(1, -240), MultiPrecision<N64>.Ldexp(1, -360), true),
-            ];
+            List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds = [];
 
-            foreach ((MultiPrecision<N64> u0, MultiPrecision<N64> u1, bool log2scale) in ranges) {
-                List<(MultiPrecision<N64> cdf, MultiPrecision<N64> lambda)> expecteds_range =
-                    log2scale
-                    ? expecteds.Where(item => item.ccdf >= u1 && item.ccdf <= u0).ToList()
-                    : expecteds.Where(item => item.ccdf >= u0 && item.ccdf <= u1).ToList();
+            using (StreamReader sr = new("../../../../results_disused/quantile_upper_precision152_loglog_2.csv")) {
+                sr.ReadLine();
 
-                string s0 = log2scale ? $"2xexp({u0.Exponent})" : $"{u0}";
-                string s1 = log2scale ? $"2xexp({u1.Exponent})" : $"{u1}";
+                while (!sr.EndOfStream) {
+                    string? line = sr.ReadLine();
 
-                MultiPrecision<N64>[] xs = expecteds_range.Select(item => log2scale ? (MultiPrecision<N64>.Log2(u0 / item.cdf)) : (item.cdf - u0)).ToArray();
-                MultiPrecision<N64>[] ys = expecteds_range.Select(item => item.lambda).ToArray();
-
-                Vector<N64> parameter, approx;
-                bool success = false;
-
-                for (int k = 20; k <= 64 && k * 2 + 1 < xs.Length; k++) {
-                    Console.WriteLine($"k {k}");
-                    (parameter, approx, success) = PadeApproximate<N64>(xs, ys, k, k);
-
-                    if (parameter[k..].Any(v => v.val.Sign == Sign.Minus)) {
-                        continue;
-                    }
-
-                    if (success) {
-                        using StreamWriter sw = new($"../../../../results_disused/padecoef_ccdf_precision102_{s0}_{s1}_{(log2scale ? "log2" : "linear")}.csv");
-                        PlotResult(sw, expecteds_range, k, parameter, approx);
+                    if (string.IsNullOrWhiteSpace(line)) {
                         break;
                     }
+
+                    string[] line_split = line.Split(",");
+
+                    MultiPrecision<Pow2.N64> p = line_split[0];
+                    MultiPrecision<Pow2.N64> x = line_split[1];
+
+                    if (p > ranges[^1].pmax) {
+                        break;
+                    }
+
+                    expecteds.Add((p, x));
                 }
             }
-        }
 
-        private static void PlotResult<N>(StreamWriter sw, List<(MultiPrecision<N64> u, MultiPrecision<N64> v)> expecteds, int numer, Vector<N> parameter, Vector<N> approx) where N : struct, IConstant {
-            sw.WriteLine($"numers: {numer}");
-            foreach ((_, MultiPrecision<N> v) in parameter[..numer]) {
-                sw.WriteLine(v);
-            }
+            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_upper_precision150_2.csv")) {
+                bool approximate(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax) {
+                    Console.WriteLine($"[{pmin}, {pmax}]");
 
-            sw.WriteLine($"denoms: {(parameter.Dim - numer)}");
-            foreach ((_, MultiPrecision<N> v) in parameter[numer..]) {
-                sw.WriteLine(v);
-            }
+                    List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds_range
+                        = expecteds.Where(item => item.p >= pmin && item.p <= pmax).ToList();
 
-            sw.WriteLine("u,expected,approx,error");
-            for (int i = 0; i < expecteds.Count; i++) {
-                sw.WriteLine($"{expecteds[i].u},{expecteds[i].v},{approx[i]},{(expecteds[i].v - approx[i].Convert<N64>()):e10}");
-            }
-        }
+                    Console.WriteLine($"expecteds {expecteds_range.Count} samples");
 
-        private static List<(MultiPrecision<N64> lambda, MultiPrecision<N64> scaled_ccdf)> ReadExpacted() {
+                    Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
+                    Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
-            List<(MultiPrecision<N64> ccdf, MultiPrecision<N64> lambda)> expecteds = [];
-            StreamReader stream = new("../../../../results_disused/quantile_ccdf_precision103_2.csv");
-            stream.ReadLine();
+                    for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
+                        foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
+                            PadeFitter<Pow2.N64> pade = new(xs, ys, m, n);
 
-            while (!stream.EndOfStream) {
-                string? line = stream.ReadLine();
+                            Vector<Pow2.N64> param = pade.ExecuteFitting();
 
-                if (string.IsNullOrWhiteSpace(line)) {
-                    break;
+                            MultiPrecision<Pow2.N64> max_abserr = CurveFittingUtils.MaxAbsoluteError(ys, pade.FittingValue(xs, param));
+
+                            Console.WriteLine($"m={m},n={n}");
+                            Console.WriteLine($"{max_abserr:e20}");
+
+                            Console.WriteLine($"mcount: {param.Count(item => item.val.Sign != Sign.Plus)}");
+
+                            if (coefs > 8 && max_abserr > "1e-12") {
+                                return false;
+                            }
+
+                            if (coefs > 32 && max_abserr > "1e-45") {
+                                return false;
+                            }
+
+                            if (max_abserr > "1e-145") {
+                                break;
+                            }
+
+                            if (max_abserr < "1e-150" &&
+                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, pmax - pmin)) {
+
+                                sw.WriteLine($"p=[{pmin},{pmax}]");
+                                sw.WriteLine($"m={m},n={n}");
+                                sw.WriteLine($"expecteds {expecteds_range.Count} samples");
+
+                                sw.WriteLine("numer");
+                                foreach (var (_, val) in param[..m]) {
+                                    sw.WriteLine($"{val:e155}");
+                                }
+                                sw.WriteLine("denom");
+                                foreach (var (_, val) in param[m..]) {
+                                    sw.WriteLine($"{val:e155}");
+                                }
+
+                                sw.WriteLine("coef");
+                                foreach ((var numer, var denom) in CurveFittingUtils.EnumeratePadeCoef(param, m, n)) {
+                                    sw.WriteLine($"(\"{numer:e155}\", \"{denom:e155}\"),");
+                                }
+
+                                sw.WriteLine("relative err");
+                                sw.WriteLine($"{max_abserr:e20}");
+                                sw.Flush();
+
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
                 }
 
-                string[] item = line.Split(',');
+                Segmenter<Pow2.N64> segmenter = new(ranges, approximate);
+                segmenter.Execute();
 
-                MultiPrecision<N64> ccdf = MultiPrecision<N64>.Ldexp(item[1], int.Parse(item[0].Split('^')[0]));
-                MultiPrecision<N64> lambda = item[3];
-
-                expecteds.Add((ccdf, lambda));
+                foreach ((var xmin, var xmax, bool is_successs) in segmenter.ApproximatedRanges) {
+                    sw.WriteLine($"[{xmin},{xmax}],{(is_successs ? "OK" : "NG")}");
+                }
             }
 
-            return expecteds;
-        }
-
-        static (Vector<N> parameter, Vector<N> approx, bool success) PadeApproximate<N>(MultiPrecision<N64>[] xs, MultiPrecision<N64>[] ys, int numer, int denom) where N : struct, IConstant {
-            static bool needs_increase_weight(MultiPrecision<N> error) {
-                return error.Exponent >= -337;
-                //return error.Exponent >= -340;
-            }
-
-            Vector<N> weights = Vector<N>.Fill(xs.Length, 1);
-
-            AdaptivePadeFitter<N> fitter = new(((Vector<N64>)xs).Convert<N>(), ((Vector<N64>)ys).Convert<N>(), numer, denom);
-
-            (Vector<N> parameter, bool success) = fitter.ExecuteFitting(weights, needs_increase_weight, iter: 20);
-            Vector<N> approx = fitter.FittingValue(((Vector<N64>)xs).Convert<N>(), parameter);
-
-            return (parameter, approx, success);
+            Console.WriteLine("END");
+            Console.Read();
         }
     }
 }

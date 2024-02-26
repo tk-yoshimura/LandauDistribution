@@ -30,7 +30,7 @@ namespace LandauEvalPadeApprox {
 
                 ps.Reverse();
 
-                using StreamWriter sw = new("../../../../results_disused/quantile_cdf_precision152_evalerr.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalquantile_cdf_precision152.csv");
 
                 sw.WriteLine("cdf,lambda,error");
 
@@ -60,7 +60,7 @@ namespace LandauEvalPadeApprox {
 
                 ps.Reverse();
 
-                using StreamWriter sw = new("../../../../results_disused/quantile_ccdf_precision152_evalerr.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalquantile_ccdf_precision152.csv");
 
                 sw.WriteLine("ccdf,lambda,error");
 

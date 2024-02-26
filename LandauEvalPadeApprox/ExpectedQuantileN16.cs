@@ -3,7 +3,7 @@ using MultiPrecision;
 using MultiPrecisionRootFinding;
 
 namespace LandauEvalPadeApprox {
-    class QuantileRootFind {
+    class ExpectedQuantileN16 {
         static void Main_() {
             {
                 List<MultiPrecision<Pow2.N16>> cdfs = [];
@@ -66,14 +66,6 @@ namespace LandauEvalPadeApprox {
                     cdfs.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
                 }
 
-                for (int exp = -1048576; exp > -4194304; exp -= 512) {
-                    cdfs.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
-                }
-
-                for (int exp = -4194304; exp >= -16777216; exp -= 2048) {
-                    cdfs.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
-                }
-
                 MultiPrecision<Pow2.N16> lambda = "1.355780420990801325032092809390650910517114086024118870";
 
                 using StreamWriter sw = new("../../../../results_disused/quantile_cdf_precision152.csv");
@@ -115,7 +107,7 @@ namespace LandauEvalPadeApprox {
                 foreach (MultiPrecision<Pow2.N16> ccdf in ccdfs) {
                     lambda = NewtonRaphsonFinder<Pow2.N16>.RootFind(
                         (l) => (CDFPadeN16.Value(l, complementary: true) - ccdf, -PDFPadeN16.Value(l)), lambda, (-20, "inf"),
-                        iters: 256, overshoot_decay: true
+                        iters: 64, overshoot_decay: true
                     );
 
                     MultiPrecision<Pow2.N16> err = (CDFPadeN16.Value(lambda, complementary: true) - ccdf) / CDFPadeN16.Value(lambda, complementary: true);
@@ -125,8 +117,6 @@ namespace LandauEvalPadeApprox {
                     Console.WriteLine($"{ccdf:e5},{lambda:e16},{s:e16},{err:e10}");
                     sw.WriteLine($"{ccdf.Exponent},{MultiPrecision<Pow2.N16>.Ldexp(ccdf, -ccdf.Exponent)},{lambda},{s},{err:e10}");
                 }
-
-                sw.WriteLine("0,inf,1,0");
 
                 sw.Flush();
             }

@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AsymptoticExpansion\LandauEvalCDFAsymptotic\LandauEvalCDFAsymptotic.csproj" />
+    <ProjectReference Include="..\AsymptoticExpansion\LandauEvalPDFAsymptotic\LandauEvalPDFAsymptotic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="LandauPadeApprox">
       <HintPath>..\LandauPadeApprox\bin\Debug\net8.0\LandauPadeApprox.dll</HintPath>
     </Reference>
