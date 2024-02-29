@@ -2,9 +2,9 @@
 using LandauSymbolToNumeric;
 using MultiPrecision;
 
-using StreamReader sr = new("../../../../results_disused/asymp_plus_poly.txt");
-using StreamWriter sw = new("../../../../results_disused/asymp_plus_poly_digit227.txt");
-using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_poly_bits768.bin", FileMode.Create));
+using StreamReader sr = new("../../../../results_disused/asymp_plus_pdf_poly.txt");
+using StreamWriter sw = new("../../../../results_disused/asymp_plus_pdf_poly_digit227.txt");
+using BinaryWriter swb = new(File.Open($"../../../../results_disused/asymp_plus_pdf_poly_bits768.bin", FileMode.Create));
 
 sw.WriteLine("n,a_n,mpplus");
 

@@ -10,7 +10,7 @@ namespace LandauEvalCDFAsymptotic {
             List<MultiPrecision<N>> coefs = [];
 
             string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
-                ?    "../../../../results_disused/asymp_minus_cdf_poly_frac.txt"
+                ? "../../../../results_disused/asymp_minus_cdf_poly_frac.txt"
                 : "../../../../../results_disused/asymp_minus_cdf_poly_frac.txt";
 
             using StreamReader stream = new(filepath);

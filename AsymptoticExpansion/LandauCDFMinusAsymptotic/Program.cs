@@ -1,12 +1,12 @@
 ﻿using LandauSymbolicArithmetic;
 using System.Numerics;
 
-using StreamReader stream = new("../../../../../results_disused/asymp_minus_poly_frac.txt");
+using StreamReader sr = new("../../../../../results_disused/asymp_minus_pdf_poly_frac.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_minus_cdf_poly.txt");
 
 List<Fraction> coefs = [];
-while (!stream.EndOfStream) {
-    string? line = stream.ReadLine();
+while (!sr.EndOfStream) {
+    string? line = sr.ReadLine();
 
     if (string.IsNullOrWhiteSpace(line)) {
         break;

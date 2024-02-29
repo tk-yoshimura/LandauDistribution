@@ -1,7 +1,7 @@
 ﻿using LandauPDFMinusAsymptotic;
 using LandauSymbolicArithmetic;
 
-using StreamWriter sw = new("../../../../../results_disused/asymp_minus_poly.txt");
+using StreamWriter sw = new("../../../../../results_disused/asymp_minus_pdf_poly.txt");
 
 List<Fraction> poly = [];
 

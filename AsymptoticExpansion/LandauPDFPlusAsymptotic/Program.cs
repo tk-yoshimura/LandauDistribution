@@ -1,7 +1,7 @@
 ﻿using LandauPDFPlusAsymptotic;
 using LandauSymbolicArithmetic;
 
-using StreamWriter sw = new("../../../../../results_disused/asymp_plus_poly.txt");
+using StreamWriter sw = new("../../../../../results_disused/asymp_plus_pdf_poly.txt");
 
 for (int j = 1; j <= 64; j++) {
     SymbolicPoly p = new();

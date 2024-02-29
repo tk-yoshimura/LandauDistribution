@@ -9,8 +9,8 @@ namespace LandauEvalPDFAsymptotic {
             List<MultiPrecision<N>> coefs = [];
 
             string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
-                ?    "../../../../results_disused/asymp_plus_poly_bits768.bin"
-                : "../../../../../results_disused/asymp_plus_poly_bits768.bin";
+                ? "../../../../results_disused/asymp_plus_pdf_poly_bits768.bin"
+                : "../../../../../results_disused/asymp_plus_pdf_poly_bits768.bin";
 
             using BinaryReader stream = new(File.OpenRead(filepath));
 

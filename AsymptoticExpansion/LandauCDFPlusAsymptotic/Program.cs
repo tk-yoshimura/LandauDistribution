@@ -1,6 +1,6 @@
 ﻿using LandauSymbolicArithmetic;
 
-using StreamReader sr = new("../../../../../results_disused/asymp_plus_poly.txt");
+using StreamReader sr = new("../../../../../results_disused/asymp_plus_pdf_poly.txt");
 using StreamWriter sw = new("../../../../../results_disused/asymp_plus_cdf_poly.txt");
 
 List<string> lines = [];
