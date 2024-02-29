@@ -9,13 +9,13 @@ namespace LandauEvalCDFAsymptotic {
             List<MultiPrecision<N>> coefs = [];
 
             string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
-                ? "../../../../results_disused/asymp_plus_cdf_poly_bits768.bin"
-                : "../../../../../results_disused/asymp_plus_cdf_poly_bits768.bin";
+                ? "../../../../results_disused/asymp_plus_cdf_poly_bits2048.bin"
+                : "../../../../../results_disused/asymp_plus_cdf_poly_bits2048.bin";
 
             using BinaryReader stream = new(File.OpenRead(filepath));
 
             for (int i = 0; i < 64; i++) {
-                MultiPrecision<N24> coef = stream.ReadMultiPrecision<N24>();
+                MultiPrecision<Pow2.N64> coef = stream.ReadMultiPrecision<Pow2.N64>();
                 coefs.Add(coef.Convert<N>());
             }
 
