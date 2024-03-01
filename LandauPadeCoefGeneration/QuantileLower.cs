@@ -39,7 +39,7 @@ namespace LandauPadeCoefGeneration {
                 }
             }
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_lower_precision150_2.csv")) {
+            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_lower_precision150_2_scaled.csv")) {
                 bool approximate(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax) {
                     Console.WriteLine($"[{pmin}, {pmax}]");
 
@@ -48,8 +48,13 @@ namespace LandauPadeCoefGeneration {
 
                     Console.WriteLine($"expecteds {expecteds_range.Count} samples");
 
-                    Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
+                    Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
+
+                    xs -= pmin;
+                    (long exp_scale, xs) = CurveFittingUtils.StandardizeExponent(xs);
+
+                    Console.WriteLine($"scale={exp_scale}");
 
                     for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
                         foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
@@ -76,11 +81,12 @@ namespace LandauPadeCoefGeneration {
                                 break;
                             }
 
-                            if (max_abserr < "4e-150" &&
-                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, pmax - pmin)) {
+                            if (max_abserr < "1e-150" &&
+                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xs[^1] - xs[0])) {
 
                                 sw.WriteLine($"p=[{pmin},{pmax}]");
                                 sw.WriteLine($"m={m},n={n}");
+                                sw.WriteLine($"scale={exp_scale}");
                                 sw.WriteLine($"expecteds {expecteds_range.Count} samples");
 
                                 sw.WriteLine("numer");

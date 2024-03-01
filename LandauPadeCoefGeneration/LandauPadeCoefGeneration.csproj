@@ -10,7 +10,13 @@
   <ItemGroup>
     <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.2" />
     <PackageReference Include="TYoshimura.MultiPrecision.Algebra" Version="1.4.2" />
-    <PackageReference Include="TYoshimura.MultiPrecision.CurveFitting" Version="1.7.4" />
+    <PackageReference Include="TYoshimura.MultiPrecision.CurveFitting" Version="1.7.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LandauPadeApprox">
+      <HintPath>..\LandauPadeApprox\bin\Debug\net8.0\LandauPadeApprox.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
