@@ -2251,11 +2251,14 @@ namespace LandauPadeApprox {
 
                 return y;
             }
-            else {
+            else if (lambda.Exponent <= 516) {
                 MultiPrecision<Pow2.N16> invomega = 1 / Omega<Pow2.N16>.Value(lambda);
                 MultiPrecision<Pow2.N16> y = ApproxUtil<Pow2.N16>.Poly(invomega, asymptotic_plus) * invomega;
 
                 return y;
+            }
+            else {
+                return 1 / lambda;
             }
         }
 
