@@ -6,6 +6,10 @@ namespace LandauEvalPDFAsymptotic {
         public static readonly ReadOnlyCollection<MultiPrecision<N>> Coefs;
 
         static PDFPositiveSide() {
+            if (default(N).Value > 64) {
+                throw new ArithmeticException($"Unsupported long {nameof(N)}");
+            }
+
             List<MultiPrecision<N>> coefs = [];
 
             string filepath = Path.GetFullPath("../../../..").Split('/', '\\')[^1] == "LandauDistribution"
@@ -23,15 +27,15 @@ namespace LandauEvalPDFAsymptotic {
         }
 
         public static MultiPrecision<N> Omega(MultiPrecision<N> lambda) {
-            MultiPrecision<Plus1<N>> lambda_p1 = lambda.Convert<Plus1<N>>();
-            MultiPrecision<Plus1<N>> omega = lambda_p1 * (1 - MultiPrecision<Plus1<N>>.Log(lambda_p1) / (lambda_p1 + 1));
+            MultiPrecision<Plus4<N>> lambda_p1 = lambda.Convert<Plus4<N>>();
+            MultiPrecision<Plus4<N>> omega = lambda_p1 * (1 - MultiPrecision<Plus4<N>>.Log(lambda_p1) / (lambda_p1 + 1));
 
             while (true) {
-                MultiPrecision<Plus1<N>> f = omega + MultiPrecision<Plus1<N>>.Log(omega) - lambda_p1;
-                MultiPrecision<Plus1<N>> d = (2 * omega * (omega + 1) * f) / (2 * MultiPrecision<Plus1<N>>.Square(omega + 1) + f);
+                MultiPrecision<Plus4<N>> f = omega + MultiPrecision<Plus4<N>>.Log(omega) - lambda_p1;
+                MultiPrecision<Plus4<N>> d = (2 * omega * (omega + 1) * f) / (2 * MultiPrecision<Plus4<N>>.Square(omega + 1) + f);
                 omega -= d;
 
-                if (MultiPrecision<Plus1<N>>.IsZero(d) || omega.Exponent - d.Exponent > MultiPrecision<N>.Bits) {
+                if (MultiPrecision<Plus4<N>>.IsZero(d) || omega.Exponent - d.Exponent > MultiPrecision<N>.Bits) {
                     break;
                 }
             }
