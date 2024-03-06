@@ -1,6 +1,4 @@
-﻿using LandauEvalCDFAsymptotic;
-using LandauEvalPDFAsymptotic;
-using LandauPadeApprox;
+﻿using LandauPadeApprox;
 using MultiPrecision;
 using MultiPrecisionRootFinding;
 

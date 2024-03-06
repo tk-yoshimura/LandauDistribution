@@ -47,7 +47,7 @@ namespace LandauPadeCoefGeneration {
                             return false;
                         }
                     }
-                    else { 
+                    else {
                         if (pmax - pmin > 64) {
                             return false;
                         }
@@ -63,7 +63,7 @@ namespace LandauPadeCoefGeneration {
                     Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
-                    MultiPrecision<Pow2.N64> error_rate = 1 / MultiPrecision<Pow2.N64>.Pow2(ys[0]); 
+                    MultiPrecision<Pow2.N64> error_rate = 1 / MultiPrecision<Pow2.N64>.Pow2(ys[0]);
 
                     (long exp_scale, xs) = CurveFittingUtils.StandardizeExponent(xs);
 

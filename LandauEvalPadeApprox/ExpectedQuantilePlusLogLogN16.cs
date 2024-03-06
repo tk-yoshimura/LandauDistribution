@@ -1,4 +1,4 @@
-﻿﻿using LandauEvalCDFAsymptotic;
+﻿using LandauEvalCDFAsymptotic;
 using LandauEvalPDFAsymptotic;
 using LandauPadeApprox;
 using MultiPrecision;
@@ -6,7 +6,7 @@ using MultiPrecisionRootFinding;
 
 namespace LandauEvalPadeApprox {
     internal class ExpectedQuantilePlusLogLogN16 {
-        static void Main() {
+        static void Main_() {
             MultiPrecision<Pow2.N64> median = "1.3557804209908013250320928093907";
 
             using (StreamWriter sw = new("../../../../results_disused/quantile_upper_precision152_loglog.csv")) {
@@ -27,7 +27,7 @@ namespace LandauEvalPadeApprox {
                                 x0: x, overshoot_decay: true, iters: 256, accurate_bits: MultiPrecision<Pow2.N16>.Bits
                             );
                         }
-                        else { 
+                        else {
                             x = NewtonRaphsonFinder<Pow2.N64>.RootFind(
                                 x => (
                                     CDFPositiveSide<Pow2.N64>.Value(x, terms: 64) - p,

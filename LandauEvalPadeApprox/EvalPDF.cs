@@ -70,7 +70,10 @@ namespace LandauEvalPadeApprox {
 
                     MultiPrecision<Pow2.N16> x = line_split[0];
                     MultiPrecision<Pow2.N32> expected = line_split[1];
-                    MultiPrecision<Pow2.N32> y = ((x.Sign == Sign.Plus) ? PDFPadeN16.APlus(x) : PDFPadeN16.AMinus(x)).Convert<Pow2.N32>();
+                    MultiPrecision<Pow2.N32> y = ((x.Sign == Sign.Plus) ?
+                        PDFPadeN16.Value(x) * (x * x + MultiPrecision<Pow2.N16>.PI * MultiPrecision<Pow2.N16>.PI)
+                        : PDFPadeN16.AMinus(x)).Convert<Pow2.N32>();
+
                     MultiPrecision<Pow2.N32> err = MultiPrecision<Pow2.N32>.Abs(y - expected) / expected;
 
                     Console.WriteLine($"{x},{y:e16},{err:e8}");

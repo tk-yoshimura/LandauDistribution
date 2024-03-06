@@ -4,7 +4,7 @@ using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class QuantileUpperLogLog {
-        static void Main() {
+        static void Main_() {
             List<(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax, MultiPrecision<Pow2.N64> limit_range)> ranges = [];
 
             for (MultiPrecision<Pow2.N64> pmin = 1; pmin < 16; pmin *= 2) {
