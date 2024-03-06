@@ -62,7 +62,7 @@ The minus *&lambda;* side decays rapidly.
 [Random Generation](RandomGeneration)  
 [Wolfram Alpha Reference Values](WolframAlphaReference)  
 
-## Padé Based Approximation of PDF, CDF and Quantile
+## Padé Approximation of PDF, CDF and Quantile
 [Digits150 source](LandauPadeApprox)  
 [Digits150 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
 
