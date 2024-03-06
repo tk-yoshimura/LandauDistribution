@@ -17,8 +17,6 @@ The relevance of the original definition is as follows:
 ![define relevance](figures/define_relevance.svg)  
 ![define relevance 2](figures/define_relevance_2.svg)
 
-[PDF Precision 64](results/pdf_precision64.csv)  
-[CDF Precision 64](results/cdf_precision64.csv)  
 ![pdf](figures/pdf.svg)  
 ![logpdf](figures/logpdf.svg)  
 ![cdf](figures/cdf.svg)  
@@ -28,18 +26,18 @@ The relevance of the original definition is as follows:
 |stat|&lambda;|note|
 |----|----|----|
 |mean|N/A|undefined|
-|mode|-0.22278298125640850406...|p(&lambda;)=1.806556338205509427830338852686311455672580...e-1|
+|mode|-0.2227829812564085040618242831248...|p(&lambda;)=0.1806556338205509427830338852686|
 |variance|N/A|undefined|
-|median|1.3557804209908013250320928093907...||
-|0.01-quantile| ||
-|0.05-quantile| ||
-|0.1-quantile | ||
-|0.25-quantile| ||
-|0.75-quantile| ||
-|0.9-quantile | ||
-|0.95-quantile| ||
-|0.99-quantile| ||
-|entropy      | ||
+|median|        1.3557804209908013250320928093907...||
+|0.01-quantile|-2.1048979093493976933783499309591...||
+|0.05-quantile|-1.4982541517778027339600345356285...||
+|0.1-quantile |-1.0922545280548463542264694944364...||
+|0.25-quantile|-0.20464065154575316904929481233852...||
+|0.75-quantile| 4.45839461019464834851167812598963...||
+|0.9-quantile | 11.6492846844744055699958678468515...||
+|0.95-quantile| 22.4502780788727817828880362014437...||
+|0.99-quantile| 104.156361812207433543595837172678...||
+|entropy      | 2.82421914529393668921060013095374...||
 
 ## Property of Tail
 
@@ -53,6 +51,11 @@ The minus *&lambda;* side decays rapidly.
 ![tail lessx](figures/tail_lessx.svg)  
 ![tail lessx approx](figures/tail_lessx_approx.svg)
 
+## Numeric Table
+[PDF Precision 64](results/pdf_precision64.csv)  
+[CDF Precision 64](results/cdf_precision64.csv)  
+[Quantile Precision 64](results/quantile_precision64.csv)  
+
 ## Columns
 [Numeric Integration](NumericIntegration)  
 [Asymptotic Expansion](AsymptoticExpansion)  
@@ -60,8 +63,8 @@ The minus *&lambda;* side decays rapidly.
 [Wolfram Alpha Reference Values](WolframAlphaReference)  
 
 ## Padé Based Approximation of PDF, CDF and Quantile
-[Digits100 source](LandauPadeApprox)  
-[Digits100 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
+[Digits150 source](LandauPadeApprox)  
+[Digits150 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
 
 ## Reference
 [L.Landau, "On the energy loss of fast particles by ionization" (1944)](https://www.semanticscholar.org/paper/On-the-energy-loss-of-fast-particles-by-ionization-Landau/037099731178b3aeebca36a054852e4c4866a1c3)  
