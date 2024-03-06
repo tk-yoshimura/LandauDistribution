@@ -26,7 +26,7 @@ The relevance of the original definition is as follows:
 |stat|&lambda;|note|
 |----|----|----|
 |mean|N/A|undefined|
-|mode|-0.2227829812564085040618242831248...|p(&lambda;)=0.1806556338205509427830338852686|
+|mode|-0.2227829812564085040618242831248...|p(&lambda;)=0.1806556338205509427830338852686...|
 |variance|N/A|undefined|
 |median|        1.3557804209908013250320928093907...||
 |0.01-quantile|-2.1048979093493976933783499309591...||
