@@ -4,7 +4,7 @@ using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class QuantileUpperLogLogLog {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax, MultiPrecision<Pow2.N64> limit_range)> ranges = [];
 
             for (MultiPrecision<Pow2.N64> pmin = 16; pmin < 512; pmin *= 2) {
@@ -40,8 +40,19 @@ namespace LandauPadeCoefGeneration {
                 }
             }
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_upper_precision150_logloglog.csv")) {
+            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_upper_precision155_logloglog.csv")) {
                 bool approximate(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax) {
+                    if (pmin < 256) {
+                        if (pmax - pmin > 32) {
+                            return false;
+                        }
+                    }
+                    else { 
+                        if (pmax - pmin > 64) {
+                            return false;
+                        }
+                    }
+
                     Console.WriteLine($"[{pmin}, {pmax}]");
 
                     List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds_range
@@ -52,7 +63,7 @@ namespace LandauPadeCoefGeneration {
                     Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
-                    MultiPrecision<Pow2.N64> error_rate = pmin / MultiPrecision<Pow2.N64>.Pow2(ys[0]); 
+                    MultiPrecision<Pow2.N64> error_rate = 1 / MultiPrecision<Pow2.N64>.Pow2(ys[0]); 
 
                     (long exp_scale, xs) = CurveFittingUtils.StandardizeExponent(xs);
 
@@ -80,16 +91,17 @@ namespace LandauPadeCoefGeneration {
                                 return false;
                             }
 
-                            if (max_rateerr > "1e-145" * error_rate) {
+                            if (coefs > 32 && max_rateerr > "1e-105") {
+                                coefs += 4;
                                 break;
                             }
 
-                            if (max_rateerr >= "1.25e-150" * error_rate) {
-                                continue;
+                            if (max_rateerr > "1e-150" * error_rate) {
+                                break;
                             }
-                                                                
-                            if (max_rateerr < "1e-154" * error_rate) {
-                                return false;
+
+                            if (max_rateerr >= "1e-155" * error_rate) {
+                                continue;
                             }
 
                             if (CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xs[^1] - xs[0]) ||
