@@ -56,6 +56,9 @@ The minus *&lambda;* side decays rapidly.
 [CDF Precision 64](results/cdf_precision64.csv)  
 [Quantile Precision 64](results/quantile_precision64.csv)  
 
+## Double Precision (IEEE 754) Approx
+[FP64](https://github.com/tk-yoshimura/LandauDistributionFP64)
+
 ## Columns
 [Numeric Integration](NumericIntegration)  
 [Asymptotic Expansion](AsymptoticExpansion)  
