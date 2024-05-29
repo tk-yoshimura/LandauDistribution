@@ -203,5 +203,5 @@
   A_6^{+} &=&1-\frac{175}{12}\pi^2+\frac{203}{180}\pi^4-\frac{5}{168}\pi^6-245\zeta\left(3\right)+49\pi^2\zeta\left(3\right)+40\zeta\left(3\right)^2-\frac{1764}{5}\zeta\left(5\right) \\
             && ~~ +\left(-21+\frac{245}{4}\pi^2-\frac{49}{40}\pi^4+\frac{1624}{3}\zeta\left(3\right)-20\pi^2\zeta\left(3\right)+144\zeta\left(5\right)\right)\gamma \\
             && ~~ +\left(\frac{175}{2}-\frac{203}{3}\pi^2+\frac{1}{4}\pi^4-294\zeta\left(3\right)\right)\gamma^2+\left(-\frac{245}{2}+\frac{49}{2}\pi^2+40\zeta\left(3\right)\right)\gamma^3 \\
-            && ~~ +\left(\frac{203}{3}-\frac{5}{2}\pi^2\right)\gamma^4-147}{10\gamma^5+\gamma^6
+            && ~~ +\left(\frac{203}{3}-\frac{5}{2}\pi^2\right)\gamma^4-\frac{147}{10}\gamma^5+\gamma^6
 \end{eqnarray*}
