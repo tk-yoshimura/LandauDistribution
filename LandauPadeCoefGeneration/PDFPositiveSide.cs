@@ -22,7 +22,7 @@ namespace LandauPadeCoefGeneration {
                 (1024, 2048, 2),
             ];
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_pdf_precision152_plus.csv")) {
+            using (StreamWriter sw = new("../../../../results_disused/pade_pdf_precision153_plus.csv")) {
                 bool approximate(MultiPrecision<Pow2.N64> xmin, MultiPrecision<Pow2.N64> xmax) {
                     Console.WriteLine($"[{xmin}, {xmax}]");
 
@@ -34,7 +34,7 @@ namespace LandauPadeCoefGeneration {
                     Vector<Pow2.N64> xs = expecteds_range.Select(item => item.x - xmin).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
-                    for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
+                    for (int coefs = 5; coefs <= expecteds_range.Count / 8 && coefs <= 128; coefs++) {
                         foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
                             PadeFitter<Pow2.N64> pade = new(xs, ys, m, n);
 
@@ -46,25 +46,54 @@ namespace LandauPadeCoefGeneration {
                             Console.WriteLine($"m={m},n={n}");
                             Console.WriteLine($"{max_rateerr:e20}");
 
-                            if (coefs > 8 && max_rateerr > "1e-12") {
+                            if (coefs > 8 && max_rateerr > "1e-15") {
                                 return false;
                             }
 
-                            if (coefs > 32 && max_rateerr > "1e-50") {
+                            if (coefs > 16 && max_rateerr > "1e-30") {
                                 return false;
                             }
 
-                            if (max_rateerr > "1e-145") {
+                            if (coefs > 32 && max_rateerr > "1e-60") {
+                                return false;
+                            }
+
+                            if (max_rateerr > "1e-50") {
+                                coefs += 16;
                                 break;
                             }
 
-                            if (max_rateerr < "1e-152" &&
+                            if (max_rateerr > "1e-100") {
+                                coefs += 8;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-135") {
+                                coefs += 4;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-140") {
+                                coefs += 2;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-148") {
+                                break;
+                            }
+
+                            if (max_rateerr < "1e-160") {
+                                return false;
+                            }
+
+                            if (max_rateerr < "1e-153" &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xmax - xmin) &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xmax - xmin)) {
 
                                 sw.WriteLine($"x=[{xmin},{xmax}]");
                                 sw.WriteLine($"m={m},n={n}");
                                 sw.WriteLine($"expecteds {expecteds_range.Count} samples");
+                                sw.WriteLine($"sample rate {(double)expecteds_range.Count / (param.Dim - 1)}");
                                 sw.WriteLine("numer");
                                 foreach (var (_, val) in param[..m]) {
                                     sw.WriteLine($"{val:e155}");
@@ -106,7 +135,7 @@ namespace LandauPadeCoefGeneration {
         private static List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_pdf)> ReadExpacted() {
 
             List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_pdf)> expecteds = [];
-            StreamReader stream = new("../../../../results/scaled_pdf_precision150.csv");
+            StreamReader stream = new("../../../../results_disused/scaled_pdf_precision151.csv");
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();
             }

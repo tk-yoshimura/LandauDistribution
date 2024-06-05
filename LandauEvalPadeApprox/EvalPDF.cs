@@ -3,7 +3,7 @@ using MultiPrecision;
 
 namespace LandauEvalPadeApprox {
     class EvalPDF {
-        static void Main_() {
+        static void Main() {
             List<double> xs = [];
 
             for (double x = 0; x < 1; x += 1d / 4096) {
@@ -53,7 +53,7 @@ namespace LandauEvalPadeApprox {
                     sr.ReadLine();
                 }
 
-                using StreamWriter sw = new("../../../../results_disused/evalpade_scaledpdf_precision150.csv");
+                using StreamWriter sw = new("../../../../results_disused/evalpade_scaledpdf_precision153.csv");
                 sw.WriteLine("# scale_pdf := (lambda >= 0) ? ( pdf * (lambda^2 + pi^2) ) : ( pdf * sqrt(2 pi) * exp(sigma) / sqrt(sigma) )");
                 sw.WriteLine("# sigma := exp(-lambda-1)");
 
