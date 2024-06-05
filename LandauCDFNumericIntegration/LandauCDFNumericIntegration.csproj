@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="TYoshimura.MultiPrecision" Version="6.3.2" />
-    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.4.3" />
+    <PackageReference Include="TYoshimura.MultiPrecision.Integrate" Version="1.4.5" />
   </ItemGroup>
 
   <ItemGroup>
