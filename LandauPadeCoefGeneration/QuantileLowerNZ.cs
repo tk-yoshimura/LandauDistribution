@@ -3,17 +3,15 @@ using MultiPrecisionAlgebra;
 using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
-    class QuantileUpperLogLog {
+    class QuantileLowerNZ {
         static void Main_() {
             List<(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax, MultiPrecision<Pow2.N64> limit_range)> ranges = [];
 
-            for (MultiPrecision<Pow2.N64> pmin = 1; pmin < 16; pmin *= 2) {
-                ranges.Add((pmin, pmin * 2, pmin / 256));
-            }
+            ranges.Add((1.5, 2, 1d / 256));
 
             List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds = [];
 
-            using (StreamReader sr = new("../../../../results_disused/quantile_upper_precision152_loglog.csv")) {
+            using (StreamReader sr = new("../../../../results_disused/quantile_lower_precision152.csv")) {
                 sr.ReadLine();
 
                 while (!sr.EndOfStream) {
@@ -36,7 +34,7 @@ namespace LandauPadeCoefGeneration {
                 }
             }
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_upper_precision150_loglog.csv")) {
+            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_lower_nz_precision151.csv")) {
                 bool approximate(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax) {
                     Console.WriteLine($"[{pmin}, {pmax}]");
 
@@ -48,75 +46,85 @@ namespace LandauPadeCoefGeneration {
                     Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
-                    (long exp_scale, xs) = CurveFittingUtils.StandardizeExponent(xs);
-
-                    Console.WriteLine($"scale={exp_scale}");
-
                     for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
                         foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
                             PadeFitter<Pow2.N64> pade = new(xs, ys, m, n);
 
                             Vector<Pow2.N64> param = pade.ExecuteFitting();
+                            Vector<Pow2.N64> errs = pade.Error(param);
 
                             MultiPrecision<Pow2.N64> max_abserr = CurveFittingUtils.MaxAbsoluteError(ys, pade.FittingValue(xs, param));
 
                             Console.WriteLine($"m={m},n={n}");
                             Console.WriteLine($"{max_abserr:e20}");
 
-                            Console.WriteLine($"mcount: {param.Count(item => item.val.Sign != Sign.Plus)}");
-
-                            if (coefs > 8 && max_abserr > "1e-12") {
+                            if (coefs > 8 && max_abserr > "1e-15") {
                                 return false;
                             }
 
-                            if (coefs > 32 && max_abserr > "1e-45") {
+                            if (coefs > 16 && max_abserr > "1e-30") {
                                 return false;
                             }
 
-                            if (max_abserr > "1e-145") {
+                            if (coefs > 32 && max_abserr > "1e-60") {
+                                return false;
+                            }
+
+                            if (max_abserr > "1e-50") {
+                                coefs += 16;
                                 break;
                             }
 
-                            if (max_abserr >= "1.25e-150") {
-                                continue;
+                            if (max_abserr > "1e-100") {
+                                coefs += 8;
+                                break;
                             }
 
-                            if (ys.Any(v => v.val < 0)) {
-                                if (CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xs[^1] - xs[0])) {
-                                    continue;
+                            if (max_abserr > "1e-135") {
+                                coefs += 4;
+                                break;
+                            }
+
+                            if (max_abserr > "1e-140") {
+                                coefs += 2;
+                                break;
+                            }
+
+                            if (max_abserr > "1e-148") {
+                                break;
+                            }
+
+                            if (max_abserr < "1e-160") {
+                                return false;
+                            }
+
+                            if (max_abserr < "1e-151" &&
+                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, pmax - pmin)) {
+
+                                sw.WriteLine($"p=[{pmin},{pmax}]");
+                                sw.WriteLine($"m={m},n={n}");
+                                sw.WriteLine($"expecteds {expecteds_range.Count} samples");
+                                sw.WriteLine($"sample rate {(double)expecteds_range.Count / (param.Dim - 1)}");
+                                sw.WriteLine("numer");
+                                foreach (var (_, val) in param[..m]) {
+                                    sw.WriteLine($"{val:e155}");
                                 }
-                            }
-                            else {
-                                if (CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xs[^1] - xs[0]) ||
-                                    CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xs[^1] - xs[0])) {
-                                    continue;
+                                sw.WriteLine("denom");
+                                foreach (var (_, val) in param[m..]) {
+                                    sw.WriteLine($"{val:e155}");
                                 }
+
+                                sw.WriteLine("coef");
+                                foreach ((var numer, var denom) in CurveFittingUtils.EnumeratePadeCoef(param, m, n)) {
+                                    sw.WriteLine($"(\"{numer:e155}\", \"{denom:e155}\"),");
+                                }
+
+                                sw.WriteLine("absolute err");
+                                sw.WriteLine($"{max_abserr:e20}");
+                                sw.Flush();
+
+                                return true;
                             }
-
-                            sw.WriteLine($"p=[{pmin},{pmax}]");
-                            sw.WriteLine($"m={m},n={n}");
-                            sw.WriteLine($"scale={exp_scale}");
-                            sw.WriteLine($"expecteds {expecteds_range.Count} samples");
-
-                            sw.WriteLine("numer");
-                            foreach (var (_, val) in param[..m]) {
-                                sw.WriteLine($"{val:e155}");
-                            }
-                            sw.WriteLine("denom");
-                            foreach (var (_, val) in param[m..]) {
-                                sw.WriteLine($"{val:e155}");
-                            }
-
-                            sw.WriteLine("coef");
-                            foreach ((var numer, var denom) in CurveFittingUtils.EnumeratePadeCoef(param, m, n)) {
-                                sw.WriteLine($"(\"{numer:e155}\", \"{denom:e155}\"),");
-                            }
-
-                            sw.WriteLine("absolute err");
-                            sw.WriteLine($"{max_abserr:e20}");
-                            sw.Flush();
-
-                            return true;
                         }
                     }
 

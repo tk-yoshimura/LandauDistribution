@@ -3,35 +3,49 @@ using MultiPrecisionAlgebra;
 using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
-    class CDFPositiveSide {
+    class QuantileUpper {
         static void Main_() {
-            List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> expecteds = ReadExpacted();
+            List<(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax, MultiPrecision<Pow2.N64> limit_range)> ranges = [];
 
-            Console.WriteLine($"expected: {expecteds.Count} loaded");
+            for (MultiPrecision<Pow2.N64> pmin = 1; pmin < 512; pmin *= 2) {
+                ranges.Add((pmin, pmin * 2, pmin / 256));
+            }
 
-            List<(MultiPrecision<Pow2.N64> min, MultiPrecision<Pow2.N64> max, MultiPrecision<Pow2.N64> minrange)> ranges = [
-                (0, 4, 1d / 256),
-                (4, 8, 1d / 128),
-                (8, 16, 1d / 64),
-                (16, 32, 1d / 32),
-                (32, 64, 1d / 16),
-                (64, 128, 1d / 8),
-                (128, 256, 1d / 4),
-                (256, 512, 1d / 2),
-                (512, 1024, 1),
-                (1024, 2048, 2),
-            ];
+            List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds = [];
 
-            using (StreamWriter sw = new("../../../../results_disused/pade_cdf_precision152_plus.csv")) {
-                bool approximate(MultiPrecision<Pow2.N64> xmin, MultiPrecision<Pow2.N64> xmax) {
-                    Console.WriteLine($"[{xmin}, {xmax}]");
+            using (StreamReader sr = new("../../../../results_disused/quantile_upper_precision152_scaled.csv")) {
+                sr.ReadLine();
 
-                    List<(MultiPrecision<Pow2.N64> x, MultiPrecision<Pow2.N64> y)> expecteds_range
-                        = expecteds.Where(item => item.lambda >= xmin && item.lambda <= xmax).ToList();
+                while (!sr.EndOfStream) {
+                    string? line = sr.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(line)) {
+                        break;
+                    }
+
+                    string[] line_split = line.Split(",");
+
+                    MultiPrecision<Pow2.N64> p = line_split[0];
+                    MultiPrecision<Pow2.N64> x = line_split[1];
+
+                    if (p > ranges[^1].pmax) {
+                        break;
+                    }
+
+                    expecteds.Add((p, x));
+                }
+            }
+
+            using (StreamWriter sw = new("../../../../results_disused/pade_quantile_upper_precision151.csv")) {
+                bool approximate(MultiPrecision<Pow2.N64> pmin, MultiPrecision<Pow2.N64> pmax) {
+                    Console.WriteLine($"[{pmin}, {pmax}]");
+
+                    List<(MultiPrecision<Pow2.N64> p, MultiPrecision<Pow2.N64> y)> expecteds_range
+                        = expecteds.Where(item => item.p >= pmin && item.p <= pmax).ToList();
 
                     Console.WriteLine($"expecteds {expecteds_range.Count} samples");
 
-                    Vector<Pow2.N64> xs = expecteds_range.Select(item => item.x - xmin).ToArray();
+                    Vector<Pow2.N64> xs = expecteds_range.Select(item => item.p - pmin).ToArray();
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
                     for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
@@ -86,11 +100,11 @@ namespace LandauPadeCoefGeneration {
                                 return false;
                             }
 
-                            if (max_rateerr < "1e-153" &&
-                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xmax - xmin) &&
-                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xmax - xmin)) {
+                            if (max_rateerr < "1e-151" &&
+                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, pmax - pmin) &&
+                                !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, pmax - pmin)) {
 
-                                sw.WriteLine($"x=[{xmin},{xmax}]");
+                                sw.WriteLine($"p=[{pmin},{pmax}]");
                                 sw.WriteLine($"m={m},n={n}");
                                 sw.WriteLine($"expecteds {expecteds_range.Count} samples");
                                 sw.WriteLine($"sample rate {(double)expecteds_range.Count / (param.Dim - 1)}");
@@ -130,39 +144,6 @@ namespace LandauPadeCoefGeneration {
 
             Console.WriteLine("END");
             Console.Read();
-        }
-
-        private static List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> ReadExpacted() {
-
-            List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> expecteds = [];
-            StreamReader stream = new("../../../../results_disused/cdf_upper_precision152.csv");
-            for (int i = 0; i < 3; i++) {
-                stream.ReadLine();
-            }
-
-            while (!stream.EndOfStream) {
-                string? line = stream.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(line)) {
-                    break;
-                }
-
-                if (line.StartsWith('-')) {
-                    continue;
-                }
-
-                string[] item = line.Split(',');
-
-                MultiPrecision<Pow2.N64> lambda = item[0], cdf = item[1];
-
-                MultiPrecision<Pow2.N64> scaled_cdf = cdf * (lambda + MultiPrecision<Pow2.N64>.PI);
-
-                expecteds.Add((lambda, scaled_cdf));
-            }
-
-            expecteds.Reverse();
-
-            return expecteds;
         }
     }
 }

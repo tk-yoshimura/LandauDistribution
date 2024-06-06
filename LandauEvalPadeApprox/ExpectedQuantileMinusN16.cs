@@ -21,12 +21,12 @@ namespace LandauEvalPadeApprox {
                                 CDFPadeN16.Value(x.Convert<Pow2.N16>(), complementary: false).Convert<N20>() - p,
                                 PDFPadeN16.Value(x.Convert<Pow2.N16>()).Convert<N20>()
                             ),
-                            x0: x, overshoot_decay: true, iters: 256, accurate_bits: MultiPrecision<Pow2.N16>.Bits
+                            x0: x, overshoot_decay: true, iters: 256, accurate_bits: 508
                         );
 
                         Console.WriteLine($"{u}\n{x:e20}");
 
-                        sw.WriteLine($"{u},{x}");
+                        sw.WriteLine($"{u},{x:e160}");
                     }
                 }
             }
