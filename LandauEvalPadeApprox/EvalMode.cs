@@ -1,7 +1,7 @@
 ﻿using LandauPadeApprox;
 using MultiPrecision;
-using MultiPrecisionRootFinding;
 using MultiPrecisionDifferentiate;
+using MultiPrecisionRootFinding;
 
 namespace LandauEvalPadeApprox {
     internal class SearchMode {

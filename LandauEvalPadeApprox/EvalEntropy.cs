@@ -18,14 +18,14 @@ namespace LandauEvalPadeApprox {
             };
 
             (MultiPrecision<Pow2.N16> nvalue, MultiPrecision<Pow2.N16> nerror, _) =
-                GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(info, -12, 0, 
+                GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(info, -12, 0,
                 1e-120, GaussKronrodOrder.G128K257, 32
             );
 
             Console.WriteLine($"{nvalue}\n{nerror:e20}");
 
             (MultiPrecision<Pow2.N16> pvalue, MultiPrecision<Pow2.N16> perror, _) =
-                GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(info, 0, MultiPrecision<Pow2.N16>.PositiveInfinity, 
+                GaussKronrodIntegral<Pow2.N16>.AdaptiveIntegrate(info, 0, MultiPrecision<Pow2.N16>.PositiveInfinity,
                 1e-120, GaussKronrodOrder.G128K257, 192
             );
 

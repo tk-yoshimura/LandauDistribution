@@ -57,7 +57,7 @@ namespace LandauEvalWolframAlphaReference {
             }
 
             sw.Close();
- 
+
             Console.WriteLine("END");
             Console.Read();
         }
