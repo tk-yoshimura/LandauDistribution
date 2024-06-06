@@ -1,4 +1,4 @@
-# LandauDistribution
+# LandauDistribution 
 
 In probability theory, the Landau distribution is a probability distribution named after Lev Landau.  
 Because of the distribution's "fat" tail, the moments of the distribution,  
