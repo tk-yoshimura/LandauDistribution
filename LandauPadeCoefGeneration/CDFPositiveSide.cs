@@ -4,7 +4,7 @@ using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class CDFPositiveSide {
-        static void Main_() {
+        static void Main() {
             List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_cdf)> expecteds = ReadExpacted();
 
             Console.WriteLine($"expected: {expecteds.Count} loaded");
@@ -46,25 +46,54 @@ namespace LandauPadeCoefGeneration {
                             Console.WriteLine($"m={m},n={n}");
                             Console.WriteLine($"{max_rateerr:e20}");
 
-                            if (coefs > 8 && max_rateerr > "1e-12") {
+                            if (coefs > 8 && max_rateerr > "1e-15") {
                                 return false;
                             }
 
-                            if (coefs > 32 && max_rateerr > "1e-50") {
+                            if (coefs > 16 && max_rateerr > "1e-30") {
                                 return false;
                             }
 
-                            if (max_rateerr > "1e-145") {
+                            if (coefs > 32 && max_rateerr > "1e-60") {
+                                return false;
+                            }
+
+                            if (max_rateerr > "1e-50") {
+                                coefs += 16;
                                 break;
                             }
 
-                            if (max_rateerr < "2e-152" &&
+                            if (max_rateerr > "1e-100") {
+                                coefs += 8;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-135") {
+                                coefs += 4;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-140") {
+                                coefs += 2;
+                                break;
+                            }
+
+                            if (max_rateerr > "1e-148") {
+                                break;
+                            }
+
+                            if (max_rateerr < "1e-160") {
+                                return false;
+                            }
+
+                            if (max_rateerr < "1e-153" &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xmax - xmin) &&
                                 !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xmax - xmin)) {
 
                                 sw.WriteLine($"x=[{xmin},{xmax}]");
                                 sw.WriteLine($"m={m},n={n}");
                                 sw.WriteLine($"expecteds {expecteds_range.Count} samples");
+                                sw.WriteLine($"sample rate {(double)expecteds_range.Count / (param.Dim - 1)}");
                                 sw.WriteLine("numer");
                                 foreach (var (_, val) in param[..m]) {
                                     sw.WriteLine($"{val:e155}");

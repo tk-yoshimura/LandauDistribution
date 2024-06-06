@@ -14,7 +14,7 @@ namespace LandauEvalPDFAsymptotic {
 
         private static List<(MultiPrecision<N18> lambda, MultiPrecision<N18> pdf)> ReadExpecteds() {
             List<(MultiPrecision<N18> lambda, MultiPrecision<N18> pdf)> expecteds = [];
-            using StreamReader stream = new("../../../../../results/scaled_pdf_precision150.csv");
+            using StreamReader stream = new("../../../../../results_disused/scaled_pdf_precision151.csv");
 
             for (int i = 0; i < 3; i++) {
                 stream.ReadLine();

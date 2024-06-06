@@ -10,26 +10,28 @@ namespace LandauCDFNumericIntegration {
             List<MultiPrecision<Pow2.N16>> xs = [];
 
             {
-                for (MultiPrecision<Pow2.N16> x = 0; x < 1; x += 1d / 4096) {
+                for (MultiPrecision<Pow2.N16> x = 0; x < 1; x += 1d / 16384) {
                     xs.Add(x);
                 }
-                for (MultiPrecision<Pow2.N16> h = 1d / 2048, x0 = 1, x1 = 2; x1 <= 4096; h *= 2, x0 *= 2, x1 *= 2) {
+                for (MultiPrecision<Pow2.N16> h = 1d / 8192, x0 = 1, x1 = 2; x1 <= 2048; h *= 2, x0 *= 2, x1 *= 2) {
                     for (MultiPrecision<Pow2.N16> x = x0; x < x1; x += h) {
                         xs.Add(x);
                     }
                 }
-                xs.Add(4096);
+                xs.Add(2048);
 
-                for (MultiPrecision<Pow2.N16> x = 0; x < 1; x += 1d / 4096) {
+                for (MultiPrecision<Pow2.N16> x = 0; x < 1; x += 1d / 16384) {
                     xs.Add(-x);
                 }
-                for (MultiPrecision<Pow2.N16> h = 1d / 2048, x0 = 1, x1 = 2; x1 <= 16; h *= 2, x0 *= 2, x1 *= 2) {
+                for (MultiPrecision<Pow2.N16> h = 1d / 8192, x0 = 1, x1 = 2; x1 <= 16; h *= 2, x0 *= 2, x1 *= 2) {
                     for (MultiPrecision<Pow2.N16> x = x0; x < x1; x += h) {
                         xs.Add(-x);
                     }
                 }
                 xs.Add(-16);
             }
+
+            xs = xs.Where(x => x >= -10).ToList();
 
             xs.Sort();
 
@@ -62,7 +64,7 @@ namespace LandauCDFNumericIntegration {
                     (MultiPrecision<N20> y, MultiPrecision<N20> error, long eval_points) = (x0 > -2)
                         ? GaussKronrodIntegral<N20>.AdaptiveIntegrate(
                             lambda => PDFPadeN16.Value(lambda.Convert<Pow2.N16>()).Convert<N20>(),
-                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-154, GaussKronrodOrder.G256K513, 64
+                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-154, GaussKronrodOrder.G64K129, discontinue_eval_points: 65536
                         )
                         : BisectionAdaptiveIntegrate(
                             lambda => {
@@ -72,7 +74,7 @@ namespace LandauCDFNumericIntegration {
 
                                 return PDFPadeN16.AMinus(lambda.Convert<Pow2.N16>()).Convert<N20>() * scale;
                             },
-                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-156, GaussKronrodOrder.G256K513, 64
+                            x0.Convert<N20>(), x1.Convert<N20>(), eps.Convert<N20>() * 1e-156, GaussKronrodOrder.G64K129, discontinue_eval_points: 65536
                         );
 
                     MultiPrecision<Pow2.N16> relative_eps = error.Convert<Pow2.N16>() / eps;
@@ -95,11 +97,11 @@ namespace LandauCDFNumericIntegration {
             Func<MultiPrecision<N>, MultiPrecision<N>> f,
             MultiPrecision<N> a, MultiPrecision<N> b,
             MultiPrecision<N> eps,
-            GaussKronrodOrder order = GaussKronrodOrder.G31K63, int maxdepth = -1) where N : struct, IConstant {
+            GaussKronrodOrder order = GaussKronrodOrder.G31K63, int discontinue_eval_points = -1) where N : struct, IConstant {
 
             if (a > b) {
                 (MultiPrecision<N> y, MultiPrecision<N> error, long eval_points) =
-                    BisectionAdaptiveIntegrate(f, b, a, eps, order, maxdepth);
+                    BisectionAdaptiveIntegrate(f, b, a, eps, order, discontinue_eval_points: discontinue_eval_points);
 
                 return (-y, error, eval_points);
             }
@@ -125,7 +127,7 @@ namespace LandauCDFNumericIntegration {
                     break;
                 }
 
-                return GaussKronrodIntegral<N>.AdaptiveIntegrate(f, a, b, eps, order, maxdepth);
+                return GaussKronrodIntegral<N>.AdaptiveIntegrate(f, a, b, eps, order, discontinue_eval_points: discontinue_eval_points);
             }
         }
     }

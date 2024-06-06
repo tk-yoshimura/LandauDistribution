@@ -4,7 +4,7 @@ using MultiPrecisionCurveFitting;
 
 namespace LandauPadeCoefGeneration {
     class PDFNegativeSide {
-        static void Main() {
+        static void Main_() {
             List<(MultiPrecision<Pow2.N64> lambda, MultiPrecision<Pow2.N64> scaled_pdf)> expecteds = ReadExpacted();
 
             Console.WriteLine($"expected: {expecteds.Count} loaded");

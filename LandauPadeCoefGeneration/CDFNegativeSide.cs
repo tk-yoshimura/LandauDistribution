@@ -29,7 +29,10 @@ namespace LandauPadeCoefGeneration {
                     Vector<Pow2.N64> ys = expecteds_range.Select(item => item.y).ToArray();
 
                     for (int coefs = 5; coefs <= expecteds_range.Count / 2 && coefs <= 128; coefs++) {
+
                         foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
+                            bool skip = false;
+
                             foreach ((bool forward, Vector<Pow2.N64> xs) in new[] { (true, xs_forward), (false, xs_backward) }) {
 
                                 PadeFitter<Pow2.N64> pade = new(xs, ys, m, n);
@@ -42,19 +45,52 @@ namespace LandauPadeCoefGeneration {
                                 Console.WriteLine($"m={m},n={n},{(forward ? "forward" : "backward")}");
                                 Console.WriteLine($"{max_rateerr:e20}");
 
-                                if (coefs > 8 && max_rateerr > "1e-12") {
+                                if (coefs > 8 && max_rateerr > "1e-15") {
                                     return false;
                                 }
 
-                                if (coefs > 32 && max_rateerr > "1e-50") {
+                                if (coefs > 16 && max_rateerr > "1e-30") {
                                     return false;
                                 }
 
-                                if (!forward && max_rateerr > "1e-145") {
+                                if (coefs > 32 && max_rateerr > "1e-60") {
+                                    return false;
+                                }
+
+                                if (!forward && max_rateerr > "1e-50") {
+                                    coefs += 16;
+                                    skip = true;
                                     break;
                                 }
 
-                                if (max_rateerr < "2e-152" &&
+                                if (!forward && max_rateerr > "1e-100") {
+                                    coefs += 8;
+                                    skip = true;
+                                    break;
+                                }
+
+                                if (!forward && max_rateerr > "1e-135") {
+                                    coefs += 4;
+                                    skip = true;
+                                    break;
+                                }
+
+                                if (!forward && max_rateerr > "1e-140") {
+                                    coefs += 2;
+                                    skip = true;
+                                    break;
+                                }
+
+                                if (!forward && max_rateerr > "1e-148") {
+                                    skip = true;
+                                    break;
+                                }
+
+                                if (max_rateerr < "1e-160") {
+                                    return false;
+                                }
+
+                                if (max_rateerr < "1e-153" &&
                                     !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[..m], 0, xmax - xmin) &&
                                     !CurveFittingUtils.HasLossDigitsPolynomialCoef(param[m..], 0, xmax - xmin)) {
 
@@ -62,6 +98,7 @@ namespace LandauPadeCoefGeneration {
                                     sw.WriteLine($"{(forward ? "forward" : "backward")}");
                                     sw.WriteLine($"m={m},n={n}");
                                     sw.WriteLine($"expecteds {expecteds_range.Count} samples");
+                                    sw.WriteLine($"sample rate {(double)expecteds_range.Count / (param.Dim - 1)}");
                                     sw.WriteLine("numer");
                                     foreach (var (_, val) in param[..m]) {
                                         sw.WriteLine($"{val:e155}");
@@ -82,6 +119,10 @@ namespace LandauPadeCoefGeneration {
 
                                     return true;
                                 }
+                            }
+
+                            if (skip) {
+                                break;
                             }
                         }
                     }
