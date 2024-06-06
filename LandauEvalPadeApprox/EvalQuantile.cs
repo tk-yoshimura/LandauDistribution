@@ -3,7 +3,7 @@ using MultiPrecision;
 
 namespace LandauEvalPadeApprox {
     class EvalQuantile {
-        static void Main_() {
+        static void Main() {
             {
                 List<MultiPrecision<Pow2.N16>> ps = [];
 
@@ -21,10 +21,7 @@ namespace LandauEvalPadeApprox {
                 for (int exp = -16384; exp > -262144; exp -= 4) {
                     ps.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
                 }
-                for (int exp = -262144; exp > -4194304; exp -= 16) {
-                    ps.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
-                }
-                for (int exp = -4194304; exp >= -16777216; exp -= 64) {
+                for (int exp = -262144; exp >= -1048576; exp -= 16) {
                     ps.Add(MultiPrecision<Pow2.N16>.Ldexp(1, exp));
                 }
 
@@ -51,7 +48,7 @@ namespace LandauEvalPadeApprox {
 
                 int exp0 = -1;
                 for (int h = 16384; h >= 1; exp0 *= 2, h /= 2) {
-                    for (int exp = exp0; exp > exp0 * 2 && exp >= -400; exp--) {
+                    for (int exp = exp0; exp > exp0 * 2 && exp >= -600; exp--) {
                         for (double v = 1; v > 0.5; v -= 1d / h) {
                             ps.Add(MultiPrecision<Pow2.N16>.Ldexp(v, exp));
                         }

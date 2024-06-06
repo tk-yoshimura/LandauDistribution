@@ -5,7 +5,7 @@ using MultiPrecisionRootFinding;
 
 namespace LandauEvalPadeApprox {
     internal class ExpectedQuantilePlusLimitN16 {
-        static void Main() {
+        static void Main_() {
             using (StreamWriter sw = new("../../../../results_disused/quantile_upper_precision152_limit_scaled.csv")) {
                 sw.WriteLine("u:=-log2(p),v:=cquantile(p)*p");
 
