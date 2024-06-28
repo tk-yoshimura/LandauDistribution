@@ -70,7 +70,8 @@ The minus *&lambda;* side decays rapidly.
 [Digits150 dll](https://github.com/tk-yoshimura/LandauDistribution/releases)  
 
 ## Report
-[TechRxiv](https://www.techrxiv.org/users/661998/articles/1085065-numerical-evaluation-and-high-precision-approximation-formula-for-landau-distribution)
+[TechRxiv](https://www.techrxiv.org/users/661998/articles/1085065-numerical-evaluation-and-high-precision-approximation-formula-for-landau-distribution)  
+[ResearchGate](https://www.researchgate.net/publication/381395796_Numerical_Evaluation_and_High_Precision_Approximation_Formula_for_Landau_Distribution)
 
 ## Reference
 [L.Landau, "On the energy loss of fast particles by ionization" (1944)](https://www.semanticscholar.org/paper/On-the-energy-loss-of-fast-particles-by-ionization-Landau/037099731178b3aeebca36a054852e4c4866a1c3)  
