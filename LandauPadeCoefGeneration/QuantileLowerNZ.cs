@@ -50,10 +50,10 @@ namespace LandauPadeCoefGeneration {
                         foreach ((int m, int n) in CurveFittingUtils.EnumeratePadeDegree(coefs, 2)) {
                             PadeFitter<Pow2.N64> pade = new(xs, ys, m, n);
 
-                            Vector<Pow2.N64> param = pade.ExecuteFitting();
+                            Vector<Pow2.N64> param = pade.Fit();
                             Vector<Pow2.N64> errs = pade.Error(param);
 
-                            MultiPrecision<Pow2.N64> max_abserr = CurveFittingUtils.MaxAbsoluteError(ys, pade.FittingValue(xs, param));
+                            MultiPrecision<Pow2.N64> max_abserr = CurveFittingUtils.MaxAbsoluteError(ys, pade.Regress(xs, param));
 
                             Console.WriteLine($"m={m},n={n}");
                             Console.WriteLine($"{max_abserr:e20}");
