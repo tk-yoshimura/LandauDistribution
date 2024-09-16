@@ -5,6 +5,10 @@ Because of the distribution's "fat" tail, the moments of the distribution,
 like mean or variance, are undefined. The distribution is a particular case of stable distribution.  
 The stochastic variable is traditionally &lambda;, meaning wavelength. 
 
+## Scipy Contribution
+The research content in this repository is published as an implementation in Scipy and Boost.  
+[scipy reference](https://github.com/scipy/scipy/blob/9e93f673c4021cc6dc38487dbe8fb2db8cadf131/scipy/stats/_continuous_distns.py#L5777-L5779)
+
 ## Definition
 
 The original Landau distribution defined by Landau can be evaluated on real numbers as follows:  
